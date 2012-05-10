@@ -9,7 +9,7 @@ class Decoder
 	{
 		$this->buffer = $buffer;
 		$this->index = -1;
-		$this->object = array();
+		$this->objects = array();
 	}
 	
 	public function __call($name, $arguments)
@@ -45,7 +45,6 @@ class Decoder
 		else if ($typecode == 'b' || $typecode == 'B')
 		{
 			$data = $this->nextChar();
-			echo "data = $data\n";
 			$value = NULL;
 			if ($data == 'T')
 				$value = true;
@@ -53,7 +52,7 @@ class Decoder
 				$value = false;
 			else
 				throw new Exception("broken stream: expected 'T' or 'F', got '\\u" . dechex((int)$data) . "'");
-			if (typecode == 'B')
+			if ($typecode == 'B')
 				$this->loading($value);
 			return $value;
 		}
@@ -68,6 +67,16 @@ class Decoder
 		{
 			$value = $this->readFloat();
 			if ($typecode == 'F')
+				$this->loading($value);
+			return $value;
+		}
+		else if ($typecode == 's' || $typecode == 'S')
+		{
+			$count = $this->readInt();
+			$value = "";
+			for ($i = 0; $i < $count; $i++)
+				$value .= $this->nextChar();
+			if ($typecode == 'S')
 				$this->loading($value);
 			return $value;
 		}

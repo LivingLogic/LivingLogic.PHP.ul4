@@ -5,7 +5,7 @@
 	
 	function test($obj)
 	{
-		$DEBUG = true;
+		$DEBUG = false;
 		$e = new Encoder();
 		$e->dump($obj);
 		if ($DEBUG)
@@ -29,10 +29,12 @@
 // 	$e->dump(42);
 // 	echo "buffer = '" . $e->buffer . "'\n";
 
+	test(NULL);
 	test(42);
 	test(2.71);
 	test(True);
 	test(False);
+	test("abcxyz");
 	
 // 	echo sprintf("%F", 1000234.235354) . "\n";
 ?>
