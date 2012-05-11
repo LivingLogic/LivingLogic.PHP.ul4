@@ -25,6 +25,8 @@ class Encoder
 			$this->buffer .= "S" . strlen($obj) . "|" . $obj;
 		else if (is_a($obj, "DateTime"))
 			$this->buffer .= "T" . date_format($obj, "YmdHis") . "000000";
+		else if (is_a($obj, "Color"))
+			$this->buffer .= "C" . $obj->dump();
 
 	}
 }

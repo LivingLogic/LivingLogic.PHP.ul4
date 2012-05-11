@@ -3,6 +3,7 @@
 	include 'Decoder.php';
 	include 'Encoder.php';
 	include 'Utils.php';
+	include 'Color.php';
 	
 	function error($obj1, $obj2)
 	{
@@ -30,6 +31,13 @@
 			else
 				error($obj1, $obj2);
 		}
+		else if (is_a($obj1, "Color"))
+		{
+			if ($obj1 == $obj2)
+				echo "OK: color $obj1 == $obj2\n";
+			else
+				error($obj1, $obj2);
+		}
 		else
 		{
 			if ($obj1 === $obj2)
@@ -46,5 +54,5 @@
 	test(False);
 	test("abcxyz");
 	test(Utils::makeDate(2012, 8, 10, 15, 0, 20));
-
+	test(new Color(20, 40, 60, 100));
 ?>

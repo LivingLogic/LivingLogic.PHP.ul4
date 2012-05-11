@@ -103,6 +103,21 @@ class Decoder
 
 			return $value;
 		}
+		else if ($typecode == 'c' || $typecode == 'C')
+		{
+			$buffer = "";
+			for ($i = 0; $i < 8; $i++)
+				$buffer .= $this->nextChar();
+			$value = Color::fromdump($buffer);
+			if ($typecode == 'C')
+				$this->loading($value);
+			return $value;
+		}
+		/*
+		 * UL4ONSerializable
+		 * Collection
+		 * Map
+		 */
 	}
 	
 	private function convertCharsToInt($count)
