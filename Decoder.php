@@ -1,169 +1,180 @@
 <?php
-class Decoder
-{
-	var $buffer;
-	var $index;
-	var $objects;
-	
-	function Decoder($buffer)
-	{
-		$this->buffer = $buffer;
-		$this->index = -1;
-		$this->objects = array();
-	}
-	
-	public function __call($name, $arguments)
-	{
-		if ($name == 'load' && ($arguments == NULL || count($arguments) == 0))
-			return $this->load(-2);
-		else if ($name == 'load' && ($arguments != NULL || count($arguments) == 1))
-			return $this->load($arguments[0]);
-	}
 
-	private function loading($obj)
-	{
-		array_push($this->objects, $obj);
-	}
+namespace com\livinglogic\ul4on;
 
-	private function load($typecode)
+	class Decoder
 	{
-// 		echo "typecode = $typecode \n";
-		if ($typecode == -2)
-			$typecode = $this->nextChar();
-// 		echo "typecode = $typecode \n";
+		var $buffer;
+		var $index;
+		var $objects;
 		
-		if ($typecode == '^')
+		function __construct($buf)
 		{
-			// TODO
-		}	
-		else if ($typecode == 'n' || $typecode == 'N')
-		{
-			if ($typecode == 'N')
-				$this->loading(NULL);
-			return NULL;
+			$this->buffer = $buf;
+			$this->index = -1;
+			$this->objects = array();
 		}
-		else if ($typecode == 'b' || $typecode == 'B')
+		
+		public function __call($name, $arguments)
 		{
-			$data = $this->nextChar();
-			$value = NULL;
-			if ($data == 'T')
-				$value = true;
-			else if ($data == 'F')
-				$value = false;
+			if ($name == 'load' && ($arguments == NULL || count($arguments) == 0))
+				return $this->load(-2);
+			else if ($name == 'load' && ($arguments != NULL || count($arguments) == 1))
+				return $this->load($arguments[0]);
+		}
+	
+		private function loading($obj)
+		{
+			array_push($this->objects, $obj);
+		}
+	
+		private function load($typecode)
+		{
+	// 		echo "typecode = $typecode \n";
+			if ($typecode == -2)
+				$typecode = $this->nextChar();
+	// 		echo "typecode = $typecode \n";
+			
+			if ($typecode == '^')
+			{
+				// TODO
+			}	
+			else if ($typecode == 'n' || $typecode == 'N')
+			{
+				if ($typecode == 'N')
+					$this->loading(NULL);
+				return NULL;
+			}
+			else if ($typecode == 'b' || $typecode == 'B')
+			{
+				$data = $this->nextChar();
+				$value = NULL;
+				if ($data == 'T')
+					$value = true;
+				else if ($data == 'F')
+					$value = false;
+				else
+					throw new Exception("broken stream: expected 'T' or 'F', got '\\u" . dechex((int)$data) . "'");
+				if ($typecode == 'B')
+					$this->loading($value);
+				return $value;
+			}
+			else if ($typecode == 'i' || $typecode == 'I')
+			{
+				$value = $this->readInt();
+				if ($typecode == 'I')
+					$this->loading($value);
+				return $value;
+			}
+			else if ($typecode == 'f' || $typecode == 'F')
+			{
+				$value = $this->readFloat();
+				if ($typecode == 'F')
+					$this->loading($value);
+				return $value;
+			}
+			else if ($typecode == 's' || $typecode == 'S')
+			{
+				$count = $this->readInt();
+				$value = "";
+				for ($i = 0; $i < $count; $i++)
+					$value .= $this->nextChar();
+				if ($typecode == 'S')
+					$this->loading($value);
+				return $value;
+			}
+			else if ($typecode == 't' || $typecode == 'T')
+			{
+	// 			char[] chars = new char[20];
+	// 			reader.read(chars);
+				$buffer = "";
+				$value  = new \DateTime();
+	
+				$year   = $this->convertCharsToInt(4);
+				$month  = $this->convertCharsToInt(2);
+				$day    = $this->convertCharsToInt(2);
+				$hour   = $this->convertCharsToInt(2);
+				$minute = $this->convertCharsToInt(2);
+				$second = $this->convertCharsToInt(2);
+				$msecs  = $this->convertCharsToInt(6); // read the here unused microseconds
+	
+				$value->setDate($year, $month, $day);
+				$value->setTime($hour, $minute, $second);
+	
+				if ($typecode == 'T')
+					$this->loading($value);
+	
+				return $value;
+			}
+			else if ($typecode == 'c' || $typecode == 'C')
+			{
+				$buffer = "";
+				for ($i = 0; $i < 8; $i++)
+					$buffer .= $this->nextChar();
+				$value = Color::fromdump($buffer);
+				if ($typecode == 'C')
+					$this->loading($value);
+				return $value;
+			}
 			else
-				throw new Exception("broken stream: expected 'T' or 'F', got '\\u" . dechex((int)$data) . "'");
-			if ($typecode == 'B')
-				$this->loading($value);
-			return $value;
+			{
+				echo "unkown typecode: '$typecode'\n";
+			}
+			/*
+			 * UL4ONSerializable
+			 * Collection
+			 * Map
+			 */
 		}
-		else if ($typecode == 'i' || $typecode == 'I')
+		
+		private function convertCharsToInt($count)
 		{
-			$value = $this->readInt();
-			if ($typecode == 'I')
-				$this->loading($value);
-			return $value;
-		}
-		else if ($typecode == 'f' || $typecode == 'F')
-		{
-			$value = $this->readFloat();
-			if ($typecode == 'F')
-				$this->loading($value);
-			return $value;
-		}
-		else if ($typecode == 's' || $typecode == 'S')
-		{
-			$count = $this->readInt();
-			$value = "";
+			$buffer = "";
+			
 			for ($i = 0; $i < $count; $i++)
-				$value .= $this->nextChar();
-			if ($typecode == 'S')
-				$this->loading($value);
-			return $value;
-		}
-		else if ($typecode == 't' || $typecode == 'T')
-		{
-// 			char[] chars = new char[20];
-// 			reader.read(chars);
-			$buffer = "";
-			$value  = new DateTime();
-
-			$year   = $this->convertCharsToInt(4);
-			$month  = $this->convertCharsToInt(2);
-			$day    = $this->convertCharsToInt(2);
-			$hour   = $this->convertCharsToInt(2);
-			$minute = $this->convertCharsToInt(2);
-			$second = $this->convertCharsToInt(2);
-			$msecs  = $this->convertCharsToInt(6); // read the here unused microseconds
-
-			$value->setDate($year, $month, $day);
-			$value->setTime($hour, $minute, $second);
-
-			if ($typecode == 'T')
-				$this->loading($value);
-
-			return $value;
-		}
-		else if ($typecode == 'c' || $typecode == 'C')
-		{
-			$buffer = "";
-			for ($i = 0; $i < 8; $i++)
+			{
 				$buffer .= $this->nextChar();
-			$value = Color::fromdump($buffer);
-			if ($typecode == 'C')
-				$this->loading($value);
-			return $value;
-		}
-		/*
-		 * UL4ONSerializable
-		 * Collection
-		 * Map
-		 */
-	}
+			}
+			
+			return \intval($buffer);
+		}	
 	
-	private function convertCharsToInt($count)
-	{
-		$buffer = "";
-		
-		for ($i = 0; $i < $count; $i++)
+		private function nextChar()
 		{
-			$buffer .= $this->nextChar();
-		}
-		
-		return intval($buffer);
-	}	
-
-	private function nextChar()
-	{
-		if (strlen($this->buffer) <= ($this->index - 1))
-			throw new Exception("buffer is completely read. buffer = '$this->buffer', index = $this->index,  count =   " . strlen($this->buffer));
-
-		return $this->buffer[++$this->index];
-	}
+			if (\strlen($this->buffer) <= ($this->index - 1))
+				throw new Exception("buffer is completely read. buffer = '$this->buffer', index = $this->index,  count =   " . \strlen($this->buffer));
 	
-	private function readInt()
-	{
-		$buffer = "";
+// 			echo "index = $this->index \n";
+			$c = $this->buffer[++$this->index];
+// 			echo "c = $c\n";
+// 			echo "buffer = $this->buffer\n";
+			return $c;
+		}
 		
-		while (true)
+		private function readInt()
 		{
-			$c = $this->nextChar();
-			if ($c == '|')
-				return intval($buffer);
-			$buffer .= $c;
+			$buffer = "";
+			
+			while (true)
+			{
+				$c = $this->nextChar();
+				if ($c == '|')
+					return \intval($buffer);
+				$buffer .= $c;
+			}
+		}
+	
+		private function readFloat()
+		{
+			$buffer = "";
+	
+			while (true)
+			{
+				$c = $this->nextChar();
+				if ($c == '|')
+					return \doubleval($buffer);
+				$buffer .= $c;
+			}
 		}
 	}
-
-	private function readFloat()
-	{
-		$buffer = "";
-
-		while (true)
-		{
-			$c = $this->nextChar();
-			if ($c == '|')
-				return doubleval($buffer);
-			$buffer .= $c;
-		}
-	}
-}
 ?>

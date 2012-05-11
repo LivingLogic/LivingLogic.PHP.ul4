@@ -1,4 +1,7 @@
 <?php
+
+namespace com\livinglogic\ul4on;
+
 class Color
 {
 	var $r;
@@ -6,7 +9,7 @@ class Color
 	var $b;
 	var $a;
 	
-	function Color($r, $g, $b, $a=255)
+	function __construct($r, $g, $b, $a=255)
 	{
 		$this->r = $r;
 		$this->g = $g;

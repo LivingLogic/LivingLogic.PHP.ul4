@@ -1,9 +1,12 @@
 <?php
+
+namespace com\livinglogic\ul4on;
+
 class Encoder
 {
 	public $buffer;
 
-	function Encoder()
+	function __construct()
 	{
 		$this->buffer = '';
 	}
@@ -23,9 +26,9 @@ class Encoder
 			$this->buffer .= ("b" . ($obj ? "T" : "F"));
 		else if (is_string($obj))
 			$this->buffer .= "S" . strlen($obj) . "|" . $obj;
-		else if (is_a($obj, "DateTime"))
+		else if ($obj instanceof \DateTime)
 			$this->buffer .= "T" . date_format($obj, "YmdHis") . "000000";
-		else if (is_a($obj, "Color"))
+		else if ($obj instanceof Color)
 			$this->buffer .= "C" . $obj->dump();
 
 	}
