@@ -23,6 +23,9 @@ class Encoder
 			$this->buffer .= ("b" . ($obj ? "T" : "F"));
 		else if (is_string($obj))
 			$this->buffer .= "S" . strlen($obj) . "|" . $obj;
+		else if (is_a($obj, "DateTime"))
+			$this->buffer .= "T" . date_format($obj, "YmdHis") . "000000";
+
 	}
 }
 ?>

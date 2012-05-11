@@ -80,8 +80,43 @@ class Decoder
 				$this->loading($value);
 			return $value;
 		}
+		else if ($typecode == 't' || $typecode == 'T')
+		{
+// 			char[] chars = new char[20];
+// 			reader.read(chars);
+			$buffer = "";
+			$value  = new DateTime();
+
+			$year   = $this->convertCharsToInt(4);
+			$month  = $this->convertCharsToInt(2);
+			$day    = $this->convertCharsToInt(2);
+			$hour   = $this->convertCharsToInt(2);
+			$minute = $this->convertCharsToInt(2);
+			$second = $this->convertCharsToInt(2);
+			$msecs  = $this->convertCharsToInt(6); // read the here unused microseconds
+
+			$value->setDate($year, $month, $day);
+			$value->setTime($hour, $minute, $second);
+
+			if ($typecode == 'T')
+				$this->loading($value);
+
+			return $value;
+		}
 	}
 	
+	private function convertCharsToInt($count)
+	{
+		$buffer = "";
+		
+		for ($i = 0; $i < $count; $i++)
+		{
+			$buffer .= $this->nextChar();
+		}
+		
+		return intval($buffer);
+	}	
+
 	private function nextChar()
 	{
 		if (strlen($this->buffer) <= ($this->index - 1))
