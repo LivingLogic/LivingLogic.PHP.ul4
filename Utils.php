@@ -13,7 +13,7 @@ class Utils
 		return $dt;
 	}
 	
-	public static function isArray($obj)
+	public static function isList($obj)
 	{
 		if (! is_array($obj))
 			return false;
