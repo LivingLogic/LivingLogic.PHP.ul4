@@ -30,14 +30,13 @@ namespace com\livinglogic\ul4on;
 	
 		private function load($typecode)
 		{
-	// 		echo "typecode = $typecode \n";
 			if ($typecode == -2)
 				$typecode = $this->nextChar();
-	// 		echo "typecode = $typecode \n";
 			
 			if ($typecode == '^')
 			{
-				// TODO
+				$index = $this->readInt();
+				return $this->objects[$index];
 			}	
 			else if ($typecode == 'n' || $typecode == 'N')
 			{

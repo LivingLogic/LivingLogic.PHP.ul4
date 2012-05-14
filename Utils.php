@@ -13,9 +13,12 @@ class Utils
 		return $dt;
 	}
 	
-	public static function isArray($array)
+	public static function isArray($obj)
 	{
-		$keys = array_keys($array);
+		if (! is_array($obj))
+			return false;
+
+		$keys = array_keys($obj);
 		for ($i = 0; $i < count($keys); $i++)
 		{
 			$key = $keys[$i];

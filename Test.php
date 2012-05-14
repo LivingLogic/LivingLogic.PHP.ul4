@@ -52,7 +52,7 @@ namespace com\livinglogic\ul4on;
 			else
 				return error($obj1, $obj2);
 		}
-		else if (is_array($obj1) && Utils::isArray($obj1))
+		else if (Utils::isArray($obj1))
 		{
 			if (count($obj1) != count($obj2))
 			{
