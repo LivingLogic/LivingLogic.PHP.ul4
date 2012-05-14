@@ -2,6 +2,8 @@
 
 namespace com\livinglogic\ul4on;
 
+include_once 'Utils.php';
+
 class Encoder
 {
 	public $buffer;
@@ -30,7 +32,13 @@ class Encoder
 			$this->buffer .= "T" . date_format($obj, "YmdHis") . "000000";
 		else if ($obj instanceof Color)
 			$this->buffer .= "C" . $obj->dump();
-
+		else if (is_array($obj) && Utils::isArray($obj))
+		{
+			$this->buffer .= "L";
+			for ($i = 0; $i < count($obj); $i++)
+				$this->dump($obj[$i]);
+			$this->buffer .= ".";
+		}
 	}
 }
 ?>

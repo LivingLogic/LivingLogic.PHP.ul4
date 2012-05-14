@@ -53,6 +53,28 @@ class Color
 
 		return new Color($r, $g, $b, $a);
 	}
+
+	public function getR()
+	{
+		return $this->r;
+	}
+	
+	public function getG()
+	{
+		return $this->g;
+	}
+	
+	public function getB()
+	{
+		return $this->b;
+	}
+	
+	public function getA()
+	{
+		return $this->a;
+	}
+	
+	
 	
 	function __toString()
 	{

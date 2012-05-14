@@ -12,5 +12,19 @@ class Utils
 		
 		return $dt;
 	}
+	
+	public static function isArray($array)
+	{
+		$keys = array_keys($array);
+		for ($i = 0; $i < count($keys); $i++)
+		{
+			$key = $keys[$i];
+			if (! is_int($key))
+				return false;
+		}
+	
+		return true;
+	}
+	
 }
 ?>
