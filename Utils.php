@@ -25,7 +25,23 @@ class Utils
 			if (! is_int($key))
 				return false;
 		}
-	
+
+		return true;
+	}
+
+	public static function isDict($obj)
+	{
+		if (! is_array($obj))
+			return false;
+
+		$keys = array_keys($obj);
+		for ($i = 0; $i < count($keys); $i++)
+		{
+			$key = $keys[$i];
+			if (! is_string($key))
+				return false;
+		}
+
 		return true;
 	}
 	

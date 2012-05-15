@@ -69,6 +69,38 @@ namespace com\livinglogic\ul4on;
 			}
 			
 			echo "OK: arrays are identical\n";
+			return true;
+		}
+		else if (Utils::isDict($obj1))
+		{
+			if (count($obj1) != count($obj2))
+			{
+				echo "count(obj1) != count(obj2)\n";
+				return false;
+			}
+			
+			$keys = array_keys($obj1);
+			
+			for ($i = 0; $i < count($keys); $i++)
+			{
+				if (!array_key_exists($key, $obj2))
+					return error($obj1, $obj2);
+				else
+					assertEqual(); // TODO selber oder in PHPUnit
+			}
+			
+			echo "OK: arrays are identical\n";
+			return true;
+				
+			for ($i = 0; $i < count($obj1); $i++)
+			{
+				$retVal = test($obj1[$i]);
+				
+				if (! $retVal)
+					return error($obj1, $obj2);
+			}
+			
+			echo "OK: arrays are identical\n";
 		}
 		else
 		{
@@ -82,6 +114,7 @@ namespace com\livinglogic\ul4on;
 		}
 	}
 
+	/*
 	test(NULL);
 	test(42);
 	test(2.71);
@@ -93,4 +126,22 @@ namespace com\livinglogic\ul4on;
 	
 	$a = array(1, 2.7, "abc", new Color(2, 3, 4, 5));
 	test($a);
+	*/
+	
+	function encodeDecode($obj1)
+	{
+		$e = new Encoder();
+		$e->dump($obj1);
+		$d = new Decoder($e->buffer);
+		$obj2 = $d->load();
+		
+		return $obj2;
+	}
+	
+	$obj1 = array(0 => "a");//, 2.7 => 'b', "color" => new Color(2, 3, 4, 5));
+	$obj2 = encodeDecode($obj1);
+	
+	var_dump($obj1);
+	var_dump($obj2);
+	
 ?>

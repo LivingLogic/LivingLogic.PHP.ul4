@@ -131,6 +131,26 @@ namespace com\livinglogic\ul4on;
 						array_push($result, $this->load($typecode));
 				}
 			}
+			else if ($typecode == 'd' || $typecode == 'D')
+			{
+				$result = array();
+				
+				if ($typecode == 'D')
+					$this->loading($result);
+					
+				while (true)
+				{
+					$typecode = $this->nextChar();
+					if ($typecode == '.')
+						return $result;
+					else
+					{
+						$key = $this->load($typecode);
+						$value = $this->load(-2);
+						$result[$key] = $value;
+					}
+				}
+			}
 			else
 			{
 				echo "unkown typecode: '$typecode'\n";

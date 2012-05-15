@@ -32,11 +32,22 @@ class Encoder
 			$this->buffer .= "T" . date_format($obj, "YmdHis") . "000000";
 		else if ($obj instanceof Color)
 			$this->buffer .= "C" . $obj->dump();
-		else if (is_array($obj) && Utils::isArray($obj))
+		else if (Utils::isList($obj))
 		{
-			$this->buffer .= "L";
+			$this->buffer .= "l";
 			for ($i = 0; $i < count($obj); $i++)
 				$this->dump($obj[$i]);
+			$this->buffer .= ".";
+		}
+		else if (Utils::isDict($obj))
+		{
+			$this->buffer .= "d";
+			$keys = array_keys($obj);
+			for ($i = 0; $i < count($keys); $i++)
+			{
+				$this->dump($keys[$i]);
+				$this->dump($obj[$keys[$i]]);
+			}
 			$this->buffer .= ".";
 		}
 	}
