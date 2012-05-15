@@ -1,6 +1,6 @@
 <?php
 
-namespace com\livinglogic\ul4on;
+namespace com\livinglogic\ul4;
 
 class Color
 {

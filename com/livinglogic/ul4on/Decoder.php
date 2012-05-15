@@ -2,6 +2,10 @@
 
 namespace com\livinglogic\ul4on;
 
+include_once "com/livinglogic/ul4/Color.php";
+
+use \com\livinglogic\ul4\Color as Color;
+
 	class Decoder
 	{
 		var $buffer;

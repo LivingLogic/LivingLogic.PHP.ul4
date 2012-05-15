@@ -2,15 +2,15 @@
 namespace com\livinglogic\ul4on\test;
 
 include_once '/usr/share/php/PHPUnit/Framework/TestCase.php';
-include_once 'Decoder.php';
-include_once 'Encoder.php';
-include_once 'Utils.php';
-include_once 'Color.php';
+include_once 'com/livinglogic/ul4on/Decoder.php';
+include_once 'com/livinglogic/ul4on/Encoder.php';
+include_once 'com/livinglogic/ul4on/Utils.php';
+include_once 'com/livinglogic/ul4/Color.php';
 
 use \com\livinglogic\ul4on\Encoder as Encoder;
 use \com\livinglogic\ul4on\Decoder as Decoder;
 use \com\livinglogic\ul4on\Utils as Utils;
-use \com\livinglogic\ul4on\Color as Color;
+use \com\livinglogic\ul4\Color as Color;
 
 class UL4ONTest extends \PHPUnit_Framework_TestCase
 {
