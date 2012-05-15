@@ -2,10 +2,10 @@
 
 namespace com\livinglogic\ul4on;
 
-	include_once 'Decoder.php';
-	include_once 'Encoder.php';
-	include_once 'Utils.php';
-	include_once 'Color.php';
+	include_once 'com/livinglogic/ul4on/Decoder.php';
+	include_once 'com/livinglogic/ul4on/Encoder.php';
+	include_once 'com/livinglogic/ul4on/Utils.php';
+	include_once 'com/livinglogic/ul4/Color.php';
 	
 	function error($obj1, $obj2)
 	{
@@ -138,7 +138,7 @@ namespace com\livinglogic\ul4on;
 		return $obj2;
 	}
 	
-	$obj1 = array(0 => "a");//, 2.7 => 'b', "color" => new Color(2, 3, 4, 5));
+	$obj1 = array("a" => "aafd", "x2.7" => 4.3, "color" => new \com\livinglogic\ul4\Color(2, 3, 4, 5));
 	$obj2 = encodeDecode($obj1);
 	
 	var_dump($obj1);
