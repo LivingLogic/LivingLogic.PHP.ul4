@@ -95,7 +95,7 @@ class UL4ONTest extends \PHPUnit_Framework_TestCase
 	
 	public function testDict()
 	{
-		$obj1 = array("0b" => "a", "x2.7" => 'b', "color" => new Color(2, 3, 4, 5));
+		$obj1 = array("0b" => "a", "x2.7" => 'b', "color" => new Color(2, 3, 4, 5), 'dateTime' => Utils::makeDate(2011, 3, 24));
 		$obj2 = $this->encodeDecode($obj1);
 		
 		$this->assertEquals($obj1, $obj2);
