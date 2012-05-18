@@ -1,22 +1,13 @@
 <?php
 
-class test
-{
-	public $i = 2;
-}
+include_once 'com/livinglogic/ul4/Color.php';
 
-function gurk($obj)
-{
-	echo "gurk: hash = " . spl_object_hash($obj[0]) . "\n";
-// 	$obj = new test();
-// 	$obj->i = 42;
-}
+use \com\livinglogic\ul4\Color as Color;
 
-$t = new test();
-$a = array(0 => $t);
 
-echo "      hash = " . spl_object_hash($a[0]). "\n";
-gurk($a);
-is_
-//echo $t->i . "\n";
+$c = Color::fromhsv(0.5, 0.5, 0.5, 0.3);
+echo "c = " . $c->__toString() . "\n";
+echo "c = " . $c->repr() . "\n";
+
+
 ?>
