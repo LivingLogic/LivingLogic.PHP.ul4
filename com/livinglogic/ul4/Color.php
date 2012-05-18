@@ -460,7 +460,4 @@ class Color
 
 }
 
-//$c = Color::fromhsv(0.5, 0.5, 0.5, 0.5);
-//echo "color = " . $c . "\n";
-
 ?>
