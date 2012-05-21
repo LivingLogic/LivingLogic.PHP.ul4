@@ -2,18 +2,7 @@
 
 namespace com\livinglogic\ul4;
 
-/*
-import java.util.Map;
-import java.util.HashMap;
-import java.io.IOException;
-*/
-
-//include_once 'com/livinglogic/utils/ObjectAsMap';
-include_once 'com/livinglogic/ul4on/UL4ONSerializable.php';
-include_once 'com/livinglogic/ul4on/Encoder.php';
-include_once 'com/livinglogic/ul4on/Decoder.php';
-include_once 'com/livinglogic/ul4/Utils.php';
-include_once 'com/livinglogic/ul4on/Utils.php';
+include_once 'com/livinglogic/ul4/ul4.php';
 
 use com\livinglogic\ul4\Utils as Utils;
 use com\livinglogic\ul4on\UL4ONSerializable as UL4ONSerializable;
@@ -44,12 +33,12 @@ class Location /*extends ObjectAsMap*/ implements UL4ONSerializable
 
 	public function getTag()
 	{
-		return substr($this->source, $this->starttag, $this->endtag - $this->starttag);  // TODO zweites Argument?
+		return substr($this->source, $this->starttag, $this->endtag - $this->starttag);
 	}
 
 	public function getCode()
 	{
-		return substr($this->source, $this->startcode, $this->endcode - $this->startcode);  // TODO zweites Argument?
+		return substr($this->source, $this->startcode, $this->endcode - $this->startcode);
 	}
 
 	private function toString()

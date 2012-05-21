@@ -2,11 +2,8 @@
 
 namespace com\livinglogic\ul4on;
 
-	include_once 'com/livinglogic/ul4on/Decoder.php';
-	include_once 'com/livinglogic/ul4on/Encoder.php';
-	include_once 'com/livinglogic/ul4on/Utils.php';
-	include_once 'com/livinglogic/ul4/Color.php';
-	
+	include_once 'com/livinglogic/ul4/ul4.php';
+
 	function error($obj1, $obj2)
 	{
 		echo "ERROR: obj1 != obj2\n";
@@ -59,15 +56,15 @@ namespace com\livinglogic\ul4on;
 				echo "count(obj1) != count(obj2)\n";
 				return false;
 			}
-			
+
 			for ($i = 0; $i < count($obj1); $i++)
 			{
 				$retVal = test($obj1[$i]);
-				
+
 				if (! $retVal)
 					return error($obj1, $obj2);
 			}
-			
+
 			echo "OK: arrays are identical\n";
 			return true;
 		}
@@ -78,9 +75,9 @@ namespace com\livinglogic\ul4on;
 				echo "count(obj1) != count(obj2)\n";
 				return false;
 			}
-			
+
 			$keys = array_keys($obj1);
-			
+
 			for ($i = 0; $i < count($keys); $i++)
 			{
 				if (!array_key_exists($key, $obj2))
@@ -88,18 +85,18 @@ namespace com\livinglogic\ul4on;
 				else
 					assertEqual(); // TODO selber oder in PHPUnit
 			}
-			
+
 			echo "OK: arrays are identical\n";
 			return true;
-				
+
 			for ($i = 0; $i < count($obj1); $i++)
 			{
 				$retVal = test($obj1[$i]);
-				
+
 				if (! $retVal)
 					return error($obj1, $obj2);
 			}
-			
+
 			echo "OK: arrays are identical\n";
 		}
 		else
@@ -123,25 +120,25 @@ namespace com\livinglogic\ul4on;
 	test("abcxyz");
 	test(Utils::makeDate(2012, 8, 10, 15, 0, 20));
 	test(new Color(20, 40, 60, 100));
-	
+
 	$a = array(1, 2.7, "abc", new Color(2, 3, 4, 5));
 	test($a);
 	*/
-	
+
 	function encodeDecode($obj1)
 	{
 		$e = new Encoder();
 		$e->dump($obj1);
 		$d = new Decoder($e->buffer);
 		$obj2 = $d->load();
-		
+
 		return $obj2;
 	}
-	
+
 	$obj1 = array("a" => "aafd", "x2.7" => 4.3, "color" => new \com\livinglogic\ul4\Color(2, 3, 4, 5));
 	$obj2 = encodeDecode($obj1);
-	
+
 	var_dump($obj1);
 	var_dump($obj2);
-	
+
 ?>

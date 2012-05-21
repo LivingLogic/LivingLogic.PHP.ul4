@@ -2,9 +2,7 @@
 
 namespace com\livinglogic\ul4on;
 
-include_once 'com/livinglogic/ul4on/Utils.php';
-include_once 'com/livinglogic/ul4on/UL4ONSerializable.php';
-include_once 'com/livinglogic/ul4/Color.php';
+include_once 'com/livinglogic/ul4/ul4.php';
 
 use \com\livinglogic\ul4\Color as Color;
 use \com\livinglogic\ul4on\UL4ONSerializable as UL4ONSerializable;

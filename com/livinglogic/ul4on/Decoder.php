@@ -2,8 +2,7 @@
 
 namespace com\livinglogic\ul4on;
 
-include_once "com/livinglogic/ul4/Color.php";
-include_once "com/livinglogic/ul4on/Utils.php";
+include_once "com/livinglogic/ul4/ul4.php";
 
 use com\livinglogic\ul4on\Utils as Utils;
 
@@ -91,8 +90,6 @@ use \com\livinglogic\ul4\Color as Color;
 			}
 			else if ($typecode == 't' || $typecode == 'T')
 			{
-	// 			char[] chars = new char[20];
-	// 			reader.read(chars);
 				$buffer = "";
 				$value  = new \DateTime();
 
@@ -208,10 +205,8 @@ use \com\livinglogic\ul4\Color as Color;
 			if (\strlen($this->buffer) <= ($this->index - 1))
 				throw new Exception("buffer is completely read. buffer = '$this->buffer', index = $this->index,  count =   " . \strlen($this->buffer));
 
-// 			echo "index = $this->index \n";
 			$c = $this->buffer[++$this->index];
-// 			echo "c = $c\n";
-// 			echo "buffer = $this->buffer\n";
+
 			return $c;
 		}
 

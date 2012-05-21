@@ -2,8 +2,7 @@
 
 namespace com\livinglogic\ul4on;
 
-include_once 'com/livinglogic/ul4on/Encoder.php';
-include_once 'com/livinglogic/ul4on/Decoder.php';
+include_once 'com/livinglogic/ul4/ul4.php';
 
 use com\livinglogic\ul4on\Encoder as Encoder;
 use com\livinglogic\ul4on\Decoder as Decoder;

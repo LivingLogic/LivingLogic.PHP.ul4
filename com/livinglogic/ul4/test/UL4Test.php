@@ -3,7 +3,7 @@ namespace com\livinglogic\ul4\test;
 
 require_once 'PHPUnit/Autoload.php';
 
-include_once 'com/livinglogic/ul4/Color.php';
+include_once 'com/livinglogic/ul4/ul4.php';
 
 use \com\livinglogic\ul4\Color as Color;
 
