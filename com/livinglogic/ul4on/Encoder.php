@@ -3,21 +3,28 @@
 namespace com\livinglogic\ul4on;
 
 include_once 'com/livinglogic/ul4on/Utils.php';
+include_once 'com/livinglogic/ul4on/UL4ONSerializable.php';
 include_once 'com/livinglogic/ul4/Color.php';
 
 use \com\livinglogic\ul4\Color as Color;
+use \com\livinglogic\ul4on\UL4ONSerializable as UL4ONSerializable;
 
 class Encoder
 {
-	public $buffer;
+	private $buffer;
 	private $objects = array();
 	private $object2id = array();
-	
+
 	function __construct()
 	{
-		$this->buffer = '';
+		$this->buffer = "";
 	}
-	
+
+	public function getOutput()
+	{
+		return $this->buffer;
+	}
+
 	private function record($obj)
 	{
 		if (is_object($obj))
@@ -37,7 +44,7 @@ class Encoder
 	{
 		if (False)
 			echo "Encoder.dump: obj = " . var_export($obj, true) . "\n";
-		
+
 		if ($obj === NULL)
 			$this->buffer .= 'n';
 		else if (is_int($obj) || is_long($obj))
@@ -60,6 +67,13 @@ class Encoder
 		{
 			$this->record($obj);
 			$this->buffer .= "C" . $obj->dump();
+		}
+		else if ($obj instanceof UL4ONSerializable) // check this before Collection and Map
+		{
+			$this->record($obj);
+			$this->buffer .= "O";
+			$this->dump($obj->getUL4ONName());
+			$obj->dumpUL4ON($this);
 		}
 		else if (Utils::isList($obj))
 		{

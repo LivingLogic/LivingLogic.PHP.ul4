@@ -3,6 +3,9 @@
 namespace com\livinglogic\ul4on;
 
 include_once "com/livinglogic/ul4/Color.php";
+include_once "com/livinglogic/ul4on/Utils.php";
+
+use com\livinglogic\ul4on\Utils as Utils;
 
 use \com\livinglogic\ul4\Color as Color;
 
@@ -11,14 +14,14 @@ use \com\livinglogic\ul4\Color as Color;
 		var $buffer;
 		var $index;
 		var $objects;
-		
+
 		function __construct($buf)
 		{
 			$this->buffer = $buf;
 			$this->index = -1;
 			$this->objects = array();
 		}
-		
+
 		public function __call($name, $arguments)
 		{
 			if ($name == 'load' && ($arguments == NULL || count($arguments) == 0))
@@ -26,22 +29,22 @@ use \com\livinglogic\ul4\Color as Color;
 			else if ($name == 'load' && ($arguments != NULL || count($arguments) == 1))
 				return $this->load($arguments[0]);
 		}
-	
+
 		private function loading($obj)
 		{
 			array_push($this->objects, $obj);
 		}
-	
+
 		private function load($typecode)
 		{
 			if ($typecode == -2)
 				$typecode = $this->nextChar();
-			
+
 			if ($typecode == '^')
 			{
 				$index = $this->readInt();
 				return $this->objects[$index];
-			}	
+			}
 			else if ($typecode == 'n' || $typecode == 'N')
 			{
 				if ($typecode == 'N')
@@ -92,7 +95,7 @@ use \com\livinglogic\ul4\Color as Color;
 	// 			reader.read(chars);
 				$buffer = "";
 				$value  = new \DateTime();
-	
+
 				$year   = $this->convertCharsToInt(4);
 				$month  = $this->convertCharsToInt(2);
 				$day    = $this->convertCharsToInt(2);
@@ -100,13 +103,13 @@ use \com\livinglogic\ul4\Color as Color;
 				$minute = $this->convertCharsToInt(2);
 				$second = $this->convertCharsToInt(2);
 				$msecs  = $this->convertCharsToInt(6); // read the here unused microseconds
-	
+
 				$value->setDate($year, $month, $day);
 				$value->setTime($hour, $minute, $second);
-	
+
 				if ($typecode == 'T')
 					$this->loading($value);
-	
+
 				return $value;
 			}
 			else if ($typecode == 'c' || $typecode == 'C')
@@ -122,10 +125,10 @@ use \com\livinglogic\ul4\Color as Color;
 			else if ($typecode == 'l' || $typecode == 'L')
 			{
 				$result = array();
-				
+
 				if ($typecode == 'L')
 					$this->loading($result);
-					
+
 				while (true)
 				{
 					$typecode = $this->nextChar();
@@ -138,10 +141,10 @@ use \com\livinglogic\ul4\Color as Color;
 			else if ($typecode == 'd' || $typecode == 'D')
 			{
 				$result = array();
-				
+
 				if ($typecode == 'D')
 					$this->loading($result);
-					
+
 				while (true)
 				{
 					$typecode = $this->nextChar();
@@ -155,45 +158,67 @@ use \com\livinglogic\ul4\Color as Color;
 					}
 				}
 			}
+			else if ($typecode == 'o' || $typecode == 'O')
+			{
+				$oldpos = 1;
+				if ($typecode == 'O')
+				{
+					// We have a problem here:
+					// We have to record the object we're loading *now*, so that it is available for backreferences.
+					// However until we've read the UL4ON name of the class, we can't create the object.
+					// So we push null to the backreference list for now and put the right object in this spot,
+					// once we've created it (This shouldn't be a problem, because during the time the backreference
+					// is wrong, only the class name is read, so our object won't be refenced).
+					$oldpos = count($this->objects);
+					$this->loading(null);
+				}
+				$name = $this->load(-2);
+
+				$factory = Utils::$registry[$name];
+
+				if ($factory == null)
+					throw new Exception("can't load object of type " . $name);
+				$value = new $factory;
+				// Fix object in backreference list
+				if ($oldpos != -1)
+					$this->objects[$oldpos] = $value;
+				$value->loadUL4ON($this);
+				return $value;
+			}
 			else
 			{
 				echo "unkown typecode: '$typecode'\n";
 			}
-			/*
-			 * UL4ONSerializable
-			 * Collection
-			 * Map
-			 */
 		}
-		
+
 		private function convertCharsToInt($count)
 		{
 			$buffer = "";
-			
+
 			for ($i = 0; $i < $count; $i++)
 			{
 				$buffer .= $this->nextChar();
 			}
-			
+
 			return \intval($buffer);
-		}	
-	
+		}
+
 		private function nextChar()
 		{
 			if (\strlen($this->buffer) <= ($this->index - 1))
 				throw new Exception("buffer is completely read. buffer = '$this->buffer', index = $this->index,  count =   " . \strlen($this->buffer));
-	
+
 // 			echo "index = $this->index \n";
 			$c = $this->buffer[++$this->index];
 // 			echo "c = $c\n";
 // 			echo "buffer = $this->buffer\n";
 			return $c;
 		}
-		
+
 		private function readInt()
 		{
 			$buffer = "";
-			
+
 			while (true)
 			{
 				$c = $this->nextChar();
@@ -202,11 +227,11 @@ use \com\livinglogic\ul4\Color as Color;
 				$buffer .= $c;
 			}
 		}
-	
+
 		private function readFloat()
 		{
 			$buffer = "";
-	
+
 			while (true)
 			{
 				$c = $this->nextChar();
