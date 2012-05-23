@@ -14,34 +14,7 @@ abstract class AST implements \com\livinglogic\ul4on\UL4ONSerializable
 		$this->location = $location;
 	}
 
-//	abstract public function evaluate($evaluationContext);
-
-	public function decoratedEvaluate($evaluationContext)
-	{
-		try
-		{
-			return $this->evaluate($evaluationContext);
-		}
-		catch (BreakException $ex)
-		{
-			throw $ex;
-		}
-		catch (ContinueException $ex)
-		{
-			throw $ex;
-		}
-		catch (LocationException $ex)
-		{
-			if ($ex->location != $this->location && $this->location != null)
-				throw new LocationException($ex, $this->location);
-			else
-				throw $ex;
-		}
-		catch (Exception $ex)
-		{
-			throw new LocationException($ex, $this->location);
-		}
-	}
+	abstract public function evaluate($context);
 
 	abstract public function getType();
 

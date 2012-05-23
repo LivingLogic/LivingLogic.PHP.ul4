@@ -13,6 +13,11 @@ abstract class LoadConst extends AST
 
 	abstract public function getValue();
 
+	public function evaluate($context)
+	{
+		return $this->getValue();
+	}
+
 	/*
 	private static Map<String, ValueMaker> valueMakers = null;
 

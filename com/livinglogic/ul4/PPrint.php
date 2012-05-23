@@ -21,13 +21,11 @@ class PPrint extends Unary
 		return "print";
 	}
 
-	/*
-	public Object evaluate(EvaluationContext context) throws IOException
+	public function evaluate($context)
 	{
-		context.write(Utils.str(obj.decoratedEvaluate(context)));
+		$context->write(Utils::str($this->obj->evaluate($context)));
 		return null;
 	}
-	*/
 
 }
 

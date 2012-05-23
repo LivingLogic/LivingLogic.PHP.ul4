@@ -29,13 +29,6 @@ class LoadInt extends LoadConst
 		return Utils::repr($this->value);
 	}
 
-	/*
-	public Object evaluate(EvaluationContext context) throws IOException
-	{
-		return value;
-	}
-	*/
-
 	public function dumpUL4ON($encoder)
 	{
 		parent::dumpUL4ON($encoder);

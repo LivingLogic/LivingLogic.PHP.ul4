@@ -179,6 +179,82 @@ class Utils
 				throw new Exception("color[" . self::type($key) . "] not supported!");
 		}
 	}
+
+	public static function str($obj)
+	{
+		if (is_null($obj))
+			return "";
+		else if (is_bool($obj))
+			return $obj ? "True" : "False";
+		else if (is_int($obj) || is_long($obj))
+			return "$obj";
+		else if (is_float($obj) || is_double($obj))
+		{
+			$sobj = "$obj";
+			$pos = strpos($sobj, "E");
+			if (!is_bool($pos))
+			{
+				return strtolower(str_replace(".0E", "E", $sobj));
+			}
+			else
+			{
+				$pos = strpos($sobj, ".");
+				if (!is_bool($pos))
+				{
+					return $sobj;
+				}
+				else
+				{
+					return $sobj . ".0";
+				}
+			}
+		}
+		else if (is_string($obj))
+			return $obj;
+		else if ($obj instanceof \DateTime)
+		{
+			return date_format($obj, "YmdHis") . "000000";
+			// FIXME
+// 			if (microsecond(obj) != 0)
+// 				return strTimestampMicroFormatter.format(obj);
+// 			else
+// 			{
+// 				if (hour(obj) != 0 || minute(obj) != 0 || second(obj) != 0)
+// 					return strDateTimeFormatter.format(obj);
+// 				else
+// 					return isoDateFormatter.format(obj);
+// 			}
+		}
+		else if ($obj instanceof Color)
+			return $obj->__toString();
+		else
+			return self::repr($obj);
+
+	}
+
+	public static function xmlescape($obj)
+	{
+		if (is_null($obj))
+			return "";
+
+		$str = self::str($obj);
+		$length = strlen($str);
+		$sb = "";
+
+		$search = array( "<"   , ">"   , "&"    , "'"    , '"'     );
+		$replace = array("&lt;", "&gt;", "&amp;", "&#39;", '&quot;');
+		$str = str_replace($search, $replace, $str);
+
+		$buffer = "";
+		for ($i = 0; $i < 32; $i++)
+		{
+			$c = chr($i);
+			if ($c != '\t' && $c != '\n' && $c != '\r')
+				$str = str_replace($c, "&#$i;", $str);
+		}
+		for ($i = 128; $i < 160; $i++)
+			$str = str_replace(chr($i), "&#$i;", $str);
+	}
 }
 
 ?>

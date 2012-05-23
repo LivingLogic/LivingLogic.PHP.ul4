@@ -21,13 +21,11 @@ class PrintX extends Unary
 		return "printx";
 	}
 
-	/*
-	public Object evaluate(EvaluationContext context) throws IOException
+	public function evaluate($context)
 	{
-		context.write(Utils.str(obj.decoratedEvaluate(context)));
+		$context->write(Utils::xmlescape($this->obj->evaluate($context)));
 		return null;
 	}
-	*/
 
 }
 
