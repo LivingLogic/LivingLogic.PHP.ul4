@@ -12,6 +12,7 @@ class Encoder
 	private $buffer;
 	private $objects = array();
 	private $object2id = array();
+	private $string2id = array();
 
 	function __construct()
 	{
@@ -33,7 +34,7 @@ class Encoder
 		}
 		else if (is_string($obj))
 		{
-			$this->object2id[$obj] = count($this->objects);
+			$this->string2id[$obj] = count($this->objects);
 			array_push($this->objects, $obj);
 		}
 	}
@@ -53,25 +54,45 @@ class Encoder
 			$this->buffer .= ("b" . ($obj ? "T" : "F"));
 		else if (is_string($obj))
 		{
-			$this->record($obj);
-			$this->buffer .= "S" . strlen($obj) . "|" . $obj;
+			if (array_key_exists($obj, $this->string2id))
+				$this->buffer .= "^" . $this->string2id[$obj] . "|";
+			else
+			{
+				$this->record($obj);
+				$this->buffer .= "S" . strlen($obj) . "|" . $obj;
+			}
 		}
 		else if ($obj instanceof \DateTime)
 		{
-			$this->record($obj);
-			$this->buffer .= "T" . date_format($obj, "YmdHis") . "000000";
+			if (array_key_exists(spl_object_hash($obj), $this->object2id))
+				$this->buffer .= "^" . $this->object2id[spl_object_hash($obj)] . "|";
+			else
+			{
+				$this->record($obj);
+				$this->buffer .= "T" . date_format($obj, "YmdHis") . "000000";
+			}
 		}
 		else if ($obj instanceof Color)
 		{
-			$this->record($obj);
-			$this->buffer .= "C" . $obj->dump();
+			if (array_key_exists(spl_object_hash($obj), $this->object2id))
+				$this->buffer .= "^" . $this->object2id[spl_object_hash($obj)] . "|";
+			else
+			{
+				$this->record($obj);
+				$this->buffer .= "C" . $obj->dump();
+			}
 		}
 		else if ($obj instanceof UL4ONSerializable) // check this before Collection and Map
 		{
-			$this->record($obj);
-			$this->buffer .= "O";
-			$this->dump($obj->getUL4ONName());
-			$obj->dumpUL4ON($this);
+			if (array_key_exists(spl_object_hash($obj), $this->object2id))
+				$this->buffer .= "^" . $this->object2id[spl_object_hash($obj)] . "|";
+			else
+			{
+				$this->record($obj);
+				$this->buffer .= "O";
+				$this->dump($obj->getUL4ONName());
+				$obj->dumpUL4ON($this);
+			}
 		}
 		else if (Utils::isList($obj))
 		{

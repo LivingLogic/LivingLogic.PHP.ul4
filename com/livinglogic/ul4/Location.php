@@ -7,7 +7,7 @@ include_once 'com/livinglogic/ul4/ul4.php';
 use com\livinglogic\ul4\Utils as Utils;
 use com\livinglogic\ul4on\UL4ONSerializable as UL4ONSerializable;
 
-class Location /*extends ObjectAsMap*/ implements UL4ONSerializable
+class Location implements UL4ONSerializable
 {
 	public $source;
 	protected $type;
@@ -16,7 +16,7 @@ class Location /*extends ObjectAsMap*/ implements UL4ONSerializable
 	public $startcode;
 	public $endcode;
 
-	public function __construct($source=NULL, $type=NULL, $starttag=NULL, $endtag=NULL, $startcode=NULL, $endcode=NULL)
+	public function __construct($source=null, $type=null, $starttag=null, $endtag=null, $startcode=null, $endcode=null)
 	{
 		$this->source = $source;
 		$this->type = $type;
@@ -41,13 +41,13 @@ class Location /*extends ObjectAsMap*/ implements UL4ONSerializable
 		return substr($this->source, $this->startcode, $this->endcode - $this->startcode);
 	}
 
-	private function toString()
+	public function __toString()
 	{
 		$line = 1;
 		$col;
-		$lastLineFeed = strrpos($this->source, "\n", starttag);
+		$lastLineFeed = strrpos($this->source, "\n", $this->starttag);
 
-		if (is_bool($lastLineFeed) && !$lastLineFeed)
+		if (is_bool($lastLineFeed) && $lastLineFeed === false)
 		{
 			$col = $this->starttag + 1;
 		}
@@ -56,7 +56,7 @@ class Location /*extends ObjectAsMap*/ implements UL4ONSerializable
 			$col = 1;
 			for ($i = 0; $i < $this->starttag; ++$i)
 			{
-				if ($this->source{$i} == '\n')
+				if ($this->source{$i} === '\n')
 				{
 					++$line;
 					$col = 0;
@@ -64,11 +64,11 @@ class Location /*extends ObjectAsMap*/ implements UL4ONSerializable
 				++$col;
 			}
 		}
-		$tagType = ($this->type != null) ? "<?" + $this->type + "?> tag" : "literal";
+		$tagType = ($this->type != null) ? ("<?" . $this->type . "?> tag") : "literal";
 
 		$source = null;
 
-		if ($type != null)
+		if ($this->type != null)
 		{
 			$tag = Utils::repr($this->getTag());
 			$source = ": " . substr($tag, 1, strlen($tag) - 1);
@@ -77,11 +77,6 @@ class Location /*extends ObjectAsMap*/ implements UL4ONSerializable
 			$source = "";
 
 		return $tagType . " at position " . ($this->starttag+1) . " (line " . $line . ", col " . $col . ")" . $source;
-	}
-
-	public function __toString()
-	{
-		return $this->toString();
 	}
 
 	public function getUL4ONName()

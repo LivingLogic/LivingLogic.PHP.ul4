@@ -26,7 +26,7 @@ class Utils
 		$encoder = new Encoder();
 		$encoder->dump($data);
 
-		return $encoder->buffer;
+		return $encoder->getOutput();
 	}
 
 	/**
@@ -34,28 +34,17 @@ class Utils
 	 * @param reader The Reader from which to read the object
 	 * @return the deserialized object
 	 */
-	/*
-	public static function load(Reader reader) throws IOException
+	public static function loads($s)
 	{
-		try
-		{
-			return new Decoder(reader).load();
-		}
-		catch (IOException e)
-		{
-			// can't happen
-			return null; // keeps the compiler happy
-		}
+		$d = new Decoder($s);
+		return $d->load();
 	}
-	*/
 
 	/**
 	 * Load an object by reading in the UL4ON object serialization format from the string <code>s</code>.
 	 * @param s The object in serialized form
 	 * @return the deserialized object
-	 */
-	/*
-	public static Object loads(String s)
+	public static function loads($s)
 	{
 		try
 		{
@@ -67,7 +56,7 @@ class Utils
 			throw new RuntimeException(e);
 		}
 	}
-	*/
+	 */
 
 	/**
 	 * Load an object by reading in the UL4ON object serialization format from the CLOB <code>clob</code>.

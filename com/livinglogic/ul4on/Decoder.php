@@ -21,23 +21,14 @@ use \com\livinglogic\ul4\Color as Color;
 			$this->objects = array();
 		}
 
-		public function __call($name, $arguments)
-		{
-			if ($name == 'load' && ($arguments == NULL || count($arguments) == 0))
-				return $this->load(-2);
-			else if ($name == 'load' && ($arguments != NULL || count($arguments) == 1))
-				return $this->load($arguments[0]);
-		}
-
 		private function loading($obj)
 		{
 			array_push($this->objects, $obj);
 		}
 
-		private function load($typecode)
+		public function load()
 		{
-			if ($typecode == -2)
-				$typecode = $this->nextChar();
+			$typecode = $this->nextChar();
 
 			if ($typecode == '^')
 			{
@@ -132,7 +123,10 @@ use \com\livinglogic\ul4\Color as Color;
 					if ($typecode == '.')
 						return $result;
 					else
-						array_push($result, $this->load($typecode));
+					{
+						$this->backup();
+						array_push($result, $this->load());
+					}
 				}
 			}
 			else if ($typecode == 'd' || $typecode == 'D')
@@ -149,15 +143,16 @@ use \com\livinglogic\ul4\Color as Color;
 						return $result;
 					else
 					{
-						$key = $this->load($typecode);
-						$value = $this->load(-2);
+						$this->backup();
+						$key = $this->load();
+						$value = $this->load();
 						$result[$key] = $value;
 					}
 				}
 			}
 			else if ($typecode == 'o' || $typecode == 'O')
 			{
-				$oldpos = 1;
+				$oldpos = -1;
 				if ($typecode == 'O')
 				{
 					// We have a problem here:
@@ -169,7 +164,7 @@ use \com\livinglogic\ul4\Color as Color;
 					$oldpos = count($this->objects);
 					$this->loading(null);
 				}
-				$name = $this->load(-2);
+				$name = $this->load();
 
 				$factory = Utils::$registry[$name];
 
@@ -208,6 +203,11 @@ use \com\livinglogic\ul4\Color as Color;
 			$c = $this->buffer[++$this->index];
 
 			return $c;
+		}
+
+		private function backup()
+		{
+			--$this->index;
 		}
 
 		private function readInt()

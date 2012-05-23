@@ -17,6 +17,18 @@ class Color
 		$this->setColorCoordinate($a, $this->a);
 	}
 
+	public function get($idx)
+	{
+		if ($idx == 0)
+			return $this->r;
+		else if ($idx == 1)
+			return $this->g;
+		else if ($idx == 2)
+			return $this->b;
+		else if ($idx == 3)
+			return $this->a;
+	}
+
 	private function setColorCoordinate($value, &$member)
 	{
 		if (is_double($value) || is_float($value))
@@ -216,55 +228,25 @@ class Color
 
 	public function repr()
 	{
-		$buffer = "";
-
-		$buffer .= "#";
 		if ((($this->r>>4) == ($this->r&0xf)) && (($this->g>>4) == ($this->g&0xf)) && (($this->b>>4) == ($this->b&0xf)) && (($this->a>>4) == ($this->a&0xf)))
 		{
-			$buffer .= dechex($this->r>>4);
-			$buffer .= dechex($this->g>>4);
-			$buffer .= dechex($this->b>>4);
-			if ($this->a != 255)
-				$buffer .= dechex($this->a>>4);
+			if ($this->a !== 255)
+				return sprintf("#%x%x%x%x", $this->r>>4, $this->g>>4, $this->b>>4, $this->a>>4);
+			else
+				return sprintf("#%x%x%x", $this->r>>4, $this->g>>4, $this->b>>4);
 		}
 		else
 		{
-			$sr = dechex($this->r);
-			if (strlen($sr)< 2)
-				$buffer .= "0";
-			$buffer .= $sr;
-
-			$sg = dechex($this->g);
-			if (strlen($sg) < 2)
-				$buffer .= "0";
-			$buffer .= $sg;
-
-			$sb = dechex($this->b);
-			if (strlen($sb) < 2)
-				$buffer .= "0";
-			$buffer .= $sb;
-
 			if ($this->a != 255)
-			{
-				$sa = dechex($this->a);
-				if (strlen($sa) < 2)
-					$buffer .= "0";
-				$buffer .= $sa;
-			}
+				return sprintf("#%02x%02x%02x%02x", $this->r, $this->g, $this->b, $this->a);
+			else
+				return sprintf("#%02x%02x%02x", $this->r, $this->g, $this->b);
 		}
-		return $buffer;
 	}
 
 	public function dump()
 	{
-		$buffer = "";
-
-		$buffer .= $this->hexstr($this->r);
-		$buffer .= $this->hexstr($this->g);
-		$buffer .= $this->hexstr($this->b);
-		$buffer .= $this->hexstr($this->a);
-
-		return $buffer;
+		return sprintf("%02x%02x%02x%02x", $this->r, $this->g, $this->b, $this->a);
 	}
 
 	static function fromdump($value)

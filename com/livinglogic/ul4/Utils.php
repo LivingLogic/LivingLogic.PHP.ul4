@@ -102,9 +102,83 @@ class Utils
 	public static function repr($obj)
 	{
 		$r = new Repr();
-		return $r>toString($obj);
+		return $r->toString($obj);
 	}
 
+	public static function type($obj)
+	{
+		if (is_null($obj))
+			return "none";
+		else if (is_bool($obj))
+			return 'bool';
+		else if (is_int($obj))
+			return 'int';
+		else if (is_float($obj) || is_double($obj))
+			return 'float';
+		else if ($obj instanceof \com\livinglogic\ul4\Color)
+			return 'color';
+		else if ($obj instanceof InterpretedTemplate)
+			return 'template';
+		else if ($obj instanceof \DateTime)
+			return 'date';
+		else if (\com\livinglogic\ul4on\Utils::isDict($obj))
+			return "dict";
+		else if (\com\livinglogic\ul4on\Utils::isList($obj))
+			return "list";
+		else
+			return null;
+	}
+
+	public static function getItem($container, $key)
+	{
+		if (\com\livinglogic\ul4on\Utils::isDict($container))
+		{
+			if (array_key_exists($key, $container))
+				return $container[$key];
+			else
+				throw new Exception("Key " . self::repr($key) . " not found");
+		}
+		else if (\com\livinglogic\ul4on\Utils::isList($container))
+		{
+			if (is_int($key))
+			{
+				$orgkey = $key;
+				if ($key < 0)
+					$key += count($container);
+				if ($key < 0 || $key >= count($container))
+					throw new Exception("Index $orgkey is out of bounds!");
+				return $container[$key];
+			}
+			else
+				throw new Exception("list[" . self::type($key) . "] not supported!");
+		}
+		else if (is_string($container))
+		{
+			if (is_int($key))
+			{
+				$orgkey = $key;
+				if ($key < 0)
+					$key += strlen($container);
+				if ($key < 0 || $key >= strlen($container))
+					throw new Exception("Index $orgkey is out of bounds!");
+				return $container[$key];
+			}
+			else
+				throw new Exception("string[" . self::type($key) . "] not supported!");
+		}
+		else if ($container instanceof Color)
+		{
+			if (is_int($key))
+			{
+				if ($key < 0 || $key > 3)
+					throw new Exception("Index $key is not in [0..3]!");
+
+				return $container->get($key);
+			}
+			else
+				throw new Exception("color[" . self::type($key) . "] not supported!");
+		}
+	}
 }
 
 ?>

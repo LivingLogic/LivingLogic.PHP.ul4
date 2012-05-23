@@ -12,12 +12,14 @@ use \com\livinglogic\ul4\Location as Location;
 
 class UL4ONTest extends \PHPUnit_Framework_TestCase
 {
-	private function encodeDecode($obj1)
+	public function encodeDecode($obj1)
 	{
-		$this->e = new Encoder();
-		$this->e->dump($obj1);
-		$this->d = new Decoder($this->e->getOutput());
-		$obj2 = $this->d->load();
+		$bo = Utils::dumps($obj1);
+		$obj2 = Utils::loads($bo);
+// 		$this->e = new Encoder();
+// 		$this->e->dump($obj1);
+// 		$this->d = new Decoder($this->e->getOutput());
+// 		$obj2 = $this->d->load();
 
 		return $obj2;
 	}
