@@ -4,7 +4,7 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class Add extends Binary
+class Sub extends Binary
 {
 	public function __construct($location=null, $obj1=null, $obj2=null)
 	{
@@ -18,11 +18,11 @@ class Add extends Binary
 
 	public function evaluate($context)
 	{
-		return Utils::add($this->obj1->evaluate($context), $this->obj2->evaluate($context));
+		return Utils::sub($this->obj1->evaluate($context), $this->obj2->evaluate($context));
 	}
 
 }
 
-\com\livinglogic\ul4on\Utils::register("de.livinglogic.ul4.add", "\com\livinglogic\ul4\Add");
+\com\livinglogic\ul4on\Utils::register("de.livinglogic.ul4.sub", "\com\livinglogic\ul4\Sub");
 
 ?>

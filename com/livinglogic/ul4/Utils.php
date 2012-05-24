@@ -255,6 +255,48 @@ class Utils
 		for ($i = 128; $i < 160; $i++)
 			$str = str_replace(chr($i), "&#$i;", $str);
 	}
+
+	public static function add($obj1, $obj2)
+	{
+		if (is_string($obj1) && is_string($obj2))
+			return $obj1 . $obj2;
+		else if ((is_int($obj1) || is_long($obj1) || is_float($obj1) || is_double($obj1) || is_bool($obj1)) &&
+				(is_int($obj2) || is_long($obj2) || is_float($obj2) || is_double($obj2) || is_bool($obj2)))
+			return $obj1 + $obj2;
+
+		throw new \Exception(self::objectType($obj1) . " + " . self::objectType($obj2) . " not supported");
+	}
+
+	public static function sub($obj1, $obj2)
+	{
+		if ((is_int($obj1) || is_long($obj1) || is_float($obj1) || is_double($obj1) || is_bool($obj1)) &&
+				(is_int($obj2) || is_long($obj2) || is_float($obj2) || is_double($obj2) || is_bool($obj2)))
+			return $obj1 - $obj2;
+
+		throw new \Exception(self::objectType($obj1) + " + " + self::objectType($obj2) . " not supported");
+	}
+
+	public static function objectType($obj)
+	{
+		if (is_array($obj))
+			return "array";
+		else if (is_bool($obj))
+			return "bool";
+		else if (is_int($obj))
+			return "int";
+		else if (is_long($obj))
+			return "long";
+		else if (is_float($obj))
+			return "float";
+		else if (is_double($obj))
+			return "double";
+
+		if (!is_null($obj) && !is_object($obj))
+			throw new \Exception("unknown object type");
+
+		return (!is_null($obj)) ? get_class($obj) : "null";
+	}
+
 }
 
 ?>

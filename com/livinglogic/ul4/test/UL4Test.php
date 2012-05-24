@@ -39,6 +39,18 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array("x" => 3));
 		$p->evaluate($c);
 		$this->assertEquals("45", "" . $c->getOutput());
+
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS15|<?print y + x?>S5|printi0|i15|i8|i13|OS22|de.livinglogic.ul4.add^2|OS22|de.livinglogic.ul4.var^2|S1|yO^9|^2|S1|x";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array("x" => 42, "y" => 3));
+		$p->evaluate($c);
+		$this->assertEquals(45, $c->getOutput());
+
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS15|<?print y - x?>S5|printi0|i15|i8|i13|OS22|de.livinglogic.ul4.sub^2|OS22|de.livinglogic.ul4.var^2|S1|yO^9|^2|S1|x";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array("x" => 3, "y" => 3));
+		$p->evaluate($c);
+		$this->assertEquals(0, $c->getOutput());
 	}
 }
 
