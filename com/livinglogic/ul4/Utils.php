@@ -347,6 +347,26 @@ class Utils
 		return true;
 	}
 
+	public static function contains($obj, $container)
+	{
+		if (is_string($container))
+		{
+			if (is_string($obj))
+			{
+				if (is_bool(strpos($container, $obj)))
+					return False;
+				else
+					return True;
+			}
+		}
+		else if (\com\livinglogic\ul4on\Utils::isList($container))
+			return in_array($obj, $container, True);
+		else if (\com\livinglogic\ul4on\Utils::isDict($container))
+			return array_key_exists($obj, $container);
+
+		throw new \Exception(self::objectType($obj) . " in " . self::objectType($container) . " not supported!");
+	}
+
 }
 
 ?>

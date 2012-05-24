@@ -20,6 +20,7 @@ include_once 'com/livinglogic/ul4/Sub.php';
 include_once 'com/livinglogic/ul4/Mul.php';
 include_once 'com/livinglogic/ul4/LoadAnd.php';
 include_once 'com/livinglogic/ul4/LoadOr.php';
+include_once 'com/livinglogic/ul4/Contains.php';
 include_once 'com/livinglogic/ul4/Unary.php';
 include_once 'com/livinglogic/ul4/PPrint.php';
 include_once 'com/livinglogic/ul4/PrintX.php';
