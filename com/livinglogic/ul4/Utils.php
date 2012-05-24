@@ -26,7 +26,7 @@ class Repr
 		}
 		else if ($obj instanceof Color)
 			return $obj->repr();
-		else if (com\livinglogic\ul4on\Utils::isList($obj))
+		else if (\com\livinglogic\ul4on\Utils::isList($obj))
 		{
 			if ($this->seen($obj))
 				return "[...]";
@@ -41,7 +41,8 @@ class Repr
 					if ($first)
 						$first = false;
 					else
-						$sb .= $this->toString($o);
+						$sb .= " ,";
+					$sb .= $this->toString($o);
 				}
 				$sb .= "]";
 
@@ -53,7 +54,7 @@ class Repr
 				return "{?}";
 			}
 		}
-		else if (com\livinglogic\ul4on\Utils::isDict($obj))
+		else if (\com\livinglogic\ul4on\Utils::isDict($obj))
 		{
 			if ($this->seen($obj))
 				return "{...}";
@@ -272,6 +273,35 @@ class Utils
 		if ((is_int($obj1) || is_long($obj1) || is_float($obj1) || is_double($obj1) || is_bool($obj1)) &&
 				(is_int($obj2) || is_long($obj2) || is_float($obj2) || is_double($obj2) || is_bool($obj2)))
 			return $obj1 - $obj2;
+
+		throw new \Exception(self::objectType($obj1) + " + " + self::objectType($obj2) . " not supported");
+	}
+
+	private static function mulArray($array, $count)
+	{
+		$result = array();
+
+		for ($i = 0; $i < $count; $i++)
+			$result = array_merge($result, $array);
+
+		return $result;
+	}
+
+	public static function mul($obj1, $obj2)
+	{
+		if ((is_int($obj1) || is_long($obj1) || is_float($obj1) || is_double($obj1) || is_bool($obj1)) &&
+				(is_int($obj2) || is_long($obj2) || is_float($obj2) || is_double($obj2) || is_bool($obj2)))
+			return $obj1 * $obj2;
+
+		if (is_string($obj1) && (is_int($obj2) || is_long($obj2) || is_bool($obj2)))
+			return str_repeat($obj1, $obj2);
+		if (is_string($obj2) && (is_int($obj1) || is_long($obj1) || is_bool($obj1)))
+			return str_repeat($obj2, $obj1);
+
+		if (is_array($obj1) && (is_int($obj2) || is_long($obj2) || is_bool($obj2)))
+			return self::mulArray($obj1, $obj2);
+		if (is_array($obj2) && (is_int($obj1) || is_long($obj1) || is_bool($obj1)))
+			return self::mulArray($obj2, $obj1);
 
 		throw new \Exception(self::objectType($obj1) + " + " + self::objectType($obj2) . " not supported");
 	}

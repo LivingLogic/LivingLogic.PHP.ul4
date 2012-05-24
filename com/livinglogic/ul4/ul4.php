@@ -17,6 +17,7 @@ include_once 'com/livinglogic/ul4/LoadVar.php';
 include_once 'com/livinglogic/ul4/Binary.php';
 include_once 'com/livinglogic/ul4/Add.php';
 include_once 'com/livinglogic/ul4/Sub.php';
+include_once 'com/livinglogic/ul4/Mul.php';
 include_once 'com/livinglogic/ul4/Unary.php';
 include_once 'com/livinglogic/ul4/PPrint.php';
 include_once 'com/livinglogic/ul4/PrintX.php';

@@ -51,6 +51,29 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array("x" => 3, "y" => 3));
 		$p->evaluate($c);
 		$this->assertEquals(0, $c->getOutput());
+
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS15|<?print x * y?>S5|printi0|i15|i8|i13|OS22|de.livinglogic.ul4.mul^2|OS22|de.livinglogic.ul4.var^2|S1|yO^9|^2|S1|x";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array("x" => 3, "y" => 4));
+		$p->evaluate($c);
+		$this->assertEquals(12, $c->getOutput());
+
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS15|<?print x * y?>S5|printi0|i15|i8|i13|OS22|de.livinglogic.ul4.mul^2|OS22|de.livinglogic.ul4.var^2|S1|yO^9|^2|S1|x";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array("x" => "ab3", "y" => 2));
+		$p->evaluate($c);
+		$this->assertEquals("ab3ab3", $c->getOutput());
+
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS15|<?print x * y?>S5|printi0|i15|i8|i13|OS22|de.livinglogic.ul4.mul^2|OS22|de.livinglogic.ul4.var^2|S1|yO^9|^2|S1|x";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$x = array(42, 38);
+		$c = new EvaluationContext(array("x" => $x, "y" => 2));
+		$p->evaluate($c);
+		$y = array();
+		$y = array_merge($y, $x);
+		$y = array_merge($y, $x);
+		$this->assertEquals('[42 ,38 ,42 ,38]', $c->getOutput());
+
 	}
 }
 
