@@ -367,6 +367,30 @@ class Utils
 		throw new \Exception(self::objectType($obj) . " in " . self::objectType($container) . " not supported!");
 	}
 
+	public static function cmp($obj1, $obj2, $op)
+	{
+		if (is_string($obj1) && is_string($obj2))
+			return ($obj1 > $obj2) - ($obj1 < $obj2);
+		else if ((is_bool($obj1) || is_int($obj1) || is_long($obj1) || is_float($obj1) || is_double($obj1)) &&
+				(is_bool($obj2) || is_int($obj2) || is_long($obj2) || is_float($obj2) || is_double($obj2)))
+		{
+			if (is_bool($obj1))
+				$obj1 = $obj1 ? 1 : 0;
+			if (is_bool($obj2))
+				$obj2 = $obj2 ? 1 : 0;
+			return ($obj1 > $obj2) - ($obj1 < $obj2);
+		}
+
+		throw new \Exception(self::objectType($obj1) . " " . $op . " " . self::objectType($obj2) . " not supported!");
+	}
+
+	public static function eq($obj1, $obj2)
+	{
+		if (!is_null($obj1) && !is_null($obj2))
+			return self::cmp($obj1, $obj2, "==") == 0;
+		return is_null($obj1) == is_null($obj2);
+	}
+
 }
 
 ?>
