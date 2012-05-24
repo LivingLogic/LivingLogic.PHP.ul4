@@ -72,7 +72,23 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$y = array();
 		$y = array_merge($y, $x);
 		$y = array_merge($y, $x);
-		$this->assertEquals('[42 ,38 ,42 ,38]', $c->getOutput());
+		$this->assertEquals('[42, 38, 42, 38]', $c->getOutput());
+
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS17|<?print x and y?>S5|printi0|i17|i8|i15|OS22|de.livinglogic.ul4.and^2|OS22|de.livinglogic.ul4.var^2|S1|xO^9|^2|S1|y";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array("x" => 17, "y" => 23));
+		$p->evaluate($c);
+		$this->assertEquals('17', $c->getOutput());
+		$c = new EvaluationContext(array("x" => 42, "y" => 0));
+		$p->evaluate($c);
+		$this->assertEquals('0', $c->getOutput());
+		$c = new EvaluationContext(array("x" => 0, "y" => 42));
+		$p->evaluate($c);
+		$this->assertEquals('0', $c->getOutput());
+		$c = new EvaluationContext(array("x" => 0, "y" => array()));
+		$p->evaluate($c);
+		$this->assertEquals('[]', $c->getOutput());
+
 
 	}
 }

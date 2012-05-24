@@ -12,7 +12,7 @@ class Repr
 
 	public function toString($obj)
 	{
-		if ($obj == null)
+		if (is_null($obj))
 			return "None";
 		else if (is_bool($obj))
 			return $obj ? "True" : "False";
@@ -41,7 +41,7 @@ class Repr
 					if ($first)
 						$first = false;
 					else
-						$sb .= " ,";
+						$sb .= ", ";
 					$sb .= $this->toString($o);
 				}
 				$sb .= "]";
@@ -325,6 +325,26 @@ class Utils
 			throw new \Exception("unknown object type");
 
 		return (!is_null($obj)) ? get_class($obj) : "null";
+	}
+
+	public static function getBool($obj)
+	{
+		if (is_null($obj))
+			return false;
+		else if (is_bool($obj))
+			return $obj;
+		else if (is_string($obj))
+			return strlen($obj) > 0;
+		else if (is_int($obj) || is_long($obj))
+			return $obj != 0;
+		else if (is_float($obj) || is_double($obj))
+			return $obj != 0.;
+		else if ($obj instanceof \DateTime)
+			return True;
+		else if (\com\livinglogic\ul4on\Utils::isList($obj) || \com\livinglogic\ul4on\Utils::isDict($obj))
+			return count($obj) > 0;
+
+		return true;
 	}
 
 }
