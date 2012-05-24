@@ -94,6 +94,9 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array("x" => 17, "y" => 23));
 		$p->evaluate($c);
 		$this->assertEquals('17', $c->getOutput());
+		$c = new EvaluationContext(array("x" => 0, "y" => 23));
+		$p->evaluate($c);
+		$this->assertEquals('23', $c->getOutput());
 	}
 }
 

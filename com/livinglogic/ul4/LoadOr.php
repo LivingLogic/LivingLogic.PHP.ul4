@@ -22,7 +22,7 @@ class LoadOr extends Binary
 		if (Utils::getBool($obj1ev))
 			return $obj1ev;
 		else
-			return $obj2->evaluate($context);
+			return $this->obj2->evaluate($context);
 	}
 
 }
