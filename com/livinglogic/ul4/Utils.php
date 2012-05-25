@@ -506,6 +506,13 @@ class Utils
 		throw new \Exception(self::objectType($obj1) . " % " . self::objectType($obj2) . " not supported!");
 	}
 
+	public static function ne($obj1, $obj2)
+	{
+		if (!is_null($obj1) && !is_null($obj2))
+			return self::cmp($obj1, $obj2, "!=") != 0;
+		return (is_null($obj1) != is_null(obj2));
+	}
+
 }
 
 ?>
