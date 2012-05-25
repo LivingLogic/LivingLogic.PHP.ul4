@@ -14,6 +14,7 @@ include_once 'com/livinglogic/ul4/AST.php';
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadInt.php';
 include_once 'com/livinglogic/ul4/LoadVar.php';
+
 include_once 'com/livinglogic/ul4/Binary.php';
 include_once 'com/livinglogic/ul4/Add.php';
 include_once 'com/livinglogic/ul4/Sub.php';
@@ -23,6 +24,8 @@ include_once 'com/livinglogic/ul4/LoadOr.php';
 include_once 'com/livinglogic/ul4/Contains.php';
 include_once 'com/livinglogic/ul4/EQ.php';
 include_once 'com/livinglogic/ul4/FloorDiv.php';
+include_once 'com/livinglogic/ul4/GE.php';
+
 include_once 'com/livinglogic/ul4/Unary.php';
 include_once 'com/livinglogic/ul4/PPrint.php';
 include_once 'com/livinglogic/ul4/PrintX.php';

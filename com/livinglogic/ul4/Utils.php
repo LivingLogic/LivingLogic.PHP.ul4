@@ -391,17 +391,20 @@ class Utils
 		return is_null($obj1) == is_null($obj2);
 	}
 
+	public static function ge($obj1, $obj2)
+	{
+		if (!is_null($obj1) && !is_null($obj2))
+			return self::cmp($obj1, $obj2, ">=") >= 0;
+		if (is_null($obj1) != is_null($obj2))
+			throw new \Exception(self::objectType($obj1) . " >= " . self::objectType($obj2) . " not supported!");
+		return true;
+	}
+
 	public static function floordiv($obj1, $obj2)
 	{
-		var_dump($obj1);
-		var_dump($obj2);
 		if ((is_int($obj1) || is_long($obj1) || is_float($obj1) || is_double($obj1) || is_bool($obj1)) &&
 				(is_int($obj2) || is_long($obj2) || is_float($obj2) || is_double($obj2) || is_bool($obj2)))
-		{
-			$retVal = floor($obj1 / $obj2);
-			var_dump($retVal);
-			return $retVal;
-		}
+			return floor($obj1 / $obj2);
 
 		throw new \Exception(self::objectType($obj1) . " // " . self::objectType($obj2) . " not supported!");
 	}
