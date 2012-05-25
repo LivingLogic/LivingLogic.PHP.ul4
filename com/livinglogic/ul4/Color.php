@@ -291,7 +291,7 @@ class Color
 	public function blend($color)
 	{
 		$sa = $this->a/255.;
-		$rsa = 1. - $this->sa;
+		$rsa = 1. - $sa;
 		$nr = intval($this->r * $sa + $rsa * $color->r);
 		$ng = intval($this->g * $sa + $rsa * $color->g);
 		$nb = intval($this->b * $sa + $rsa * $color->b);
