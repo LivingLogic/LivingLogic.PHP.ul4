@@ -518,6 +518,15 @@ class Utils
 		return !self::contains($obj, $container);
 	}
 
+	public static function truediv($obj1, $obj2)
+	{
+		if ((is_int($obj1) || is_long($obj1) || is_float($obj1) || is_double($obj1) || is_bool($obj1)) &&
+				(is_int($obj2) || is_long($obj2) || is_float($obj2) || is_double($obj2) || is_bool($obj2)))
+			return $obj1 / $obj2;
+
+		throw new \Exception(self::objectType($obj1) . " / " . self::objectType($obj2) . " not supported!");
+	}
+
 }
 
 ?>
