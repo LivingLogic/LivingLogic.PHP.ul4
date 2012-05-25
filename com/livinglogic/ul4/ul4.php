@@ -25,6 +25,7 @@ include_once 'com/livinglogic/ul4/Contains.php';
 include_once 'com/livinglogic/ul4/EQ.php';
 include_once 'com/livinglogic/ul4/FloorDiv.php';
 include_once 'com/livinglogic/ul4/GE.php';
+include_once 'com/livinglogic/ul4/GetItem.php';
 
 include_once 'com/livinglogic/ul4/Unary.php';
 include_once 'com/livinglogic/ul4/PPrint.php';

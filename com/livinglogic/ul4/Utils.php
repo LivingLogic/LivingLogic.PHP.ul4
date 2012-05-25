@@ -400,6 +400,41 @@ class Utils
 		return true;
 	}
 
+	/*
+	public static function getItem($arg1, $arg2)
+	{
+		if (\com\livinglogic\ul4on\Utils::isDict($arg1))
+		{
+			if (!is_string($arg2))
+				throw new \Exception(self::objectType($arg1) . "[" . self::objectType($arg2) . "] not supported!");
+
+			if (!array_key_exists($arg2, arg1))
+				throw new \Exception("key $arg2 not found");
+			else
+				return $arg1[$arg2];
+		}
+		else if (is_int($arg2) || is_long($arg2))
+		{
+			if (is_string($arg1))
+			{
+				if ($arg2 < 0)
+					$arg2 += strlen($arg1);
+				return $arg1->{$arg2};
+			}
+			else if (\com\livinglogic\ul4on\Utils::isDict($arg1))
+			{
+				if ($arg2 < 0)
+					$arg2 += count($arg1);
+				return $arg1[$arg2];
+			}
+			else if ($arg1 instanceof Color)
+				return $arg1->get($arg2);
+		}
+
+		throw new \Exception(self::objectType($arg1) . "[" . self::objectType($arg2) . "] not supported!");
+	}
+	*/
+
 	public static function floordiv($obj1, $obj2)
 	{
 		if ((is_int($obj1) || is_long($obj1) || is_float($obj1) || is_double($obj1) || is_bool($obj1)) &&
