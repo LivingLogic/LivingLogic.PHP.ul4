@@ -28,6 +28,7 @@ include_once 'com/livinglogic/ul4/GE.php';
 include_once 'com/livinglogic/ul4/GetItem.php';
 include_once 'com/livinglogic/ul4/GT.php';
 include_once 'com/livinglogic/ul4/LE.php';
+include_once 'com/livinglogic/ul4/LT.php';
 
 include_once 'com/livinglogic/ul4/Unary.php';
 include_once 'com/livinglogic/ul4/PPrint.php';

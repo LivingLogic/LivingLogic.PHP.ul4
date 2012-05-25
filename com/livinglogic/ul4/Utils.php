@@ -462,6 +462,15 @@ class Utils
 		return true;
 	}
 
+	public static function lt($obj1, $obj2)
+	{
+		if (!is_null($obj1) && !is_null($obj2))
+			return self::cmp($obj1, $obj2, "<") < 0;
+		if (is_null($obj1) != is_null($obj2))
+			throw new \Exception(self::objectType($obj1) . " < " . self::objectType($obj2) . " not supported!");
+		return false;
+	}
+
 }
 
 ?>
