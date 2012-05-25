@@ -31,6 +31,7 @@ include_once 'com/livinglogic/ul4/LE.php';
 include_once 'com/livinglogic/ul4/LT.php';
 include_once 'com/livinglogic/ul4/Mod.php';
 include_once 'com/livinglogic/ul4/NE.php';
+include_once 'com/livinglogic/ul4/NotContains.php';
 
 include_once 'com/livinglogic/ul4/Unary.php';
 include_once 'com/livinglogic/ul4/PPrint.php';

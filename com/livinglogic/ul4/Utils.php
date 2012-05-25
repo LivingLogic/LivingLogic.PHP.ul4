@@ -513,6 +513,11 @@ class Utils
 		return (is_null($obj1) != is_null(obj2));
 	}
 
+	public static function notcontains($obj, $container)
+	{
+		return !self::contains($obj, $container);
+	}
+
 }
 
 ?>

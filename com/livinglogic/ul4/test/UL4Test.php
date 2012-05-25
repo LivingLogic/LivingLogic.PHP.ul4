@@ -226,6 +226,21 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array("x" => False, "y" => False));
 		$p->evaluate($c);
 		$this->assertEquals('False', $c->getOutput());
+
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS20|<?print x not in y?>S5|printi0|i20|i8|i18|OS30|de.livinglogic.ul4.notcontains^2|OS22|de.livinglogic.ul4.var^2|S1|xO^9|^2|S1|y";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array("x" => 17, "y" => array(1, 2, 17, 28)));
+		$p->evaluate($c);
+		$this->assertEquals('False', $c->getOutput());
+		$c = new EvaluationContext(array("x" => 'def', "y" => 'abcdefghi'));
+		$p->evaluate($c);
+		$this->assertEquals('False', $c->getOutput());
+		$c = new EvaluationContext(array("x" => 'def', "y" => 'abcdeghi'));
+		$p->evaluate($c);
+		$this->assertEquals('True', $c->getOutput());
+		$c = new EvaluationContext(array("x" => 'def', "y" => array('ghi' => 1, "def" => 'gurk', "x" => 'hurz')));
+		$p->evaluate($c);
+		$this->assertEquals('False', $c->getOutput());
 	}
 }
 
