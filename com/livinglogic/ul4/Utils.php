@@ -527,6 +527,16 @@ class Utils
 		throw new \Exception(self::objectType($obj1) . " / " . self::objectType($obj2) . " not supported!");
 	}
 
+	public static function neg($obj)
+	{
+		if (is_int($obj) || is_long($obj) || is_float($obj) || is_double($obj))
+			return -$obj;
+		else if (is_bool($obj))
+			return $obj ? -1 : 0;
+
+		throw new \Exception("-" . self::objectType($obj) . " not supported!");
+	}
+
 }
 
 ?>
