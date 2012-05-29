@@ -36,6 +36,7 @@ include_once 'com/livinglogic/ul4/TrueDiv.php';
 
 include_once 'com/livinglogic/ul4/Unary.php';
 include_once 'com/livinglogic/ul4/Neg.php';
+include_once 'com/livinglogic/ul4/Not.php';
 include_once 'com/livinglogic/ul4/PPrint.php';
 include_once 'com/livinglogic/ul4/PrintX.php';
 

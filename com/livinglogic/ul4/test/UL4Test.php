@@ -268,6 +268,36 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array("x" => True));
 		$p->evaluate($c);
 		$this->assertEquals('-1', $c->getOutput());
+
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS15|<?print not x?>S5|printi0|i15|i8|i13|OS22|de.livinglogic.ul4.not^2|OS22|de.livinglogic.ul4.var^2|S1|x";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array("x" => NULL));
+		$p->evaluate($c);
+		$this->assertEquals('True', $c->getOutput());
+		$c = new EvaluationContext(array("x" => True));
+		$p->evaluate($c);
+		$this->assertEquals('False', $c->getOutput());
+		$c = new EvaluationContext(array("x" => False));
+		$p->evaluate($c);
+		$this->assertEquals('True', $c->getOutput());
+		$c = new EvaluationContext(array("x" => 0));
+		$p->evaluate($c);
+		$this->assertEquals('True', $c->getOutput());
+		$c = new EvaluationContext(array("x" => 4));
+		$p->evaluate($c);
+		$this->assertEquals('False', $c->getOutput());
+		$c = new EvaluationContext(array("x" => 0.0));
+		$p->evaluate($c);
+		$this->assertEquals('True', $c->getOutput());
+		$c = new EvaluationContext(array("x" => 4.0));
+		$p->evaluate($c);
+		$this->assertEquals('False', $c->getOutput());
+		$c = new EvaluationContext(array("x" => array(0, 1)));
+		$p->evaluate($c);
+		$this->assertEquals('False', $c->getOutput());
+		$c = new EvaluationContext(array("x" => array()));
+		$p->evaluate($c);
+		$this->assertEquals('True', $c->getOutput());
 	}
 }
 
