@@ -600,6 +600,20 @@ class Utils
 		}
 	}
 
+	public static function toFloat($obj)
+	{
+		if (is_string($obj))
+			return doubleval($obj);
+		else if (is_int($obj) || is_long($obj))
+			return doubleval($obj);
+		else if (is_bool($obj))
+			return $obj ? 1.0 : 0.0;
+		else if (is_float($obj) || is_double($obj))
+			return $obj;
+		throw new \Exception("float(" . self::objectType($obj) . ") not supported!");
+	}
+
+
 }
 
 ?>
