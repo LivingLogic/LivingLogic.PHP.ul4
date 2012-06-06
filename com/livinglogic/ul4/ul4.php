@@ -12,6 +12,7 @@ include_once 'com/livinglogic/ul4/EvaluationContext.php';
 
 include_once 'com/livinglogic/ul4/Function.php';
 include_once 'com/livinglogic/ul4/FunctionNow.php';
+include_once 'com/livinglogic/ul4/FunctionUTCNow.php';
 
 include_once 'com/livinglogic/ul4/AST.php';
 include_once 'com/livinglogic/ul4/LoadConst.php';
@@ -48,6 +49,7 @@ include_once 'com/livinglogic/ul4/BreakException.php';
 include_once 'com/livinglogic/ul4/ContinueException.php';
 include_once 'com/livinglogic/ul4/LocationException.php';
 include_once 'com/livinglogic/ul4/ArgumentCountMismatchException.php';
+include_once 'com/livinglogic/ul4/UnknownFunctionException.php';
 
 include_once 'com/livinglogic/ul4/Block.php';
 //include_once 'com/livinglogic/ul4/InterpretedTemplate.php';

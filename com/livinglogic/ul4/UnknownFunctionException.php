@@ -8,7 +8,7 @@ class UnknownFunctionException extends \Exception
 {
 	public function __construct($functionName)
 	{
-		parent::__construct("Function '" + functionName + "' unknown!");
+		parent::__construct("Function '" . $functionName . "' unknown!");
 	}
 }
 

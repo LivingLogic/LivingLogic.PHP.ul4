@@ -537,6 +537,14 @@ class Utils
 		throw new \Exception("-" . self::objectType($obj) . " not supported!");
 	}
 
+	public static function utcnow()
+	{
+		$utcTimeZone = new \DateTimeZone("GMT");
+		$dateTime = new \DateTime("now", $utcTimeZone);
+
+		return $dateTime;
+	}
+
 }
 
 ?>
