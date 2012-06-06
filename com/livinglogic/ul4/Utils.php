@@ -555,6 +555,24 @@ class Utils
 		return rand()/(getrandmax() + 1);
 	}
 
+	public static function csv($obj)
+	{
+		if (is_null($obj))
+			return "";
+		if (! is_string($obj))
+			$obj = self::repr($obj);
+
+		$pos0 = strpos($obj, '"');
+		$pos1 = strpos($obj, ',');
+		$pos2 = strpos($obj, '\n');
+
+		if (is_bool($pos0) && is_bool($pos1) && is_bool($pos2))
+			return $obj;
+
+		$obj = str_replace('"', '""', $obj);
+		return '"' . $obj . '"';
+	}
+
 }
 
 ?>

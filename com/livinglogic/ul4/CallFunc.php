@@ -18,8 +18,8 @@ class CallFunc extends AST
 			"utcnow" => new FunctionUTCNow(),
 			"vars" => new FunctionVars(),
 			"random" => new FunctionRandom(),
-			"xmlescape" => new FunctionXMLEscape()
-// 			"csv" => new FunctionCSV(),
+			"xmlescape" => new FunctionXMLEscape(),
+			"csv" => new FunctionCSV()
 // 			"str" => new FunctionStr(),
 // 			"repr" => new FunctionRepr(),
 // 			"int" => new FunctionInt(),
@@ -51,7 +51,7 @@ class CallFunc extends AST
 // 			"sorted" => new FunctionSorted(),
 // 			"type" => new FunctionType(),
 // 			"get" => new FunctionGet(),
-// 			"json" => new FunctionJSON(),
+// 			"asjson" => new FunctionJSON(),
 // 			"ul4on" => new FunctionUL4ON(),
 // 			"reversed" => new FunctionReversed(),
 // 			"randrange" => new FunctionRandRange(),
@@ -61,6 +61,7 @@ class CallFunc extends AST
 // 			"rgb" => new FunctionRGB(),
 // 			"hls" => new FunctionHLS(),
 // 			"hsv" => new FunctionHSV()
+		//
 		);
 	}
 
