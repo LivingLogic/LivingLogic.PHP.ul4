@@ -545,6 +545,11 @@ class Utils
 		return $dateTime;
 	}
 
+	public static function random()
+	{
+		return rand()/(getrandmax() + 1);
+	}
+
 }
 
 ?>

@@ -16,8 +16,8 @@ class CallFunc extends AST
 		self::$functions = array(
 			"now" => new FunctionNow(),
 			"utcnow" => new FunctionUTCNow(),
-			"vars" => new FunctionVars()
-// 			"random" => new FunctionRandom(),
+			"vars" => new FunctionVars(),
+			"random" => new FunctionRandom()
 // 			"xmlescape" => new FunctionXMLEscape(),
 // 			"csv" => new FunctionCSV(),
 // 			"str" => new FunctionStr(),
