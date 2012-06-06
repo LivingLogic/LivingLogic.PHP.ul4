@@ -613,6 +613,15 @@ class Utils
 		throw new \Exception("float(" . self::objectType($obj) . ") not supported!");
 	}
 
+	public static function len($obj)
+	{
+		if (is_string($obj))
+			return strlen($obj);
+		else if (is_array($obj))
+			return count($obj);
+		throw new \Exception("len(" . self::objectType($obj) . ") not supported!");
+	}
+
 
 }
 

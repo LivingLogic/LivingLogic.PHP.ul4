@@ -24,8 +24,8 @@ class CallFunc extends AST
 			"repr" => new FunctionRepr(),
 			"int" => new FunctionInt(),
 			"float" => new FunctionFloat(),
-			"bool" => new FunctionBool()
-// 			"len" => new FunctionLen(),
+			"bool" => new FunctionBool(),
+			"len" => new FunctionLen()
 // 			"enumerate" => new FunctionEnumerate(),
 // 			"enumfl" => new FunctionEnumFL(),
 // 			"isfirstlast" => new FunctionIsFirstLast(),
