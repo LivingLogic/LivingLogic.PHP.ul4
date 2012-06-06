@@ -18,6 +18,7 @@ include_once 'com/livinglogic/ul4/FunctionRandom.php';
 include_once 'com/livinglogic/ul4/FunctionXMLEscape.php';
 include_once 'com/livinglogic/ul4/FunctionCSV.php';
 include_once 'com/livinglogic/ul4/FunctionStr.php';
+include_once 'com/livinglogic/ul4/FunctionRepr.php';
 
 include_once 'com/livinglogic/ul4/AST.php';
 include_once 'com/livinglogic/ul4/LoadConst.php';

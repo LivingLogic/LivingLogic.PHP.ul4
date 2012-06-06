@@ -20,8 +20,8 @@ class CallFunc extends AST
 			"random" => new FunctionRandom(),
 			"xmlescape" => new FunctionXMLEscape(),
 			"csv" => new FunctionCSV(),
-			"str" => new FunctionStr()
-// 			"repr" => new FunctionRepr(),
+			"str" => new FunctionStr(),
+			"repr" => new FunctionRepr()
 // 			"int" => new FunctionInt(),
 // 			"float" => new FunctionFloat(),
 // 			"bool" => new FunctionBool(),
