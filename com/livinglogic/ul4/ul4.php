@@ -21,6 +21,7 @@ include_once 'com/livinglogic/ul4/FunctionStr.php';
 include_once 'com/livinglogic/ul4/FunctionRepr.php';
 include_once 'com/livinglogic/ul4/FunctionInt.php';
 include_once 'com/livinglogic/ul4/FunctionFloat.php';
+include_once 'com/livinglogic/ul4/FunctionBool.php';
 
 include_once 'com/livinglogic/ul4/AST.php';
 include_once 'com/livinglogic/ul4/LoadConst.php';
