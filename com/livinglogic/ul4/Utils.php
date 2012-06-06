@@ -573,6 +573,33 @@ class Utils
 		return '"' . $obj . '"';
 	}
 
+	public static function toInteger($obj)
+	{
+		if (func_num_args() == 1)
+		{
+			if (is_string($obj))
+				return intval($obj);
+			else if (is_int($obj) || is_long($obj))
+				return $obj;
+			else if (is_bool($obj))
+				return $obj ? 1 : 0;
+			else if (is_float($obj) || is_double($obj))
+				return intval($obj);
+
+			throw new \Exception("int(" . self::objectType($obj) . ") not supported!");
+		}
+		else if (func_num_args() == 2)
+		{
+			$obj2 = func_get_arg(1);
+			if (is_string($obj))
+			{
+				if (is_int($obj2) || is_long($obj2))
+					return intval($obj, $obj2);
+			}
+			throw new \Exception("int(" . self::objectType($obj) . ", " . self::objectType($obj2) . ") not supported!");
+		}
+	}
+
 }
 
 ?>

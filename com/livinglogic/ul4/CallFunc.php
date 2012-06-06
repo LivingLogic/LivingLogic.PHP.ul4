@@ -21,8 +21,8 @@ class CallFunc extends AST
 			"xmlescape" => new FunctionXMLEscape(),
 			"csv" => new FunctionCSV(),
 			"str" => new FunctionStr(),
-			"repr" => new FunctionRepr()
-// 			"int" => new FunctionInt(),
+			"repr" => new FunctionRepr(),
+			"int" => new FunctionInt()
 // 			"float" => new FunctionFloat(),
 // 			"bool" => new FunctionBool(),
 // 			"len" => new FunctionLen(),

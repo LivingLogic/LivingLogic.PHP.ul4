@@ -347,6 +347,24 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array('x' => new \DateTime()));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
+		// int()
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS15|<?print int()?>S5|printi0|i15|i8|i13|OS27|de.livinglogic.ul4.callfunc^2|S3|intL.";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => new \DateTime()));
+		$p->evaluate($c);
+		$this->assertEquals("0", $c->getOutput());
+		// int(x)
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print int(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|intLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => "3"));
+		$p->evaluate($c);
+		$this->assertEquals("3", $c->getOutput());
+		// int(x, y)
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS19|<?print int(x, y)?>S5|printi0|i19|i8|i17|OS27|de.livinglogic.ul4.callfunc^2|S3|intLOS22|de.livinglogic.ul4.var^2|S1|xO^11|^2|S1|y.";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => "a", 'y' => 16));
+		$p->evaluate($c);
+		$this->assertEquals("10", $c->getOutput());
 	}
 }
 
