@@ -19,8 +19,8 @@ class CallFunc extends AST
 			"vars" => new FunctionVars(),
 			"random" => new FunctionRandom(),
 			"xmlescape" => new FunctionXMLEscape(),
-			"csv" => new FunctionCSV()
-// 			"str" => new FunctionStr(),
+			"csv" => new FunctionCSV(),
+			"str" => new FunctionStr()
 // 			"repr" => new FunctionRepr(),
 // 			"int" => new FunctionInt(),
 // 			"float" => new FunctionFloat(),
