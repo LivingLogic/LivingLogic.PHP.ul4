@@ -15,6 +15,7 @@ include_once 'com/livinglogic/ul4/FunctionNow.php';
 include_once 'com/livinglogic/ul4/FunctionUTCNow.php';
 include_once 'com/livinglogic/ul4/FunctionVars.php';
 include_once 'com/livinglogic/ul4/FunctionRandom.php';
+include_once 'com/livinglogic/ul4/FunctionXMLEscape.php';
 
 include_once 'com/livinglogic/ul4/AST.php';
 include_once 'com/livinglogic/ul4/LoadConst.php';

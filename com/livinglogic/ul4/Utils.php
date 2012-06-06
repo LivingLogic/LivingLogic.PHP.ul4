@@ -240,10 +240,13 @@ class Utils
 
 		$str = self::str($obj);
 		$length = strlen($str);
-		$sb = "";
 
-		$search = array( "<"   , ">"   , "&"    , "'"    , '"'     );
-		$replace = array("&lt;", "&gt;", "&amp;", "&#39;", '&quot;');
+		$search = array( "&");
+		$replace = array("&amp;");
+		$str = str_replace($search, $replace, $str);
+
+		$search = array( "<"   , ">"   , "'"    , '"'     );
+		$replace = array("&lt;", "&gt;", "&#39;", '&quot;');
 		$str = str_replace($search, $replace, $str);
 
 		$buffer = "";
@@ -255,6 +258,8 @@ class Utils
 		}
 		for ($i = 128; $i < 160; $i++)
 			$str = str_replace(chr($i), "&#$i;", $str);
+
+		return $str;
 	}
 
 	public static function add($obj1, $obj2)

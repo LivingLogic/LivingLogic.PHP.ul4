@@ -17,8 +17,8 @@ class CallFunc extends AST
 			"now" => new FunctionNow(),
 			"utcnow" => new FunctionUTCNow(),
 			"vars" => new FunctionVars(),
-			"random" => new FunctionRandom()
-// 			"xmlescape" => new FunctionXMLEscape(),
+			"random" => new FunctionRandom(),
+			"xmlescape" => new FunctionXMLEscape()
 // 			"csv" => new FunctionCSV(),
 // 			"str" => new FunctionStr(),
 // 			"repr" => new FunctionRepr(),
