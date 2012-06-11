@@ -10,7 +10,7 @@ abstract class Block extends AST
 
 	public function __construct($location=null)
 	{
-		parent::_construct($location);
+		parent::__construct($location);
 	}
 
 	public function append($item)

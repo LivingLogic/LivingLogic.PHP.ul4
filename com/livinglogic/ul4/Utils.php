@@ -98,6 +98,88 @@ class Repr
 	}
 }
 
+class StringIterator implements \Iterator
+{
+	var $string;
+	var $stringSize;
+	var $index;
+
+	public function __construct($string)
+	{
+		$this->string = $string;
+		if (is_null($string))
+			$this->stringSize = -1;
+		else
+			$this->stringSize = strlen($string);
+		$this->index = 0;
+	}
+
+	public function rewind()
+	{
+		$this->index = 0;
+	}
+
+	public function current()
+	{
+		return $this->string[$this->index];
+	}
+
+	public function key()
+	{
+		return $this->index;
+	}
+
+	public function next()
+	{
+		++$this->index;
+	}
+
+	public function valid()
+	{
+		return (!is_null($this->string) && $this->index < $this->stringSize);
+	}
+}
+
+class SequenceEnum implements \Iterator
+{
+	var $sequenceIterator;
+	var $index;
+
+	public function __construct($sequenceIterator, $start)
+	{
+		$this->sequenceIterator = $sequenceIterator;
+		$this->index = $start;
+	}
+
+	public function rewind()
+	{
+		$this->sequenceIterator->rewind();
+	}
+
+	public function current()
+	{
+		$retVal = array();
+		array_push($retVal, $this->sequenceIterator->key());
+		array_push($retVal, $this->sequenceIterator->current());
+		return $retVal;
+	}
+
+	public function key()
+	{
+		return $this->sequenceIterator->key();
+	}
+
+	public function next()
+	{
+		$this->sequenceIterator->next();
+	}
+
+	public function valid()
+	{
+		return $this->sequenceIterator->valid();
+	}
+}
+
 class Utils
 {
 	public static function repr($obj)
@@ -620,6 +702,44 @@ class Utils
 		else if (is_array($obj))
 			return count($obj);
 		throw new \Exception("len(" . self::objectType($obj) . ") not supported!");
+	}
+
+	public static function iterator($obj)
+	{
+		if (is_string($obj))
+			return new StringIterator($obj);
+		else if (\com\livinglogic\ul4on\Utils::isDict($obj))
+		{
+			$ao = new \ArrayObject(array_keys($obj));
+			return $ao->getIterator();
+		}
+		else if (\com\livinglogic\ul4on\Utils::isList($obj))
+		{
+			$ao = new \ArrayObject($obj);
+			return $ao->getIterator();
+		}
+		else if ($obj instanceof \Iterator)
+			return $obj;
+		throw new \Exception("iter(" . self::objectType($obj) . ") not supported!");
+	}
+
+	public static function enumerate($obj)
+	{
+		if (func_num_args() == 2)
+			$start = func_get_arg(1);
+		else if (func_num_args() == 1)
+			$start = 0;
+
+		return new SequenceEnum(self::iterator($obj), self::_toInt($start));
+	}
+
+	private static function _toInt($arg)
+	{
+		if (is_bool($arg))
+			return $arg ? 1 : 0;
+		else if (is_int($arg) || is_long($arg) || is_float($arg) || is_double($arg))
+			return intval($arg);
+		throw new \Exception("can't convert " . self::objectType($arg) . " to int!");
 	}
 
 

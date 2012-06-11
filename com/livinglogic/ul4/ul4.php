@@ -23,11 +23,13 @@ include_once 'com/livinglogic/ul4/FunctionInt.php';
 include_once 'com/livinglogic/ul4/FunctionFloat.php';
 include_once 'com/livinglogic/ul4/FunctionBool.php';
 include_once 'com/livinglogic/ul4/FunctionLen.php';
+include_once 'com/livinglogic/ul4/FunctionEnumerate.php';
 
 include_once 'com/livinglogic/ul4/AST.php';
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadInt.php';
 include_once 'com/livinglogic/ul4/LoadVar.php';
+include_once 'com/livinglogic/ul4/List.php';
 include_once 'com/livinglogic/ul4/CallFunc.php';
 
 include_once 'com/livinglogic/ul4/Binary.php';
@@ -54,6 +56,11 @@ include_once 'com/livinglogic/ul4/Neg.php';
 include_once 'com/livinglogic/ul4/Not.php';
 include_once 'com/livinglogic/ul4/PPrint.php';
 include_once 'com/livinglogic/ul4/PrintX.php';
+// TODO render
+
+include_once 'com/livinglogic/ul4/Block.php';
+include_once 'com/livinglogic/ul4/For.php';
+include_once 'com/livinglogic/ul4/ForNormal.php';
 
 include_once 'com/livinglogic/ul4/BreakException.php';
 include_once 'com/livinglogic/ul4/ContinueException.php';

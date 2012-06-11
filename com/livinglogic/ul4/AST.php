@@ -9,7 +9,7 @@ abstract class AST implements \com\livinglogic\ul4on\UL4ONSerializable
 	protected $location = null;
 //	public static $fields = array("type", "location");
 
-	public function __construct($location)
+	public function __construct($location=null)
 	{
 		$this->location = $location;
 	}

@@ -389,6 +389,20 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array('x' => 'abc'));
 		$p->evaluate($c);
 		$this->assertEquals("3", $c->getOutput());
+		// enumerate(x)
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS22|<?print enumerate(x)?>S5|printi0|i22|i8|i20|OS27|de.livinglogic.ul4.callfunc^2|S9|enumerateLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => array('a', 'b')));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+// 		$this->assertEquals("0", $c->getOutput());
+		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS52|<?for i in enumerate([1, 2])?><?print i?><?end for?>S3|fori0|i30|i6|i28|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi30|i41|i38|i39|OS22|de.livinglogic.ul4.var^9|S1|i.OS27|de.livinglogic.ul4.callfunc^2|S9|enumerateLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i1|O^22|^2|i2|..^13|";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array());
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+
+		// TODO erst Block und For machen, dann enumerate besser testen
 	}
 }
 
