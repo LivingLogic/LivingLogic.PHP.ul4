@@ -506,6 +506,18 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array('x' => array(1, 1, 2, 3, 5, 8, 13)));
 		$p->evaluate($c);
 		$this->assertEquals("True", $c->getOutput());
+		// isdict
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS19|<?print isdict(x)?>S5|printi0|i19|i8|i17|OS27|de.livinglogic.ul4.callfunc^2|S6|isdictLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => 2));
+		$p->evaluate($c);
+		$this->assertEquals("False", $c->getOutput());
+		$c = new EvaluationContext(array('x' => null));
+		$p->evaluate($c);
+		$this->assertEquals("False", $c->getOutput());
+		$c = new EvaluationContext(array('x' => array('1, 1, 2, 3, 5, 8, 13' => 353)));
+		$p->evaluate($c);
+		$this->assertEquals("True", $c->getOutput());
 
 	}
 }
