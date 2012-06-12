@@ -191,6 +191,7 @@ class SequenceEnumFL implements \Iterator
 	var $index;
 	var $start;
 	var $current;
+	var $key;
 	var $valid;
 	var $internalNextCalled;
 
@@ -258,6 +259,78 @@ class SequenceEnumFL implements \Iterator
 	{
 		return $this->valid;
 	}
+}
+
+class SequenceIsFirstLast implements \Iterator
+{
+	var $sequenceIterator;
+
+	var $first = true;
+	var $current;
+	var $key;
+	var $valid;
+	var $internalNextCalled;
+
+	public function __construct($sequenceIterator)
+	{
+		$this->sequenceIterator = $sequenceIterator;
+		$this->valid = $this->sequenceIterator->valid();
+		$this->internalNextCalled = false;
+
+		if ($this->valid)
+		{
+			$this->current = $this->sequenceIterator->current();
+			$this->key = $this->sequenceIterator->key();
+		}
+	}
+
+	public function rewind()
+	{
+		// unused
+	}
+
+	public function current()
+	{
+		$retVal = array();
+		array_push($retVal, $this->first);
+
+		if (!$this->internalNextCalled)
+		{
+			$this->sequenceIterator->next();
+			$this->internalNextCalled = true;
+		}
+		array_push($retVal, !$this->sequenceIterator->valid());
+
+		array_push($retVal, $this->current);
+		return $retVal;
+	}
+
+	public function key()
+	{
+		return $this->key;
+	}
+
+	public function next()
+	{
+		if (!$this->internalNextCalled)
+			$this->sequenceIterator->next();
+
+		$this->first = false;
+		$this->internalNextCalled = false;
+
+		if ($this->sequenceIterator->valid())
+		{
+			$this->current = $this->sequenceIterator->current();
+			$this->key = $this->sequenceIterator->key();
+		}
+		$this->valid = $this->sequenceIterator->valid();
+	}
+
+	public function valid()
+	{
+		return $this->valid;
+	}
+
 }
 
 
@@ -827,6 +900,11 @@ class Utils
 	public static function enumfl($obj, $start=0)
 	{
 		return new SequenceEnumFL(self::iterator($obj), self::_toInt($start));
+	}
+
+	public static function isfirstlast($obj)
+	{
+		return new SequenceIsFirstLast(self::iterator($obj));
 	}
 
 
