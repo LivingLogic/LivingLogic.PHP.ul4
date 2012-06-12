@@ -26,6 +26,7 @@ include_once 'com/livinglogic/ul4/FunctionLen.php';
 include_once 'com/livinglogic/ul4/FunctionEnumerate.php';
 include_once 'com/livinglogic/ul4/FunctionEnumFL.php';
 include_once 'com/livinglogic/ul4/FunctionIsFirstLast.php';
+include_once 'com/livinglogic/ul4/FunctionIsFirst.php';
 
 include_once 'com/livinglogic/ul4/AST.php';
 include_once 'com/livinglogic/ul4/LoadConst.php';

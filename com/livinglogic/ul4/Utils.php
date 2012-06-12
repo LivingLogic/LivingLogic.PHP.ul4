@@ -330,7 +330,47 @@ class SequenceIsFirstLast implements \Iterator
 	{
 		return $this->valid;
 	}
+}
 
+class SequenceIsFirst implements \Iterator
+{
+	var $sequenceIterator;
+
+	var $first = true;
+
+	public function __construct($sequenceIterator)
+	{
+		$this->sequenceIterator = $sequenceIterator;
+	}
+
+	public function rewind()
+	{
+		// unused
+	}
+
+	public function current()
+	{
+		$retVal = array();
+		array_push($retVal, $this->first);
+		array_push($retVal, $this->sequenceIterator->current());
+		return $retVal;
+	}
+
+	public function key()
+	{
+		return $this->sequenceIterator->key();
+	}
+
+	public function next()
+	{
+		$this->sequenceIterator->next();
+		$this->first = false;
+	}
+
+	public function valid()
+	{
+		return $this->sequenceIterator->valid();
+	}
 }
 
 
@@ -905,6 +945,11 @@ class Utils
 	public static function isfirstlast($obj)
 	{
 		return new SequenceIsFirstLast(self::iterator($obj));
+	}
+
+	public static function isfirst($obj)
+	{
+		return new SequenceIsFirst(self::iterator($obj));
 	}
 
 

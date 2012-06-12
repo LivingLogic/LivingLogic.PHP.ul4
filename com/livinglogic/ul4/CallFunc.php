@@ -28,8 +28,8 @@ class CallFunc extends AST
 			"len" => new FunctionLen(),
 			"enumerate" => new FunctionEnumerate(),
 			"enumfl" => new FunctionEnumFL(),
-			"isfirstlast" => new FunctionIsFirstLast()
-// 			"isfirst" => new FunctionIsFirst(),
+			"isfirstlast" => new FunctionIsFirstLast(),
+			"isfirst" => new FunctionIsFirst()
 // 			"islast" => new FunctionIsLast(),
 // 			"isnone" => new FunctionIsNone(),
 // 			"isstr" => new FunctionIsStr(),
