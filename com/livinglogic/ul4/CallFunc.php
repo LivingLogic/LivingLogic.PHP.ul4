@@ -34,8 +34,8 @@ class CallFunc extends AST
 			"isnone" => new FunctionIsNone(),
 			"isstr" => new FunctionIsStr(),
 			"isint" => new FunctionIsInt(),
-			"isfloat" => new FunctionIsFloat()
-// 			"isbool" => new FunctionIsBool(),
+			"isfloat" => new FunctionIsFloat(),
+			"isbool" => new FunctionIsBool()
 // 			"isdate" => new FunctionIsDate(),
 // 			"islist" => new FunctionIsList(),
 // 			"isdict" => new FunctionIsDict(),
