@@ -40,6 +40,7 @@ include_once 'com/livinglogic/ul4/FunctionIsDate.php';
 include_once 'com/livinglogic/ul4/FunctionIsList.php';
 include_once 'com/livinglogic/ul4/FunctionIsDict.php';
 include_once 'com/livinglogic/ul4/FunctionIsTemplate.php';
+include_once 'com/livinglogic/ul4/FunctionIsColor.php';
 
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadInt.php';

@@ -39,8 +39,8 @@ class CallFunc extends AST
 			"isdate" => new FunctionIsDate(),
 			"islist" => new FunctionIsList(),
 			"isdict" => new FunctionIsDict(),
-			"istemplate" => new FunctionIsTemplate()
-// 			"iscolor" => new FunctionIsColor(),
+			"istemplate" => new FunctionIsTemplate(),
+			"iscolor" => new FunctionIsColor()
 // 			"chr" => new FunctionChr(),
 // 			"ord" => new FunctionOrd(),
 // 			"hex" => new FunctionHex(),
