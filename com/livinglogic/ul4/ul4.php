@@ -31,6 +31,7 @@ include_once 'com/livinglogic/ul4/FunctionIsLast.php';
 include_once 'com/livinglogic/ul4/FunctionIsNone.php';
 include_once 'com/livinglogic/ul4/FunctionIsStr.php';
 include_once 'com/livinglogic/ul4/FunctionIsInt.php';
+include_once 'com/livinglogic/ul4/FunctionIsFloat.php';
 
 include_once 'com/livinglogic/ul4/AST.php';
 include_once 'com/livinglogic/ul4/LoadConst.php';
