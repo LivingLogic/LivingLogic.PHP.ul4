@@ -191,8 +191,8 @@ class SequenceEnumFL implements \Iterator
 	var $index;
 	var $start;
 	var $current;
-	var $next;
 	var $valid;
+	var $internalNextCalled;
 
 	public function __construct($sequenceIterator, $start)
 	{
@@ -200,7 +200,8 @@ class SequenceEnumFL implements \Iterator
 		$this->index = $start;
 		$this->start = $start;
 		$this->valid = $this->sequenceIterator->valid();
-		$this->next = null;
+		$this->internalNextCalled = false;
+
 		if ($this->valid)
 		{
 			$this->current = $this->sequenceIterator->current();
@@ -210,9 +211,7 @@ class SequenceEnumFL implements \Iterator
 
 	public function rewind()
 	{
-		$this->sequenceIterator->rewind();
-		$this->index = $this->start;
-		$this->valid = $this->sequenceIterator->valid();
+		// unused
 	}
 
 	public function current()
@@ -221,12 +220,12 @@ class SequenceEnumFL implements \Iterator
 		array_push($retVal, $this->index);
 		array_push($retVal, $this->index === $this->start);
 
-		if (is_null($this->next) && $this->sequenceIterator->valid())
+		if (!$this->internalNextCalled)
 		{
 			$this->sequenceIterator->next();
-			if ($this->sequenceIterator->valid())
-				$this->next = $this->sequenceIterator->current();
+			$this->internalNextCalled = true;
 		}
+
 		array_push($retVal, !$this->sequenceIterator->valid());
 
 		array_push($retVal, $this->current);
@@ -240,8 +239,10 @@ class SequenceEnumFL implements \Iterator
 
 	public function next()
 	{
-		if (is_null($this->next) && $this->sequenceIterator->valid())
+		if (!$this->internalNextCalled)
 			$this->sequenceIterator->next();
+
+		$this->internalNextCalled = false;
 
 		if ($this->sequenceIterator->valid())
 		{
@@ -249,7 +250,6 @@ class SequenceEnumFL implements \Iterator
 			$this->key = $this->sequenceIterator->key();
 		}
 		$this->valid = $this->sequenceIterator->valid();
-		$this->next = null;
 
 		$this->index++;
 	}
