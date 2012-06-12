@@ -144,22 +144,25 @@ class SequenceEnum implements \Iterator
 {
 	var $sequenceIterator;
 	var $index;
+	var $start;
 
 	public function __construct($sequenceIterator, $start)
 	{
 		$this->sequenceIterator = $sequenceIterator;
 		$this->index = $start;
+		$this->start = $start;
 	}
 
 	public function rewind()
 	{
 		$this->sequenceIterator->rewind();
+		$this->index = $this->start;
 	}
 
 	public function current()
 	{
 		$retVal = array();
-		array_push($retVal, $this->sequenceIterator->key());
+		array_push($retVal, $this->index);
 		array_push($retVal, $this->sequenceIterator->current());
 		return $retVal;
 	}
@@ -172,6 +175,7 @@ class SequenceEnum implements \Iterator
 	public function next()
 	{
 		$this->sequenceIterator->next();
+		$this->index++;
 	}
 
 	public function valid()
@@ -179,6 +183,84 @@ class SequenceEnum implements \Iterator
 		return $this->sequenceIterator->valid();
 	}
 }
+
+class SequenceEnumFL implements \Iterator
+{
+	var $sequenceIterator;
+
+	var $index;
+	var $start;
+	var $current;
+	var $next;
+	var $valid;
+
+	public function __construct($sequenceIterator, $start)
+	{
+		$this->sequenceIterator = $sequenceIterator;
+		$this->index = $start;
+		$this->start = $start;
+		$this->valid = $this->sequenceIterator->valid();
+		$this->next = null;
+		if ($this->valid)
+		{
+			$this->current = $this->sequenceIterator->current();
+			$this->key = $this->sequenceIterator->key();
+		}
+	}
+
+	public function rewind()
+	{
+		$this->sequenceIterator->rewind();
+		$this->index = $this->start;
+		$this->valid = $this->sequenceIterator->valid();
+	}
+
+	public function current()
+	{
+		$retVal = array();
+		array_push($retVal, $this->index);
+		array_push($retVal, $this->index === $this->start);
+
+		if (is_null($this->next) && $this->sequenceIterator->valid())
+		{
+			$this->sequenceIterator->next();
+			if ($this->sequenceIterator->valid())
+				$this->next = $this->sequenceIterator->current();
+		}
+		array_push($retVal, !$this->sequenceIterator->valid());
+
+		array_push($retVal, $this->current);
+		return $retVal;
+	}
+
+	public function key()
+	{
+		return $this->key;
+	}
+
+	public function next()
+	{
+		if (is_null($this->next) && $this->sequenceIterator->valid())
+			$this->sequenceIterator->next();
+
+		if ($this->sequenceIterator->valid())
+		{
+			$this->current = $this->sequenceIterator->current();
+			$this->key = $this->sequenceIterator->key();
+		}
+		$this->valid = $this->sequenceIterator->valid();
+		$this->next = null;
+
+		$this->index++;
+	}
+
+	public function valid()
+	{
+		return $this->valid;
+	}
+}
+
+
 
 class Utils
 {
@@ -740,6 +822,11 @@ class Utils
 		else if (is_int($arg) || is_long($arg) || is_float($arg) || is_double($arg))
 			return intval($arg);
 		throw new \Exception("can't convert " . self::objectType($arg) . " to int!");
+	}
+
+	public static function enumfl($obj, $start=0)
+	{
+		return new SequenceEnumFL(self::iterator($obj), self::_toInt($start));
 	}
 
 

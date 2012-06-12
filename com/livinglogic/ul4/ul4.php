@@ -24,6 +24,7 @@ include_once 'com/livinglogic/ul4/FunctionFloat.php';
 include_once 'com/livinglogic/ul4/FunctionBool.php';
 include_once 'com/livinglogic/ul4/FunctionLen.php';
 include_once 'com/livinglogic/ul4/FunctionEnumerate.php';
+include_once 'com/livinglogic/ul4/FunctionEnumFL.php';
 
 include_once 'com/livinglogic/ul4/AST.php';
 include_once 'com/livinglogic/ul4/LoadConst.php';
