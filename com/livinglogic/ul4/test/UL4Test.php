@@ -419,6 +419,13 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array());
 		$p->evaluate($c);
 		var_dump($c->getOutput());
+		// islast
+		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS55|<?for i in islast([2, 3, 5, 7])?><?print i?><?end for?>S3|fori0|i33|i6|i31|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi33|i44|i41|i42|OS22|de.livinglogic.ul4.var^9|S1|i.OS27|de.livinglogic.ul4.callfunc^2|S6|islastLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i2|O^22|^2|i3|O^22|^2|i5|O^22|^2|i7|..^13|";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array());
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+
 	}
 }
 

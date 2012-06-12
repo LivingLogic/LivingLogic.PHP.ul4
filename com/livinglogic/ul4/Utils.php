@@ -373,6 +373,74 @@ class SequenceIsFirst implements \Iterator
 	}
 }
 
+class SequenceIsLast implements \Iterator
+{
+	var $sequenceIterator;
+
+	var $current;
+	var $key;
+	var $valid;
+	var $internalNextCalled;
+
+	public function __construct($sequenceIterator)
+	{
+		$this->sequenceIterator = $sequenceIterator;
+		$this->valid = $this->sequenceIterator->valid();
+		$this->internalNextCalled = false;
+
+		if ($this->valid)
+		{
+			$this->current = $this->sequenceIterator->current();
+			$this->key = $this->sequenceIterator->key();
+		}
+	}
+
+	public function rewind()
+	{
+		// unused
+	}
+
+	public function current()
+	{
+		$retVal = array();
+
+		if (!$this->internalNextCalled)
+		{
+			$this->sequenceIterator->next();
+			$this->internalNextCalled = true;
+		}
+		array_push($retVal, !$this->sequenceIterator->valid());
+
+		array_push($retVal, $this->current);
+		return $retVal;
+	}
+
+	public function key()
+	{
+		return $this->key;
+	}
+
+	public function next()
+	{
+		if (!$this->internalNextCalled)
+			$this->sequenceIterator->next();
+
+		$this->internalNextCalled = false;
+
+		if ($this->sequenceIterator->valid())
+		{
+			$this->current = $this->sequenceIterator->current();
+			$this->key = $this->sequenceIterator->key();
+		}
+		$this->valid = $this->sequenceIterator->valid();
+	}
+
+	public function valid()
+	{
+		return $this->valid;
+	}
+}
+
 
 
 class Utils
@@ -950,6 +1018,11 @@ class Utils
 	public static function isfirst($obj)
 	{
 		return new SequenceIsFirst(self::iterator($obj));
+	}
+
+	public static function islast($obj)
+	{
+		return new SequenceIsLast(self::iterator($obj));
 	}
 
 
