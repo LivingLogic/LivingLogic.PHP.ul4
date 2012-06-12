@@ -6,9 +6,12 @@ include_once 'com/livinglogic/ul4on/UL4ONSerializable.php';
 include_once 'com/livinglogic/ul4on/Utils.php';
 
 
+include_once 'com/livinglogic/ul4/AST.php';
+include_once 'com/livinglogic/ul4/Block.php';
 include_once 'com/livinglogic/ul4/Color.php';
 include_once 'com/livinglogic/ul4/Location.php';
 include_once 'com/livinglogic/ul4/EvaluationContext.php';
+include_once 'com/livinglogic/ul4/InterpretedTemplate.php';
 
 include_once 'com/livinglogic/ul4/Function.php';
 include_once 'com/livinglogic/ul4/FunctionNow.php';
@@ -36,8 +39,8 @@ include_once 'com/livinglogic/ul4/FunctionIsBool.php';
 include_once 'com/livinglogic/ul4/FunctionIsDate.php';
 include_once 'com/livinglogic/ul4/FunctionIsList.php';
 include_once 'com/livinglogic/ul4/FunctionIsDict.php';
+include_once 'com/livinglogic/ul4/FunctionIsTemplate.php';
 
-include_once 'com/livinglogic/ul4/AST.php';
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadInt.php';
 include_once 'com/livinglogic/ul4/LoadVar.php';
@@ -70,7 +73,6 @@ include_once 'com/livinglogic/ul4/PPrint.php';
 include_once 'com/livinglogic/ul4/PrintX.php';
 // TODO render
 
-include_once 'com/livinglogic/ul4/Block.php';
 include_once 'com/livinglogic/ul4/For.php';
 include_once 'com/livinglogic/ul4/ForNormal.php';
 

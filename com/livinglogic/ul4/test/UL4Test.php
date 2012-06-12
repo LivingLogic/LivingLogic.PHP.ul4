@@ -1,6 +1,8 @@
 <?php
 namespace com\livinglogic\ul4\test;
 
+use com\livinglogic\ul4\InterpretedTemplate;
+
 use com\livinglogic\ul4\EvaluationContext;
 
 require_once 'PHPUnit/Autoload.php';
@@ -516,6 +518,15 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		$this->assertEquals("False", $c->getOutput());
 		$c = new EvaluationContext(array('x' => array('1, 1, 2, 3, 5, 8, 13' => 353)));
+		$p->evaluate($c);
+		$this->assertEquals("True", $c->getOutput());
+		// istemplate
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS23|<?print istemplate(x)?>S5|printi0|i23|i8|i21|OS27|de.livinglogic.ul4.callfunc^2|S10|istemplateLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => 2));
+		$p->evaluate($c);
+		$this->assertEquals("False", $c->getOutput());
+		$c = new EvaluationContext(array('x' => new InterpretedTemplate()));
 		$p->evaluate($c);
 		$this->assertEquals("True", $c->getOutput());
 
