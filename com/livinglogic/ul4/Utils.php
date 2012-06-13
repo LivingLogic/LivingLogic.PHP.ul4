@@ -1087,6 +1087,23 @@ class Utils
 		throw new \Exception("hex(" . self::objectType($obj) . ") not supported!");
 	}
 
+	public static function oct($obj)
+	{
+		if (is_int($obj) || is_long($obj))
+		{
+			if ($obj < 0)
+				return "-0o" . decoct(-$obj);
+			else
+				return "0o" . decoct($obj);
+		}
+		else if (is_bool($obj))
+		{
+			return $obj ? "0o1" : "0o0";
+		}
+
+		throw new \Exception("oct(" . self::objectType($obj) . ") not supported!");
+	}
+
 
 }
 

@@ -43,8 +43,8 @@ class CallFunc extends AST
 			"iscolor" => new FunctionIsColor(),
 			"chr" => new FunctionChr(),
 			"ord" => new FunctionOrd(),
-			"hex" => new FunctionHex()
-// 			"oct" => new FunctionOct(),
+			"hex" => new FunctionHex(),
+			"oct" => new FunctionOct()
 // 			"bin" => new FunctionBin(),
 // 			"abs" => new FunctionAbs(),
 // 			"range" => new FunctionRange(),

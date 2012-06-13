@@ -547,7 +547,7 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		// ord
 		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print ord(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|ordLOS22|de.livinglogic.ul4.var^2|S1|x.";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
-// 		$c = new EvaluationContext(array('x' => "й"));  // TODO
+// 		$c = new EvaluationContext(array('x' => "й"));  // TODO  1081
 		$c = new EvaluationContext(array('x' => "A"));
 		$p->evaluate($c);
 		$this->assertEquals("65", $c->getOutput());
@@ -557,6 +557,13 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array('x' => -40));
 		$p->evaluate($c);
 		$this->assertEquals("-0x28", $c->getOutput());
+		// oct
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print oct(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|octLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => -41));
+		$p->evaluate($c);
+		$this->assertEquals("-0o51", $c->getOutput());
+
 
 
 	}
