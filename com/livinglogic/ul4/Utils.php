@@ -1070,6 +1070,23 @@ class Utils
 		throw new \Exception("ord(" . self::objectType($obj) . ") not supported!");
 	}
 
+	public static function hex($obj)
+	{
+		if (is_int($obj) || is_long($obj))
+		{
+			if ($obj < 0)
+				return "-0x" . dechex(-$obj);
+			else
+				return "0x" . dechex($obj);
+		}
+		else if (is_bool($obj))
+		{
+			return $obj ? "0x1" : "0x0";
+		}
+
+		throw new \Exception("hex(" . self::objectType($obj) . ") not supported!");
+	}
+
 
 }
 
