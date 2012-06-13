@@ -1121,6 +1121,21 @@ class Utils
 		throw new \Exception("bin(" . self::objectType($obj) . ") not supported!");
 	}
 
+	public static function abs($arg)
+	{
+		if (is_int($arg) || is_long($arg) || is_float($arg) || is_double($arg))
+		{
+			if ($arg >= 0)
+				return $arg;
+			else
+				return -$arg;
+		}
+		else if (is_bool($arg))
+			return $arg ? 1 : 0;
+
+		throw new Exception("abs(" . self::objectType($arg) . ") not supported!");
+	}
+
 
 }
 

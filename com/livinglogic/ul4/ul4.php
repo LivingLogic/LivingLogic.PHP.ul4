@@ -46,6 +46,7 @@ include_once 'com/livinglogic/ul4/FunctionOrd.php';
 include_once 'com/livinglogic/ul4/FunctionHex.php';
 include_once 'com/livinglogic/ul4/FunctionOct.php';
 include_once 'com/livinglogic/ul4/FunctionBin.php';
+include_once 'com/livinglogic/ul4/FunctionAbs.php';
 
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadInt.php';
