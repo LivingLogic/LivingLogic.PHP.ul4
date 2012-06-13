@@ -1054,7 +1054,20 @@ class Utils
 			return $obj ? pack("c", 0x01) : pack("c", 0x00);
 		}
 
-		throw new UnsupportedOperationException("chr(" . self::objectType($obj) . ") not supported!");
+		throw new \Exception("chr(" . self::objectType($obj) . ") not supported!");
+	}
+
+	public static function ord($obj)
+	{
+		if (is_string($obj))
+		{
+			if (1 != mb_strlen($obj)) // TODO: "й" fuehrt zu Exception
+			{
+				throw new \Exception("String " . $obj . " contains more than one unicode character!");
+			}
+			return self::uniord($obj[0]);
+		}
+		throw new \Exception("ord(" . self::objectType($obj) . ") not supported!");
 	}
 
 
