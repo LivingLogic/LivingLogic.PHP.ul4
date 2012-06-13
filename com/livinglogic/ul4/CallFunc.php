@@ -46,8 +46,8 @@ class CallFunc extends AST
 			"hex" => new FunctionHex(),
 			"oct" => new FunctionOct(),
 			"bin" => new FunctionBin(),
-			"abs" => new FunctionAbs()
-// 			"range" => new FunctionRange(),
+			"abs" => new FunctionAbs(),
+			"range" => new FunctionRange()
 // 			"sorted" => new FunctionSorted(),
 // 			"type" => new FunctionType(),
 // 			"get" => new FunctionGet(),

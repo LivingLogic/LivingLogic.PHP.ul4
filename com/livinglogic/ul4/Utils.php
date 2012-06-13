@@ -1136,6 +1136,28 @@ class Utils
 		throw new Exception("abs(" . self::objectType($arg) . ") not supported!");
 	}
 
+	public static function range($obj)
+	{
+		$start = 0;
+		$stop = $obj;
+		$step = 1;
+
+		if (func_num_args() == 2)
+		{
+			$start = $obj;
+			$stop  = func_get_arg(1);
+		}
+
+		if (func_num_args() == 3)
+		{
+			$start = $obj;
+			$stop  = func_get_arg(1);
+			$step  = func_get_arg(2);
+		}
+
+		return range(self::_toInt($start), self::_toInt($stop)-1, self::_toInt($step));
+	}
+
 
 }
 
