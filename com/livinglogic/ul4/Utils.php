@@ -1025,6 +1025,38 @@ class Utils
 		return new SequenceIsLast(self::iterator($obj));
 	}
 
+	public static function unichr($intval)
+	{
+		return mb_convert_encoding(pack('n', $intval), 'UTF-8', 'UTF-16BE');
+	}
+
+	public static function uniord($u)
+	{
+		$k = mb_convert_encoding($u, 'UCS-2LE', 'UTF-8');
+		$k1 = ord(substr($k, 0, 1));
+		$k2 = ord(substr($k, 1, 1));
+		return $k2 * 256 + $k1;
+	}
+
+	public static function chr($obj)
+	{
+		if (is_int($obj) || is_long($obj))
+		{
+			$charValue = self::unichr($obj);
+			if ($obj != self::uniord($charValue))
+			{
+				throw new \Exception("Code point " . $obj . " is invalid!");
+			}
+			return $charValue;
+		}
+		else if (is_bool($obj))
+		{
+			return $obj ? pack("c", 0x01) : pack("c", 0x00);
+		}
+
+		throw new UnsupportedOperationException("chr(" . self::objectType($obj) . ") not supported!");
+	}
+
 
 }
 

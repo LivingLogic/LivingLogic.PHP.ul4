@@ -40,8 +40,8 @@ class CallFunc extends AST
 			"islist" => new FunctionIsList(),
 			"isdict" => new FunctionIsDict(),
 			"istemplate" => new FunctionIsTemplate(),
-			"iscolor" => new FunctionIsColor()
-// 			"chr" => new FunctionChr(),
+			"iscolor" => new FunctionIsColor(),
+			"chr" => new FunctionChr()
 // 			"ord" => new FunctionOrd(),
 // 			"hex" => new FunctionHex(),
 // 			"oct" => new FunctionOct(),
