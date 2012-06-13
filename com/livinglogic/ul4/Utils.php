@@ -1104,6 +1104,23 @@ class Utils
 		throw new \Exception("oct(" . self::objectType($obj) . ") not supported!");
 	}
 
+	public static function bin($obj)
+	{
+		if (is_int($obj) || is_long($obj))
+		{
+			if ($obj < 0)
+				return "-0b" . decbin(-$obj);
+			else
+				return "0b" . decbin($obj);
+		}
+		else if (is_bool($obj))
+		{
+			return $obj ? "0b1" : "0b0";
+		}
+
+		throw new \Exception("bin(" . self::objectType($obj) . ") not supported!");
+	}
+
 
 }
 
