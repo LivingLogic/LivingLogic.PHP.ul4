@@ -100,7 +100,7 @@ class Encoder
 			$this->buffer .= "l";
 			for ($i = 0; $i < count($obj); $i++)
 				$this->dump($obj[$i]);
-			$this->buffer .= ".";
+			$this->buffer .= "]";
 		}
 		else if (Utils::isDict($obj))
 		{
@@ -112,7 +112,7 @@ class Encoder
 				$this->dump($keys[$i]);
 				$this->dump($obj[$keys[$i]]);
 			}
-			$this->buffer .= ".";
+			$this->buffer .= "]";
 		}
 	}
 }

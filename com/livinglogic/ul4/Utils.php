@@ -1158,6 +1158,49 @@ class Utils
 		return range(self::_toInt($start), self::_toInt($stop)-1, self::_toInt($step));
 	}
 
+	public static function sorted($obj)
+	{
+		if (is_string($obj))
+		{
+			$retVal = array();
+			$length = strlen($obj);
+			for ($i = 0; $i < $length; $i++)
+			{
+				array_push($retVal, $obj[$i]);
+			}
+			asort($retVal);
+			return $retVal;
+		}
+		else if (\com\livinglogic\ul4on\Utils::isList($obj))
+		{
+			$length = count($obj);
+			$retVal = array();
+			for ($i = 0; $i < $length; $i++)
+			{
+				array_push($retVal, $obj[$i]);
+			}
+			asort($retVal);
+			return $retVal;
+		}
+		else if (\com\livinglogic\ul4on\Utils::isDict($obj))
+		{
+			$retVal = array_keys($obj);
+			asort($retVal);
+			return $retVal;
+		}
+		else if ($obj instanceof \Iterator)
+		{
+			$retVal = array();
+			foreach ($obj as $key => $value)
+			{
+				array_push($retVal, $value);
+			}
+			asort($retVal);
+			return $retVal;
+		}
+
+		throw new \Exception("sorted(" . self::objectType($obj) . ") not supported!");
+	}
 
 }
 

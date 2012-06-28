@@ -302,79 +302,79 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$this->assertEquals('True', $c->getOutput());
 
 		// now()
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS15|<?print now()?>S5|printi0|i15|i8|i13|OS27|de.livinglogic.ul4.callfunc^2|S3|nowL.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS15|<?print now()?>S5|printi0|i15|i8|i13|OS27|de.livinglogic.ul4.callfunc^2|S3|nowL]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext();
 		$p->evaluate($c);
 		print "\n" . $c->getOutput() . "\n";
 		// utcnow()
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS18|<?print utcnow()?>S5|printi0|i18|i8|i16|OS27|de.livinglogic.ul4.callfunc^2|S6|utcnowL.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS18|<?print utcnow()?>S5|printi0|i18|i8|i16|OS27|de.livinglogic.ul4.callfunc^2|S6|utcnowL]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext();
 		$p->evaluate($c);
 		print "\n" . $c->getOutput() . "\n";
 		// vars()
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print vars()?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S4|varsL.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print vars()?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S4|varsL]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext();
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 		// random()
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS18|<?print random()?>S5|printi0|i18|i8|i16|OS27|de.livinglogic.ul4.callfunc^2|S6|randomL.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS18|<?print random()?>S5|printi0|i18|i8|i16|OS27|de.livinglogic.ul4.callfunc^2|S6|randomL]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext();
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 		// xmlescape()
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS22|<?print xmlescape(x)?>S5|printi0|i22|i8|i20|OS27|de.livinglogic.ul4.callfunc^2|S9|xmlescapeLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS22|<?print xmlescape(x)?>S5|printi0|i22|i8|i20|OS27|de.livinglogic.ul4.callfunc^2|S9|xmlescapeLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => "<&>"));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 		// cvs()
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print csv(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|csvLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print csv(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|csvLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => "'\"'"));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 		// str()
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print str(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|strLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print str(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|strLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => new \DateTime()));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 		// repr()
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS17|<?print repr(x)?>S5|printi0|i17|i8|i15|OS27|de.livinglogic.ul4.callfunc^2|S4|reprLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS17|<?print repr(x)?>S5|printi0|i17|i8|i15|OS27|de.livinglogic.ul4.callfunc^2|S4|reprLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => new \DateTime()));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 		// int()
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS15|<?print int()?>S5|printi0|i15|i8|i13|OS27|de.livinglogic.ul4.callfunc^2|S3|intL.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS15|<?print int()?>S5|printi0|i15|i8|i13|OS27|de.livinglogic.ul4.callfunc^2|S3|intL]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => new \DateTime()));
 		$p->evaluate($c);
 		$this->assertEquals("0", $c->getOutput());
 		// int(x)
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print int(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|intLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print int(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|intLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => "3"));
 		$p->evaluate($c);
 		$this->assertEquals("3", $c->getOutput());
 		// int(x, y)
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS19|<?print int(x, y)?>S5|printi0|i19|i8|i17|OS27|de.livinglogic.ul4.callfunc^2|S3|intLOS22|de.livinglogic.ul4.var^2|S1|xO^11|^2|S1|y.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS19|<?print int(x, y)?>S5|printi0|i19|i8|i17|OS27|de.livinglogic.ul4.callfunc^2|S3|intLOS22|de.livinglogic.ul4.var^2|S1|xO^11|^2|S1|y]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => "a", 'y' => 16));
 		$p->evaluate($c);
 		$this->assertEquals("10", $c->getOutput());
 		// float(x)
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS18|<?print float(x)?>S5|printi0|i18|i8|i16|OS27|de.livinglogic.ul4.callfunc^2|S5|floatLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS18|<?print float(x)?>S5|printi0|i18|i8|i16|OS27|de.livinglogic.ul4.callfunc^2|S5|floatLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => 10.10));
 		$p->evaluate($c);
 		$this->assertEquals("10.1", $c->getOutput());
 		// bool(x)
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS17|<?print bool(x)?>S5|printi0|i17|i8|i15|OS27|de.livinglogic.ul4.callfunc^2|S4|boolLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS17|<?print bool(x)?>S5|printi0|i17|i8|i15|OS27|de.livinglogic.ul4.callfunc^2|S4|boolLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => 1));
 		$p->evaluate($c);
@@ -383,7 +383,7 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		$this->assertEquals("False", $c->getOutput());
 		// len()
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print len(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|lenLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print len(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|lenLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => array()));
 		$p->evaluate($c);
@@ -392,43 +392,43 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		$this->assertEquals("3", $c->getOutput());
 		// enumerate(x)
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS22|<?print enumerate(x)?>S5|printi0|i22|i8|i20|OS27|de.livinglogic.ul4.callfunc^2|S9|enumerateLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS22|<?print enumerate(x)?>S5|printi0|i22|i8|i20|OS27|de.livinglogic.ul4.callfunc^2|S9|enumerateLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => array('a', 'b')));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 // 		$this->assertEquals("0", $c->getOutput());
-		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS52|<?for i in enumerate([1, 2])?><?print i?><?end for?>S3|fori0|i30|i6|i28|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi30|i41|i38|i39|OS22|de.livinglogic.ul4.var^9|S1|i.OS27|de.livinglogic.ul4.callfunc^2|S9|enumerateLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i1|O^22|^2|i2|..^13|";
+		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS52|<?for i in enumerate([1, 2])?><?print i?><?end for?>S3|fori0|i30|i6|i28|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi30|i41|i38|i39|OS22|de.livinglogic.ul4.var^9|S1|i]OS27|de.livinglogic.ul4.callfunc^2|S9|enumerateLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i1|O^22|^2|i2|]]^13|";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array());
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 		// enumfl
-		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS55|<?for i in enumfl([2, 3, 5, 7])?><?print i?><?end for?>S3|fori0|i33|i6|i31|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi33|i44|i41|i42|OS22|de.livinglogic.ul4.var^9|S1|i.OS27|de.livinglogic.ul4.callfunc^2|S6|enumflLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i2|O^22|^2|i3|O^22|^2|i5|O^22|^2|i7|..^13|";
+		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS55|<?for i in enumfl([2, 3, 5, 7])?><?print i?><?end for?>S3|fori0|i33|i6|i31|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi33|i44|i41|i42|OS22|de.livinglogic.ul4.var^9|S1|i]OS27|de.livinglogic.ul4.callfunc^2|S6|enumflLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i2|O^22|^2|i3|O^22|^2|i5|O^22|^2|i7|]]^13|";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array());
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 		// isfirstlast
-		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS60|<?for i in isfirstlast([2, 3, 5, 7])?><?print i?><?end for?>S3|fori0|i38|i6|i36|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi38|i49|i46|i47|OS22|de.livinglogic.ul4.var^9|S1|i.OS27|de.livinglogic.ul4.callfunc^2|S11|isfirstlastLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i2|O^22|^2|i3|O^22|^2|i5|O^22|^2|i7|..^13|";
+		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS60|<?for i in isfirstlast([2, 3, 5, 7])?><?print i?><?end for?>S3|fori0|i38|i6|i36|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi38|i49|i46|i47|OS22|de.livinglogic.ul4.var^9|S1|i]OS27|de.livinglogic.ul4.callfunc^2|S11|isfirstlastLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i2|O^22|^2|i3|O^22|^2|i5|O^22|^2|i7|]]^13|";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array());
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 		// isfirst
-		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS56|<?for i in isfirst([2, 3, 5, 7])?><?print i?><?end for?>S3|fori0|i34|i6|i32|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi34|i45|i42|i43|OS22|de.livinglogic.ul4.var^9|S1|i.OS27|de.livinglogic.ul4.callfunc^2|S7|isfirstLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i2|O^22|^2|i3|O^22|^2|i5|O^22|^2|i7|..^13|";
+		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS56|<?for i in isfirst([2, 3, 5, 7])?><?print i?><?end for?>S3|fori0|i34|i6|i32|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi34|i45|i42|i43|OS22|de.livinglogic.ul4.var^9|S1|i]OS27|de.livinglogic.ul4.callfunc^2|S7|isfirstLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i2|O^22|^2|i3|O^22|^2|i5|O^22|^2|i7|]]^13|";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array());
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 		// islast
-		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS55|<?for i in islast([2, 3, 5, 7])?><?print i?><?end for?>S3|fori0|i33|i6|i31|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi33|i44|i41|i42|OS22|de.livinglogic.ul4.var^9|S1|i.OS27|de.livinglogic.ul4.callfunc^2|S6|islastLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i2|O^22|^2|i3|O^22|^2|i5|O^22|^2|i7|..^13|";
+		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS55|<?for i in islast([2, 3, 5, 7])?><?print i?><?end for?>S3|fori0|i33|i6|i31|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi33|i44|i41|i42|OS22|de.livinglogic.ul4.var^9|S1|i]OS27|de.livinglogic.ul4.callfunc^2|S6|islastLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i2|O^22|^2|i3|O^22|^2|i5|O^22|^2|i7|]]^13|";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array());
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 		// isnone
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS19|<?print isnone(x)?>S5|printi0|i19|i8|i17|OS27|de.livinglogic.ul4.callfunc^2|S6|isnoneLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS19|<?print isnone(x)?>S5|printi0|i19|i8|i17|OS27|de.livinglogic.ul4.callfunc^2|S6|isnoneLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => 2));
 		$p->evaluate($c);
@@ -437,7 +437,7 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		$this->assertEquals("True", $c->getOutput());
 		// isstr
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS18|<?print isstr(x)?>S5|printi0|i18|i8|i16|OS27|de.livinglogic.ul4.callfunc^2|S5|isstrLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS18|<?print isstr(x)?>S5|printi0|i18|i8|i16|OS27|de.livinglogic.ul4.callfunc^2|S5|isstrLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => 2));
 		$p->evaluate($c);
@@ -449,7 +449,7 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		$this->assertEquals("True", $c->getOutput());
 		// isint
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS18|<?print isint(x)?>S5|printi0|i18|i8|i16|OS27|de.livinglogic.ul4.callfunc^2|S5|isintLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS18|<?print isint(x)?>S5|printi0|i18|i8|i16|OS27|de.livinglogic.ul4.callfunc^2|S5|isintLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => 2));
 		$p->evaluate($c);
@@ -461,7 +461,7 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		$this->assertEquals("False", $c->getOutput());
 		// isfloat
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS20|<?print isfloat(x)?>S5|printi0|i20|i8|i18|OS27|de.livinglogic.ul4.callfunc^2|S7|isfloatLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS20|<?print isfloat(x)?>S5|printi0|i20|i8|i18|OS27|de.livinglogic.ul4.callfunc^2|S7|isfloatLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => 2));
 		$p->evaluate($c);
@@ -473,7 +473,7 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		$this->assertEquals("True", $c->getOutput());
 		// isbool
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS19|<?print isbool(x)?>S5|printi0|i19|i8|i17|OS27|de.livinglogic.ul4.callfunc^2|S6|isboolLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS19|<?print isbool(x)?>S5|printi0|i19|i8|i17|OS27|de.livinglogic.ul4.callfunc^2|S6|isboolLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => 2));
 		$p->evaluate($c);
@@ -485,7 +485,7 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		$this->assertEquals("True", $c->getOutput());
 		// isdate
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS19|<?print isdate(x)?>S5|printi0|i19|i8|i17|OS27|de.livinglogic.ul4.callfunc^2|S6|isdateLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS19|<?print isdate(x)?>S5|printi0|i19|i8|i17|OS27|de.livinglogic.ul4.callfunc^2|S6|isdateLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => 2));
 		$p->evaluate($c);
@@ -497,7 +497,7 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		$this->assertEquals("True", $c->getOutput());
 		// islist
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS19|<?print islist(x)?>S5|printi0|i19|i8|i17|OS27|de.livinglogic.ul4.callfunc^2|S6|islistLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS19|<?print islist(x)?>S5|printi0|i19|i8|i17|OS27|de.livinglogic.ul4.callfunc^2|S6|islistLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => 2));
 		$p->evaluate($c);
@@ -509,7 +509,7 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		$this->assertEquals("True", $c->getOutput());
 		// isdict
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS19|<?print isdict(x)?>S5|printi0|i19|i8|i17|OS27|de.livinglogic.ul4.callfunc^2|S6|isdictLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS19|<?print isdict(x)?>S5|printi0|i19|i8|i17|OS27|de.livinglogic.ul4.callfunc^2|S6|isdictLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => 2));
 		$p->evaluate($c);
@@ -521,7 +521,7 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		$this->assertEquals("True", $c->getOutput());
 		// istemplate
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS23|<?print istemplate(x)?>S5|printi0|i23|i8|i21|OS27|de.livinglogic.ul4.callfunc^2|S10|istemplateLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS23|<?print istemplate(x)?>S5|printi0|i23|i8|i21|OS27|de.livinglogic.ul4.callfunc^2|S10|istemplateLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => 2));
 		$p->evaluate($c);
@@ -530,7 +530,7 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		$this->assertEquals("True", $c->getOutput());
 		// iscolor
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS20|<?print iscolor(x)?>S5|printi0|i20|i8|i18|OS27|de.livinglogic.ul4.callfunc^2|S7|iscolorLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS20|<?print iscolor(x)?>S5|printi0|i20|i8|i18|OS27|de.livinglogic.ul4.callfunc^2|S7|iscolorLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => 2));
 		$p->evaluate($c);
@@ -539,49 +539,60 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		$this->assertEquals("True", $c->getOutput());
 		// chr
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print chr(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|chrLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print chr(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|chrLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => 65));
 		$p->evaluate($c);
 		$this->assertEquals("A", $c->getOutput());
 		// ord
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print ord(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|ordLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print ord(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|ordLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 // 		$c = new EvaluationContext(array('x' => "й"));  // TODO  1081
 		$c = new EvaluationContext(array('x' => "A"));
 		$p->evaluate($c);
 		$this->assertEquals("65", $c->getOutput());
 		// hex
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print hex(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|hexLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print hex(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|hexLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => -40));
 		$p->evaluate($c);
 		$this->assertEquals("-0x28", $c->getOutput());
 		// oct
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print oct(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|octLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print oct(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|octLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => -41));
 		$p->evaluate($c);
 		$this->assertEquals("-0o51", $c->getOutput());
 		// bin
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print bin(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|binLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print bin(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|binLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => -21));
 		$p->evaluate($c);
 		$this->assertEquals("-0b10101", $c->getOutput());
 		// abs
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print abs(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|absLOS22|de.livinglogic.ul4.var^2|S1|x.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print abs(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfunc^2|S3|absLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => -21));
 		$p->evaluate($c);
 		$this->assertEquals("21", $c->getOutput());
 		// range
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS24|<?print range(x, y, z)?>S5|printi0|i24|i8|i22|OS27|de.livinglogic.ul4.callfunc^2|S5|rangeLOS22|de.livinglogic.ul4.var^2|S1|xO^11|^2|S1|yO^11|^2|S1|z.";
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS24|<?print range(x, y, z)?>S5|printi0|i24|i8|i22|OS27|de.livinglogic.ul4.callfunc^2|S5|rangeLOS22|de.livinglogic.ul4.var^2|S1|xO^11|^2|S1|yO^11|^2|S1|z]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => 1, 'y' => 5, 'z' => 2));
 		$p->evaluate($c);
 		$this->assertEquals("[1, 3]", $c->getOutput());
-
+		// sorted
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS19|<?print sorted(x)?>S5|printi0|i19|i8|i17|OS27|de.livinglogic.ul4.callfunc^2|S6|sortedLOS22|de.livinglogic.ul4.var^2|S1|x]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => array('b' => 1, 'a' => 0)));
+		$p->evaluate($c);
+		$this->assertEquals('["a", "b"]', $c->getOutput());
+		$c = new EvaluationContext(array('x' => array(1, 0)));
+		$p->evaluate($c);
+		$this->assertEquals('[0, 1]', $c->getOutput());
+		$c = new EvaluationContext(array('x' => "cab"));
+		$p->evaluate($c);
+		$this->assertEquals('["a", "b", "c"]', $c->getOutput());
 
 
 	}

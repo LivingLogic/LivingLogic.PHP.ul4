@@ -48,6 +48,7 @@ include_once 'com/livinglogic/ul4/FunctionOct.php';
 include_once 'com/livinglogic/ul4/FunctionBin.php';
 include_once 'com/livinglogic/ul4/FunctionAbs.php';
 include_once 'com/livinglogic/ul4/FunctionRange.php';
+include_once 'com/livinglogic/ul4/FunctionSorted.php';
 
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadInt.php';

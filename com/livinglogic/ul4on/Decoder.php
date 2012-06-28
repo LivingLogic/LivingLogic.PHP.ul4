@@ -120,7 +120,7 @@ use \com\livinglogic\ul4\Color as Color;
 				while (true)
 				{
 					$typecode = $this->nextChar();
-					if ($typecode == '.')
+					if ($typecode == ']')
 						return $result;
 					else
 					{
@@ -139,7 +139,7 @@ use \com\livinglogic\ul4\Color as Color;
 				while (true)
 				{
 					$typecode = $this->nextChar();
-					if ($typecode == '.')
+					if ($typecode == '}')
 						return $result;
 					else
 					{
