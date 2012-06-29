@@ -53,6 +53,7 @@ include_once 'com/livinglogic/ul4/FunctionSorted.php';
 include_once 'com/livinglogic/ul4/FunctionType.php';
 include_once 'com/livinglogic/ul4/FunctionGet.php';
 include_once 'com/livinglogic/ul4/FunctionAsJSON.php';
+include_once 'com/livinglogic/ul4/FunctionAsUL4ON.php';
 
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadInt.php';

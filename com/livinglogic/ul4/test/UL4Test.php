@@ -626,6 +626,12 @@ class UL4Test extends \PHPUnit_Framework_TestCase
       $c = new EvaluationContext(array('x' => new Color(1, 2, 3, 4)));
       $p->evaluate($c);
       $this->assertEquals('ul4.Color.create(1, 2, 3, 4)', $c->getOutput());
+      // asul4on
+      $s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS20|<?print asul4on(x)?>S5|printi0|i20|i8|i18|OS27|de.livinglogic.ul4.callfunc^2|S7|asul4onLOS22|de.livinglogic.ul4.var^2|S1|x]";
+      $p = \com\livinglogic\ul4on\Utils::loads($s1);
+      $c = new EvaluationContext(array('x' => 1));
+      $p->evaluate($c);
+      $this->assertEquals('i1|', $c->getOutput());
 	}
 }
 
