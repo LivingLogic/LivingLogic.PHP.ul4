@@ -2,7 +2,7 @@
 
 namespace com\livinglogic\ul4;
 
-class Color
+class Color implements JsonSerializable
 {
 	var $r;
 	var $g;
@@ -438,6 +438,21 @@ class Color
 	public function witha($a)
 	{
 		return new Color($this->r, $this->g, $this->b, $a);
+	}
+
+	public function jsonSerialize()
+	{
+		$buffer = "ul4.Color.create(";
+		$buffer .= $this->getR();
+		$buffer .= ", ";
+		$buffer .= $this->getG();
+		$buffer .= ", ";
+		$buffer .= $this->getB();
+		$buffer .= ", ";
+		$buffer .= $this->getA();
+		$buffer .= ")";
+
+		return $buffer;
 	}
 
 }
