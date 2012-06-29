@@ -49,8 +49,8 @@ class CallFunc extends AST
 			"abs" => new FunctionAbs(),
 			"range" => new FunctionRange(),
 			"sorted" => new FunctionSorted(),
-			"type" => new FunctionType()
-// 			"get" => new FunctionGet(),
+			"type" => new FunctionType(),
+			"get" => new FunctionGet()
 // 			"asjson" => new FunctionJSON(),
 // 			"ul4on" => new FunctionUL4ON(),
 // 			"reversed" => new FunctionReversed(),

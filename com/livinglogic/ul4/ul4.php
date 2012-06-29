@@ -50,9 +50,11 @@ include_once 'com/livinglogic/ul4/FunctionAbs.php';
 include_once 'com/livinglogic/ul4/FunctionRange.php';
 include_once 'com/livinglogic/ul4/FunctionSorted.php';
 include_once 'com/livinglogic/ul4/FunctionType.php';
+include_once 'com/livinglogic/ul4/FunctionGet.php';
 
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadInt.php';
+include_once 'com/livinglogic/ul4/LoadStr.php';
 include_once 'com/livinglogic/ul4/LoadVar.php';
 include_once 'com/livinglogic/ul4/List.php';
 include_once 'com/livinglogic/ul4/CallFunc.php';
