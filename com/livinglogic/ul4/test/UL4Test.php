@@ -632,6 +632,26 @@ class UL4Test extends \PHPUnit_Framework_TestCase
       $c = new EvaluationContext(array('x' => 1));
       $p->evaluate($c);
       $this->assertEquals('i1|', $c->getOutput());
+      // randrange(x)
+      $s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS22|<?print randrange(x)?>S5|printi0|i22|i8|i20|OS27|de.livinglogic.ul4.callfunc^2|S9|randrangeLOS22|de.livinglogic.ul4.var^2|S1|x]";
+      $p = \com\livinglogic\ul4on\Utils::loads($s1);
+      $c = new EvaluationContext(array('x' => 10));
+      $p->evaluate($c);
+      var_dump($c->getOutput());
+		// randrange(x, y)
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS25|<?print randrange(x, y)?>S5|printi0|i25|i8|i23|OS27|de.livinglogic.ul4.callfunc^2|S9|randrangeLOS22|de.livinglogic.ul4.var^2|S1|xO^11|^2|S1|y]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => 10, 'y' => 20));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// randrange(x, y, z)
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS28|<?print randrange(x, y, z)?>S5|printi0|i28|i8|i26|OS27|de.livinglogic.ul4.callfunc^2|S9|randrangeLOS22|de.livinglogic.ul4.var^2|S1|xO^11|^2|S1|yO^11|^2|S1|z]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => 10, 'y' => 20, 'z' => 2));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+
+
 	}
 }
 
