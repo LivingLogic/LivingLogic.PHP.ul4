@@ -54,6 +54,7 @@ include_once 'com/livinglogic/ul4/FunctionType.php';
 include_once 'com/livinglogic/ul4/FunctionGet.php';
 include_once 'com/livinglogic/ul4/FunctionAsJSON.php';
 include_once 'com/livinglogic/ul4/FunctionAsUL4ON.php';
+include_once 'com/livinglogic/ul4/FunctionReversed.php';
 include_once 'com/livinglogic/ul4/FunctionRandRange.php';
 
 include_once 'com/livinglogic/ul4/LoadConst.php';
@@ -96,11 +97,11 @@ include_once 'com/livinglogic/ul4/BreakException.php';
 include_once 'com/livinglogic/ul4/ContinueException.php';
 include_once 'com/livinglogic/ul4/LocationException.php';
 include_once 'com/livinglogic/ul4/ArgumentCountMismatchException.php';
+include_once 'com/livinglogic/ul4/ArgumentTypeMismatchException.php';
 include_once 'com/livinglogic/ul4/UnknownFunctionException.php';
 
 include_once 'com/livinglogic/ul4/Block.php';
 //include_once 'com/livinglogic/ul4/InterpretedTemplate.php';
 include_once 'com/livinglogic/ul4/Utils.php';
-
 
 ?>

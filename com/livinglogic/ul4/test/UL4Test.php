@@ -650,8 +650,15 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array('x' => 10, 'y' => 20, 'z' => 2));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
-
-
+		// reversed(x)
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS21|<?print reversed(x)?>S5|printi0|i21|i8|i19|OS27|de.livinglogic.ul4.callfunc^2|S8|reversedLOS22|de.livinglogic.ul4.var^2|S1|x]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => array(3, 2, 1, 0)));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		$c = new EvaluationContext(array('x' => "cba"));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
 	}
 }
 

@@ -84,6 +84,23 @@ class Repr
 				return "{?}";
 			}
 		}
+		/*
+		else if ($obj instanceof \Iterator)
+		{
+			$first = true;
+			$sb = "iterator[";
+			foreach ($obj as $o)
+			{
+				if ($first)
+					$first = false;
+				else
+					$sb .= ", ";
+				$sb .= $this->toString($o);
+			}
+			$sb .= "]";
+			return $sb;
+		}
+		*/
 		return "?";
 	}
 
@@ -441,6 +458,89 @@ class SequenceIsLast implements \Iterator
 	}
 }
 
+class StringReversedIterator implements \Iterator
+{
+	var $string;
+	var $stringSize;
+	var $index;
+
+	public function __construct($string)
+	{
+		$this->string = $string;
+		$this->stringSize = strlen($string);
+		$this->index = $this->stringSize - 1;
+	}
+
+	public function current()
+	{
+		if (!$this->valid())
+			throw new \Exception("No more characters available!");
+
+		return $this->string{$this->index};
+	}
+
+	public function key()
+	{
+		return $this->index;
+	}
+
+	public function next()
+	{
+		$this->index--;
+	}
+
+	public function rewind()
+	{
+		$this->index = $this->stringSize - 1;
+	}
+
+	public function valid()
+	{
+		return $this->index >= 0;
+	}
+}
+
+class ListReversedIterator implements \Iterator
+{
+	var $list;
+	var $listSize;
+	var $index;
+
+	public function __construct($list)
+	{
+		$this->list = $list;
+		$this->listSize = count($list);
+		$this->index = $this->listSize - 1;
+	}
+
+	public function current()
+	{
+		if (!$this->valid())
+			throw new \Exception("No more items available!");
+
+		return $this->list[$this->index];
+	}
+
+	public function key()
+	{
+		return $this->index;
+	}
+
+	public function next()
+	{
+		$this->index--;
+	}
+
+	public function rewind()
+	{
+		$this->index = $this->listSize - 1;
+	}
+
+	public function valid()
+	{
+		return $this->index >= 0;
+	}
+}
 
 
 class Utils
@@ -482,7 +582,7 @@ class Utils
 			if (array_key_exists($key, $container))
 				return $container[$key];
 			else
-				throw new Exception("Key " . self::repr($key) . " not found");
+				throw new \Exception("Key " . self::repr($key) . " not found");
 		}
 		else if (\com\livinglogic\ul4on\Utils::isList($container))
 		{
@@ -492,11 +592,11 @@ class Utils
 				if ($key < 0)
 					$key += count($container);
 				if ($key < 0 || $key >= count($container))
-					throw new Exception("Index $orgkey is out of bounds!");
+					throw new \Exception("Index $orgkey is out of bounds!");
 				return $container[$key];
 			}
 			else
-				throw new Exception("list[" . self::type($key) . "] not supported!");
+				throw new\Exception("list[" . self::type($key) . "] not supported!");
 		}
 		else if (is_string($container))
 		{
@@ -506,23 +606,23 @@ class Utils
 				if ($key < 0)
 					$key += strlen($container);
 				if ($key < 0 || $key >= strlen($container))
-					throw new Exception("Index $orgkey is out of bounds!");
+					throw new\Exception("Index $orgkey is out of bounds!");
 				return $container[$key];
 			}
 			else
-				throw new Exception("string[" . self::type($key) . "] not supported!");
+				throw new\Exception("string[" . self::type($key) . "] not supported!");
 		}
 		else if ($container instanceof Color)
 		{
 			if (is_int($key))
 			{
 				if ($key < 0 || $key > 3)
-					throw new Exception("Index $key is not in [0..3]!");
+					throw new\Exception("Index $key is not in [0..3]!");
 
 				return $container->get($key);
 			}
 			else
-				throw new Exception("color[" . self::type($key) . "] not supported!");
+				throw new\Exception("color[" . self::type($key) . "] not supported!");
 		}
 	}
 
@@ -1061,7 +1161,7 @@ class Utils
 	{
 		if (is_string($obj))
 		{
-			if (1 != mb_strlen($obj)) // TODO: "й" fuehrt zu Exception
+			if (1 != mb_strlen($obj)) // TODO: "й" fuehrt zu\Exception
 			{
 				throw new \Exception("String " . $obj . " contains more than one unicode character!");
 			}
@@ -1133,7 +1233,7 @@ class Utils
 		else if (is_bool($arg))
 			return $arg ? 1 : 0;
 
-		throw new Exception("abs(" . self::objectType($arg) . ") not supported!");
+		throw new\Exception("abs(" . self::objectType($arg) . ") not supported!");
 	}
 
 	public static function range($obj)
