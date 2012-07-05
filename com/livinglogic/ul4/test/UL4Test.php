@@ -632,6 +632,15 @@ class UL4Test extends \PHPUnit_Framework_TestCase
       $c = new EvaluationContext(array('x' => 1));
       $p->evaluate($c);
       $this->assertEquals('i1|', $c->getOutput());
+		// reversed(x)
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS21|<?print reversed(x)?>S5|printi0|i21|i8|i19|OS27|de.livinglogic.ul4.callfunc^2|S8|reversedLOS22|de.livinglogic.ul4.var^2|S1|x]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => array(3, 2, 1, 0)));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		$c = new EvaluationContext(array('x' => "cba"));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
       // randrange(x)
       $s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS22|<?print randrange(x)?>S5|printi0|i22|i8|i20|OS27|de.livinglogic.ul4.callfunc^2|S9|randrangeLOS22|de.livinglogic.ul4.var^2|S1|x]";
       $p = \com\livinglogic\ul4on\Utils::loads($s1);
@@ -650,13 +659,13 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array('x' => 10, 'y' => 20, 'z' => 2));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
-		// reversed(x)
-		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS21|<?print reversed(x)?>S5|printi0|i21|i8|i19|OS27|de.livinglogic.ul4.callfunc^2|S8|reversedLOS22|de.livinglogic.ul4.var^2|S1|x]";
+		// randchoice(x)
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS23|<?print randchoice(x)?>S5|printi0|i23|i8|i21|OS27|de.livinglogic.ul4.callfunc^2|S10|randchoiceLOS22|de.livinglogic.ul4.var^2|S1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
-		$c = new EvaluationContext(array('x' => array(3, 2, 1, 0)));
+		$c = new EvaluationContext(array('x' => "abcdefg"));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
-		$c = new EvaluationContext(array('x' => "cba"));
+		$c = new EvaluationContext(array('x' => array(0, 1, 2, 3, 4, 5)));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 	}

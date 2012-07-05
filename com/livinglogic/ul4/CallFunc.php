@@ -54,8 +54,8 @@ class CallFunc extends AST
  			"asjson" => new FunctionAsJSON(),
  			"asul4on" => new FunctionAsUL4ON(),
  			"reversed" => new FunctionReversed(),
-			"randrange" => new FunctionRandRange()
-// 			"randchoice" => new FunctionRandChoice(),
+			"randrange" => new FunctionRandRange(),
+			"randchoice" => new FunctionRandChoice()
 // 			"format" => new FunctionFormat(),
 // 			"zip" => new FunctionZip(),
 // 			"rgb" => new FunctionRGB(),

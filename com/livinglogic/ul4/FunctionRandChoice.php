@@ -1,0 +1,54 @@
+<?php
+
+namespace com\livinglogic\ul4;
+
+include_once 'com/livinglogic/ul4/ul4.php';
+
+class FunctionRandchoice implements _Function
+{
+	public function call($context, $args)
+	{
+		if (count($args) == 1)
+			return self::_call($args[0]);
+		throw new ArgumentCountMismatchException("function", "randchoice", count($args), 1);
+	}
+
+	public function getName()
+	{
+		return "randrange";
+	}
+
+	public static function _call($obj)
+	{
+		if (is_string($obj))
+		{
+			$index = intval(strlen($obj) * Utils::random());
+			return substr($obj, $index, 1);
+		}
+		else if (\com\livinglogic\ul4on\Utils::isList($obj))
+		{
+			$index = intval(count($obj) * Utils::random());
+			return $obj[$index];
+		}
+		else if ($obj instanceof Color)
+		{
+			$index = intval(4 * Utils::random());
+			switch ($index)
+			{
+				case 0:
+					return $obj->getR();
+				case 1:
+					return $obj->getG();
+				case 2:
+					return $obj->getB();
+				case 3:
+					return $obj->getA();
+				default:
+					return 0; // can't happen
+			}
+		}
+		throw new ArgumentTypeMismatchException("randchoice({})", $obj);
+	}
+}
+
+?>
