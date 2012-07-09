@@ -4,7 +4,7 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class FunctionRandchoice implements _Function
+class FunctionRandChoice implements _Function
 {
 	public function call($context, $args)
 	{

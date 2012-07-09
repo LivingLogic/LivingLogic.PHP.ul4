@@ -57,6 +57,7 @@ include_once 'com/livinglogic/ul4/FunctionAsUL4ON.php';
 include_once 'com/livinglogic/ul4/FunctionReversed.php';
 include_once 'com/livinglogic/ul4/FunctionRandRange.php';
 include_once 'com/livinglogic/ul4/FunctionRandChoice.php';
+include_once 'com/livinglogic/ul4/FunctionFormat.php';
 
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadInt.php';
