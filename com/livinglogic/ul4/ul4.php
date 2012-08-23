@@ -99,6 +99,7 @@ include_once 'com/livinglogic/ul4/PrintX.php';
 
 include_once 'com/livinglogic/ul4/For.php';
 include_once 'com/livinglogic/ul4/ForNormal.php';
+include_once 'com/livinglogic/ul4/ForUnpack.php';
 
 include_once 'com/livinglogic/ul4/BreakException.php';
 include_once 'com/livinglogic/ul4/ContinueException.php';
