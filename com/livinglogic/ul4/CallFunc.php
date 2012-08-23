@@ -58,8 +58,8 @@ class CallFunc extends AST
 			"randchoice" => new FunctionRandChoice(),
 			"format" => new FunctionFormat(),
  			"zip" => new FunctionZip(),
- 			"rgb" => new FunctionRGB()
-// 			"hls" => new FunctionHLS(),
+ 			"rgb" => new FunctionRGB(),
+ 			"hls" => new FunctionHLS()
 // 			"hsv" => new FunctionHSV()
 		//
 		);
