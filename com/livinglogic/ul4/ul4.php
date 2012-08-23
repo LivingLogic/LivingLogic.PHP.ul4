@@ -60,6 +60,7 @@ include_once 'com/livinglogic/ul4/FunctionRandRange.php';
 include_once 'com/livinglogic/ul4/FunctionRandChoice.php';
 include_once 'com/livinglogic/ul4/FunctionFormat.php';
 include_once 'com/livinglogic/ul4/FunctionZip.php';
+include_once 'com/livinglogic/ul4/FunctionRGB.php';
 
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadInt.php';
