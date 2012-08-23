@@ -74,7 +74,4 @@ abstract class _For extends Block
 	}
 }
 
-// TODO ???
-//\com\livinglogic\ul4on\Utils::register("de.livinglogic.ul4.add", "\com\livinglogic\ul4\Add");
-
 ?>

@@ -398,31 +398,31 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 // 		$this->assertEquals("0", $c->getOutput());
-		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS52|<?for i in enumerate([1, 2])?><?print i?><?end for?>S3|fori0|i30|i6|i28|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi30|i41|i38|i39|OS22|de.livinglogic.ul4.var^9|S1|i]OS27|de.livinglogic.ul4.callfunc^2|S9|enumerateLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i1|O^22|^2|i2|]]^13|";
+		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS52|<?for i in enumerate([1, 2])?><?print i?><?end for?>S3|fori0|i30|i6|i28|O^3|^4|S3|endi41|i52|i47|i50|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi30|i41|i38|i39|OS22|de.livinglogic.ul4.var^11|S1|i]OS27|de.livinglogic.ul4.callfunc^2|S9|enumerateLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i1|O^24|^2|i2|]]^15|";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array());
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 		// enumfl
-		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS55|<?for i in enumfl([2, 3, 5, 7])?><?print i?><?end for?>S3|fori0|i33|i6|i31|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi33|i44|i41|i42|OS22|de.livinglogic.ul4.var^9|S1|i]OS27|de.livinglogic.ul4.callfunc^2|S6|enumflLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i2|O^22|^2|i3|O^22|^2|i5|O^22|^2|i7|]]^13|";
+		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS55|<?for i in enumfl([2, 3, 5, 7])?><?print i?><?end for?>S3|fori0|i33|i6|i31|O^3|^4|S3|endi44|i55|i50|i53|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi33|i44|i41|i42|OS22|de.livinglogic.ul4.var^11|S1|i]OS27|de.livinglogic.ul4.callfunc^2|S6|enumflLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i2|O^24|^2|i3|O^24|^2|i5|O^24|^2|i7|]]^15|";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array());
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 		// isfirstlast
-		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS60|<?for i in isfirstlast([2, 3, 5, 7])?><?print i?><?end for?>S3|fori0|i38|i6|i36|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi38|i49|i46|i47|OS22|de.livinglogic.ul4.var^9|S1|i]OS27|de.livinglogic.ul4.callfunc^2|S11|isfirstlastLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i2|O^22|^2|i3|O^22|^2|i5|O^22|^2|i7|]]^13|";
+		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS60|<?for i in isfirstlast([2, 3, 5, 7])?><?print i?><?end for?>S3|fori0|i38|i6|i36|O^3|^4|S3|endi49|i60|i55|i58|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi38|i49|i46|i47|OS22|de.livinglogic.ul4.var^11|S1|i]OS27|de.livinglogic.ul4.callfunc^2|S11|isfirstlastLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i2|O^24|^2|i3|O^24|^2|i5|O^24|^2|i7|]]^15|";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array());
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 		// isfirst
-		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS56|<?for i in isfirst([2, 3, 5, 7])?><?print i?><?end for?>S3|fori0|i34|i6|i32|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi34|i45|i42|i43|OS22|de.livinglogic.ul4.var^9|S1|i]OS27|de.livinglogic.ul4.callfunc^2|S7|isfirstLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i2|O^22|^2|i3|O^22|^2|i5|O^22|^2|i7|]]^13|";
+		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS56|<?for i in isfirst([2, 3, 5, 7])?><?print i?><?end for?>S3|fori0|i34|i6|i32|O^3|^4|S3|endi45|i56|i51|i54|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi34|i45|i42|i43|OS22|de.livinglogic.ul4.var^11|S1|i]OS27|de.livinglogic.ul4.callfunc^2|S7|isfirstLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i2|O^24|^2|i3|O^24|^2|i5|O^24|^2|i7|]]^15|";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array());
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 		// islast
-		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS55|<?for i in islast([2, 3, 5, 7])?><?print i?><?end for?>S3|fori0|i33|i6|i31|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi33|i44|i41|i42|OS22|de.livinglogic.ul4.var^9|S1|i]OS27|de.livinglogic.ul4.callfunc^2|S6|islastLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i2|O^22|^2|i3|O^22|^2|i5|O^22|^2|i7|]]^13|";
+		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS55|<?for i in islast([2, 3, 5, 7])?><?print i?><?end for?>S3|fori0|i33|i6|i31|O^3|^4|S3|endi44|i55|i50|i53|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi33|i44|i41|i42|OS22|de.livinglogic.ul4.var^11|S1|i]OS27|de.livinglogic.ul4.callfunc^2|S6|islastLOS23|de.livinglogic.ul4.list^2|LOS22|de.livinglogic.ul4.int^2|i2|O^24|^2|i3|O^24|^2|i5|O^24|^2|i7|]]^15|";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array());
 		$p->evaluate($c);
@@ -672,6 +672,12 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS22|<?print format(x, y)?>S5|printi0|i22|i8|i20|OS27|de.livinglogic.ul4.callfunc^2|S6|formatLOS22|de.livinglogic.ul4.var^2|S1|xO^11|^2|S1|y]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => new \DateTime(), 'y' => "%a"));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// zip(x)
+		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS65|<?for i in zip(x, y)?><?print i[0]?> - <?print i[1]?>;<?end for?>S3|fori0|i22|i6|i20|O^3|^4|S3|endi54|i65|i60|i63|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi22|i36|i30|i34|OS26|de.livinglogic.ul4.getitem^11|OS22|de.livinglogic.ul4.var^11|S1|iOS22|de.livinglogic.ul4.int^11|i0|OS23|de.livinglogic.ul4.textO^3|^4|ni36|i39|i36|i39|O^10|O^3|^4|^12|i39|i53|i47|i51|O^14|^24|O^16|^24|^17|O^19|^24|i1|O^21|O^3|^4|ni53|i54|i53|i54|]OS27|de.livinglogic.ul4.callfunc^2|S3|zipLO^16|^2|S1|xO^16|^2|S1|y]^17|";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => "gurk", 'y' => "hurz"));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 	}

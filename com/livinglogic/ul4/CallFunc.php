@@ -56,8 +56,8 @@ class CallFunc extends AST
  			"reversed" => new FunctionReversed(),
 			"randrange" => new FunctionRandRange(),
 			"randchoice" => new FunctionRandChoice(),
-			"format" => new FunctionFormat()
-// 			"zip" => new FunctionZip(),
+			"format" => new FunctionFormat(),
+ 			"zip" => new FunctionZip()
 // 			"rgb" => new FunctionRGB(),
 // 			"hls" => new FunctionHLS(),
 // 			"hsv" => new FunctionHSV()

@@ -7,6 +7,7 @@ include_once 'com/livinglogic/ul4on/Utils.php';
 
 
 include_once 'com/livinglogic/ul4/AST.php';
+include_once 'com/livinglogic/ul4/Text.php';
 include_once 'com/livinglogic/ul4/Block.php';
 include_once 'com/livinglogic/ul4/JsonSerializable.php';
 include_once 'com/livinglogic/ul4/Color.php';
@@ -58,6 +59,7 @@ include_once 'com/livinglogic/ul4/FunctionReversed.php';
 include_once 'com/livinglogic/ul4/FunctionRandRange.php';
 include_once 'com/livinglogic/ul4/FunctionRandChoice.php';
 include_once 'com/livinglogic/ul4/FunctionFormat.php';
+include_once 'com/livinglogic/ul4/FunctionZip.php';
 
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadInt.php';

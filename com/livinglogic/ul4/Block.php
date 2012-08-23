@@ -6,11 +6,13 @@ include_once 'com/livinglogic/ul4/ul4.php';
 
 abstract class Block extends AST
 {
+	protected $endlocation;
 	protected $content = array();
 
-	public function __construct($location=null)
+	public function __construct($location=null, $endlocation=null)
 	{
 		parent::__construct($location);
+		$this->endlocation = $endlocation;
 	}
 
 	public function append($item)
@@ -24,24 +26,17 @@ abstract class Block extends AST
 
 	abstract public function handleLoopControl($name);
 
-	/*
-	public Object evaluate(EvaluationContext context) throws IOException
-	{
-		for (AST item : content)
-			item.decoratedEvaluate(context);
-		return null;
-	}
-	*/
-
 	public function dumpUL4ON($encoder)
 	{
 		parent::dumpUL4ON($encoder);
+		$encoder->dump($this->endlocation);
 		$encoder->dump($this->content);
 	}
 
 	public function loadUL4ON($decoder)
 	{
 		parent::loadUL4ON($decoder);
+		$this->endlocation = $decoder->load();
 		$this->content = $decoder->load();
 	}
 
