@@ -62,6 +62,7 @@ include_once 'com/livinglogic/ul4/FunctionFormat.php';
 include_once 'com/livinglogic/ul4/FunctionZip.php';
 include_once 'com/livinglogic/ul4/FunctionRGB.php';
 include_once 'com/livinglogic/ul4/FunctionHLS.php';
+include_once 'com/livinglogic/ul4/FunctionHSV.php';
 
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadInt.php';

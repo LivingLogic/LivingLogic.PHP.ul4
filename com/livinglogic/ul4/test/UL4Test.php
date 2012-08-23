@@ -704,6 +704,18 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array('x' => 0.1, 'y' => 0.2, 'z' => 0.3, 'a' => 0.4));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
+		// hsv(x, y, z)
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS22|<?print hsv(x, y, z)?>S5|printi0|i22|i8|i20|OS27|de.livinglogic.ul4.callfunc^2|S3|hsvLOS22|de.livinglogic.ul4.var^2|S1|xO^11|^2|S1|yO^11|^2|S1|z]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => 0.1, 'y' => 0.2, 'z' => 0.3));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// hsv(x, y, z, a)
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS25|<?print hsv(x, y, z, a)?>S5|printi0|i25|i8|i23|OS27|de.livinglogic.ul4.callfunc^2|S3|hsvLOS22|de.livinglogic.ul4.var^2|S1|xO^11|^2|S1|yO^11|^2|S1|zO^11|^2|S1|a]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => 0.1, 'y' => 0.2, 'z' => 0.3, 'a' => 0.4));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
 	}
 }
 
