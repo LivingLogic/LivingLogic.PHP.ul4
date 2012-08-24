@@ -109,6 +109,12 @@ include_once 'com/livinglogic/ul4/ArgumentTypeMismatchException.php';
 include_once 'com/livinglogic/ul4/UnknownFunctionException.php';
 
 include_once 'com/livinglogic/ul4/Block.php';
+include_once 'com/livinglogic/ul4/ConditionalBlock.php';
+include_once 'com/livinglogic/ul4/ConditionalBlockWithCondition.php';
+include_once 'com/livinglogic/ul4/ConditionalBlockBlock.php';
+include_once 'com/livinglogic/ul4/If.php';
+include_once 'com/livinglogic/ul4/ElIf.php';
+include_once 'com/livinglogic/ul4/Else.php';
 //include_once 'com/livinglogic/ul4/InterpretedTemplate.php';
 include_once 'com/livinglogic/ul4/Utils.php';
 

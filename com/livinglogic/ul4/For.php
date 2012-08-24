@@ -46,8 +46,7 @@ abstract class _For extends Block
 
 			try
 			{
-				foreach ($this->content as $item)
-					$item->evaluate($context);
+				parent::evaluate($context);
 			}
 			catch (BreakException $bex)
 			{

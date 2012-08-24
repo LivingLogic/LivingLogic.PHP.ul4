@@ -722,6 +722,30 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array('x' => "gurk", 'y' => "hurz"));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
+		// if (true)
+		$s1 = "OS23|de.livinglogic.ul4.ieieOS27|de.livinglogic.ul4.locationS22|<?if (x)?>ja<?end if?>S2|ifi0|i10|i5|i8|O^3|^4|S3|endi12|i22|i18|i20|LOS21|de.livinglogic.ul4.if^2|^6|LOS23|de.livinglogic.ul4.textO^3|^4|ni10|i12|i10|i12|]OS22|de.livinglogic.ul4.var^2|S1|x]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => true));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// if (false)
+		$s1 = "OS23|de.livinglogic.ul4.ieieOS27|de.livinglogic.ul4.locationS22|<?if (x)?>ja<?end if?>S2|ifi0|i10|i5|i8|O^3|^4|S3|endi12|i22|i18|i20|LOS21|de.livinglogic.ul4.if^2|^6|LOS23|de.livinglogic.ul4.textO^3|^4|ni10|i12|i10|i12|]OS22|de.livinglogic.ul4.var^2|S1|x]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => false));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// if elif else
+		$s1 = "OS23|de.livinglogic.ul4.ieieOS27|de.livinglogic.ul4.locationS52|<?if x == 0?>0<?elif x == 1?>1<?else?>else<?end if?>S2|ifi0|i13|i5|i11|O^3|^4|S3|endi42|i52|i48|i50|LOS21|de.livinglogic.ul4.if^2|nLOS23|de.livinglogic.ul4.textO^3|^4|ni13|i14|i13|i14|]OS21|de.livinglogic.ul4.eq^2|OS22|de.livinglogic.ul4.var^2|S1|xOS22|de.livinglogic.ul4.int^2|i0|OS23|de.livinglogic.ul4.elifO^3|^4|S4|elifi14|i29|i21|i27|nLO^13|O^3|^4|ni29|i30|i29|i30|]O^16|^24|O^18|^24|^19|O^21|^24|i1|OS23|de.livinglogic.ul4.elseO^3|^4|S4|elsei30|i38|i36|i36|^6|LO^13|O^3|^4|ni38|i42|i38|i42|]]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => 0));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		$c = new EvaluationContext(array('x' => 1));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		$c = new EvaluationContext(array('x' => 2));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
 	}
 }
 

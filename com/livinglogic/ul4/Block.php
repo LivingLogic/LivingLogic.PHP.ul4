@@ -24,6 +24,13 @@ abstract class Block extends AST
 	{
 	}
 
+	public function evaluate($context)
+	{
+		foreach ($this->content as $item)
+			$item->evaluate($context);
+		return null;
+	}
+
 	abstract public function handleLoopControl($name);
 
 	public function dumpUL4ON($encoder)
