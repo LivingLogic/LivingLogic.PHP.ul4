@@ -43,24 +43,22 @@ class ConditionalBlockBlock extends Block
 			if (count($this->content) != 0)
 				throw new \Exception("if must be first in if/elif/else chain");
 		}
-		/* TODO implement when time has come
 		else if ($item instanceof ElIf)
 		{
-			if (content.size() == 0)
+			if (count($this->content) == 0)
 				throw new BlockException("elif can't be first in if/elif/else chain");
-			AST last = content.get(content.size()-1);
-			if (last instanceof Else)
-				throw new BlockException("else can't follow elif in if/elif/else chain");
+			$last = $this->content.get(count($this->content)-1);
+			if ($last instanceof _Else)
+				throw new BlockException("elif can't follow else in if/elif/else chain");
 		}
-		else if (item instanceof Else)
+		else if ($item instanceof _Else)
 		{
-			if (content.size() == 0)
+			if (count($this->content) == 0)
 				throw new BlockException("else can't be first in if/elif/else chain");
-			AST last = (Block)content.get(content.size()-1);
-			if (last instanceof Else)
+			$last = $this->content.get(count($this->content)-1);
+			if ($last instanceof _Else)
 				throw new BlockException("duplicate else in if/elif/else chain");
 		}
-		*/
 		array_push($this->content, $item);
 	}
 

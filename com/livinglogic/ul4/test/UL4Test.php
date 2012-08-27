@@ -746,6 +746,13 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array('x' => 2));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
+		// break
+		$s1 = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS75|<?for i in x?><?if i > 1?><?break?><?else?><?print i?><?end if?><?end for?>S3|fori0|i14|i6|i12|O^3|^4|S3|endi64|i75|i70|i73|LOS23|de.livinglogic.ul4.ieieO^3|^4|S2|ifi14|i26|i19|i24|O^3|^4|^7|i54|i64|i60|i62|LOS21|de.livinglogic.ul4.if^11|nLOS24|de.livinglogic.ul4.breakO^3|^4|S5|breaki26|i35|i33|i33|]OS21|de.livinglogic.ul4.gt^11|OS22|de.livinglogic.ul4.var^11|S1|iOS22|de.livinglogic.ul4.int^11|i1|OS23|de.livinglogic.ul4.elseO^3|^4|S4|elsei35|i43|i41|i41|^13|LOS24|de.livinglogic.ul4.printO^3|^4|S5|printi43|i54|i51|i52|O^25|^36|^26|]]]O^25|^2|S1|x^26|";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => array(0, 1, 2)));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+
 	}
 }
 

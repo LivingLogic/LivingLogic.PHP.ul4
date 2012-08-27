@@ -9,6 +9,7 @@ include_once 'com/livinglogic/ul4on/Utils.php';
 include_once 'com/livinglogic/ul4/AST.php';
 include_once 'com/livinglogic/ul4/Text.php';
 include_once 'com/livinglogic/ul4/Block.php';
+include_once 'com/livinglogic/ul4/Break.php';
 include_once 'com/livinglogic/ul4/JsonSerializable.php';
 include_once 'com/livinglogic/ul4/Color.php';
 include_once 'com/livinglogic/ul4/Location.php';
