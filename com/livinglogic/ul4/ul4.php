@@ -10,6 +10,8 @@ include_once 'com/livinglogic/ul4/AST.php';
 include_once 'com/livinglogic/ul4/Text.php';
 include_once 'com/livinglogic/ul4/Block.php';
 include_once 'com/livinglogic/ul4/Break.php';
+include_once 'com/livinglogic/ul4/ChangeVar.php';
+include_once 'com/livinglogic/ul4/AddVar.php';
 include_once 'com/livinglogic/ul4/Continue.php';
 include_once 'com/livinglogic/ul4/DelVar.php';
 include_once 'com/livinglogic/ul4/JsonSerializable.php';
