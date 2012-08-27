@@ -11,6 +11,7 @@ include_once 'com/livinglogic/ul4/Text.php';
 include_once 'com/livinglogic/ul4/Block.php';
 include_once 'com/livinglogic/ul4/Break.php';
 include_once 'com/livinglogic/ul4/Continue.php';
+include_once 'com/livinglogic/ul4/DelVar.php';
 include_once 'com/livinglogic/ul4/JsonSerializable.php';
 include_once 'com/livinglogic/ul4/Color.php';
 include_once 'com/livinglogic/ul4/Location.php';
