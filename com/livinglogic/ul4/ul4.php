@@ -16,6 +16,7 @@ include_once 'com/livinglogic/ul4/FloorDivVar.php';
 include_once 'com/livinglogic/ul4/ModVar.php';
 include_once 'com/livinglogic/ul4/MulVar.php';
 include_once 'com/livinglogic/ul4/StoreVar.php';
+include_once 'com/livinglogic/ul4/SubVar.php';
 include_once 'com/livinglogic/ul4/Continue.php';
 include_once 'com/livinglogic/ul4/DelVar.php';
 include_once 'com/livinglogic/ul4/JsonSerializable.php';
