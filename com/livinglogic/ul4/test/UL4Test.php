@@ -764,6 +764,12 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array('x' => 2));
 		$p->evaluate($c);
 		var_dump($c->get("x"));
+		// x // y
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print x // y?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.floordiv^2|OS22|de.livinglogic.ul4.var^2|S1|xO^9|^2|S1|y";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => 9, 'y' => 2));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
 
 	}
 }
