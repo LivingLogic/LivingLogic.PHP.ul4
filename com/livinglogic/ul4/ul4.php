@@ -13,6 +13,7 @@ include_once 'com/livinglogic/ul4/Break.php';
 include_once 'com/livinglogic/ul4/ChangeVar.php';
 include_once 'com/livinglogic/ul4/AddVar.php';
 include_once 'com/livinglogic/ul4/FloorDivVar.php';
+include_once 'com/livinglogic/ul4/ModVar.php';
 include_once 'com/livinglogic/ul4/Continue.php';
 include_once 'com/livinglogic/ul4/DelVar.php';
 include_once 'com/livinglogic/ul4/JsonSerializable.php';
