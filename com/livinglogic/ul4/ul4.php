@@ -85,6 +85,7 @@ include_once 'com/livinglogic/ul4/LoadDate.php';
 include_once 'com/livinglogic/ul4/LoadFalse.php';
 include_once 'com/livinglogic/ul4/LoadFloat.php';
 include_once 'com/livinglogic/ul4/LoadInt.php';
+include_once 'com/livinglogic/ul4/LoadNone.php';
 include_once 'com/livinglogic/ul4/LoadStr.php';
 include_once 'com/livinglogic/ul4/LoadTrue.php';
 include_once 'com/livinglogic/ul4/LoadVar.php';
