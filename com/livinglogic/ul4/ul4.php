@@ -29,6 +29,7 @@ include_once 'com/livinglogic/ul4/Color.php';
 include_once 'com/livinglogic/ul4/Location.php';
 include_once 'com/livinglogic/ul4/EvaluationContext.php';
 include_once 'com/livinglogic/ul4/InterpretedTemplate.php';
+include_once 'com/livinglogic/ul4/Var.php';
 
 include_once 'com/livinglogic/ul4/Function.php';
 include_once 'com/livinglogic/ul4/FunctionNow.php';
