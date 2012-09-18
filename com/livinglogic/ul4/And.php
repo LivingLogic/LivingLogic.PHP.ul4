@@ -24,8 +24,6 @@ class _And extends Binary
 		else
 			return $obj2ev;
 	}
-
-	// we can't implement a static call version here, because that would require that we evaluate both sides
 }
 
 \com\livinglogic\ul4on\Utils::register("de.livinglogic.ul4.and", "\com\livinglogic\ul4\_And");

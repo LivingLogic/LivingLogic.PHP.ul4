@@ -96,6 +96,7 @@ include_once 'com/livinglogic/ul4/CallFunc.php';
 include_once 'com/livinglogic/ul4/Binary.php';
 include_once 'com/livinglogic/ul4/Add.php';
 include_once 'com/livinglogic/ul4/And.php';
+include_once 'com/livinglogic/ul4/Or.php';
 include_once 'com/livinglogic/ul4/Sub.php';
 include_once 'com/livinglogic/ul4/Mul.php';
 include_once 'com/livinglogic/ul4/LoadAnd.php';
