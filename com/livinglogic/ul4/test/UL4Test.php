@@ -833,6 +833,11 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$p->evaluate($c);
 		var_dump($c->get("c"));
+		// LoadTrue
+		$s1 = "OS27|de.livinglogic.ul4.storevarOS27|de.livinglogic.ul4.locationS15|<?code c=True?>S4|codei0|i15|i7|i13|S1|cOS23|de.livinglogic.ul4.true^2|";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$p->evaluate($c);
+		var_dump($c->get("c"));
 
 	}
 }
