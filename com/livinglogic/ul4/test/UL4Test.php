@@ -821,7 +821,11 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		// LoadColor
 		$s1 = "OS27|de.livinglogic.ul4.storevarOS27|de.livinglogic.ul4.locationS15|<?code c=#fed?>S4|codei0|i15|i7|i13|S1|cOS24|de.livinglogic.ul4.color^2|Cffeeddff";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
-		$c = new EvaluationContext(array('x' => array(0, 1, 2, 3, 4)));
+		$p->evaluate($c);
+		var_dump($c->get("c"));
+		// LoadDate    DATE: '@' '(' DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ('T' TIME?)? ')';
+		$s1 = "OS27|de.livinglogic.ul4.storevarOS27|de.livinglogic.ul4.locationS24|<?code c=@(2012-09-18)?>S4|codei0|i24|i7|i22|S1|cOS23|de.livinglogic.ul4.date^2|T20120918000000000000";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$p->evaluate($c);
 		var_dump($c->get("c"));
 

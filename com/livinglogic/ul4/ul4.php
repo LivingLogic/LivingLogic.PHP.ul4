@@ -81,6 +81,7 @@ include_once 'com/livinglogic/ul4/FunctionHSV.php';
 
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadColor.php';
+include_once 'com/livinglogic/ul4/LoadDate.php';
 include_once 'com/livinglogic/ul4/LoadInt.php';
 include_once 'com/livinglogic/ul4/LoadStr.php';
 include_once 'com/livinglogic/ul4/LoadVar.php';
