@@ -98,6 +98,7 @@ include_once 'com/livinglogic/ul4/FloorDiv.php';
 include_once 'com/livinglogic/ul4/GE.php';
 include_once 'com/livinglogic/ul4/GetAttr.php';
 include_once 'com/livinglogic/ul4/GetItem.php';
+include_once 'com/livinglogic/ul4/GetSlice.php';
 include_once 'com/livinglogic/ul4/GT.php';
 include_once 'com/livinglogic/ul4/LE.php';
 include_once 'com/livinglogic/ul4/LT.php';

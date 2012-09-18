@@ -1302,6 +1302,42 @@ class Utils
 		throw new \Exception("sorted(" . self::objectType($obj) . ") not supported!");
 	}
 
+	public static function getSliceStartPos($sequenceSize, $virtualPos)
+	{
+		$retVal = $virtualPos;
+		if (0 > $retVal)
+		{
+			$retVal += $sequenceSize;
+		}
+		if (0 > $retVal)
+		{
+			$retVal = 0;
+		}
+		else if ($sequenceSize < $retVal)
+		{
+			$retVal = $sequenceSize;
+		}
+		return $retVal;
+	}
+
+	public static function getSliceEndPos($sequenceSize, $virtualPos)
+	{
+		$retVal = $virtualPos;
+		if (0 > $retVal)
+		{
+			$retVal += $sequenceSize;
+		}
+		if (0 > $retVal)
+		{
+			$retVal = 0;
+		}
+		else if ($sequenceSize < $retVal)
+		{
+			$retVal = $sequenceSize;
+		}
+		return $retVal;
+	}
+
 }
 
 ?>
