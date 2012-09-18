@@ -800,7 +800,12 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array('x' => 2, 'y' => 3));
 		$p->evaluate($c);
 		var_dump($c->get("x"));
-
+		// dict
+		$s1 = "OS27|de.livinglogic.ul4.storevarOS27|de.livinglogic.ul4.locationS19|<?code a = {x: y}?>S4|codei0|i19|i7|i17|S1|aOS23|de.livinglogic.ul4.dict^2|LLOS22|de.livinglogic.ul4.var^2|S1|xO^12|^2|S1|y]]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => 42, 'y' => 'def'));
+		$p->evaluate($c);
+		var_dump($c->get("a"));
 	}
 }
 
