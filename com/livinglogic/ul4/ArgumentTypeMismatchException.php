@@ -13,7 +13,7 @@ class ArgumentTypeMismatchException extends \Exception
 
 	private static function format($template, $args)
 	{
-		$parts = explode("{}", template . " not supported!");
+		$parts = explode("{}", $template . " not supported!");
 		$buffer = "";
 
 		for ($i = 0; $i < count($parts); ++$i)

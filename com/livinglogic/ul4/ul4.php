@@ -80,6 +80,9 @@ include_once 'com/livinglogic/ul4/FunctionRGB.php';
 include_once 'com/livinglogic/ul4/FunctionHLS.php';
 include_once 'com/livinglogic/ul4/FunctionHSV.php';
 
+include_once 'com/livinglogic/ul4/Method.php';
+include_once 'com/livinglogic/ul4/MethodSplit.php';
+
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadColor.php';
 include_once 'com/livinglogic/ul4/LoadDate.php';
@@ -92,6 +95,7 @@ include_once 'com/livinglogic/ul4/LoadTrue.php';
 include_once 'com/livinglogic/ul4/LoadVar.php';
 include_once 'com/livinglogic/ul4/List.php';
 include_once 'com/livinglogic/ul4/CallFunc.php';
+include_once 'com/livinglogic/ul4/CallMeth.php';
 
 include_once 'com/livinglogic/ul4/Binary.php';
 include_once 'com/livinglogic/ul4/Add.php';

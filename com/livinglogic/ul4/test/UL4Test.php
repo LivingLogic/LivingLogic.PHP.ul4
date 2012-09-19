@@ -867,6 +867,13 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 
+		// Methods
+		// split
+		$s1 = "OS27|de.livinglogic.ul4.storevarOS27|de.livinglogic.ul4.locationS26|<?code x = 'a b'.split()?>S4|codei0|i26|i7|i24|S1|xOS27|de.livinglogic.ul4.callmeth^2|S5|splitOS22|de.livinglogic.ul4.str^2|S3|a bL]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$p->evaluate($c);
+		var_dump($c->get("x"));
+
 	}
 }
 
