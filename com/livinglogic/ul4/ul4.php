@@ -83,6 +83,7 @@ include_once 'com/livinglogic/ul4/FunctionHSV.php';
 include_once 'com/livinglogic/ul4/Method.php';
 include_once 'com/livinglogic/ul4/MethodSplit.php';
 include_once 'com/livinglogic/ul4/MethodRSplit.php';
+include_once 'com/livinglogic/ul4/MethodStrip.php';
 
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadColor.php';

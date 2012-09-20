@@ -16,9 +16,9 @@ class CallMeth extends AST
 	{
 		self::$methods = array(
 			"split" => new MethodSplit(),
-			"rsplit" => new MethodRSplit()
+			"rsplit" => new MethodRSplit(),
+			"strip" => new MethodStrip()
 /*
-			"strip" => new MethodStrip(),
 			"lstrip" => new MethodLStrip(),
 			"rstrip" => new MethodRStrip(),
 			"upper" => new MethodUpper(),
