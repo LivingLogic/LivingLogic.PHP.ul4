@@ -21,9 +21,9 @@ class CallMeth extends AST
 			"lstrip" => new MethodLStrip(),
 			"rstrip" => new MethodRStrip(),
 			"upper" => new MethodUpper(),
-			"lower" => new MethodLower()
+			"lower" => new MethodLower(),
+			"capitalize" => new MethodCapitalize()
 /*
-			"capitalize" => new MethodCapitalize(),
 			"items" => new MethodItems(),
 			"isoformat" => new MethodISOFormat(),
 			"mimeformat" => new MethodMIMEFormat(),

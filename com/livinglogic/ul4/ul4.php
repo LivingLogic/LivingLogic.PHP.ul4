@@ -88,6 +88,7 @@ include_once 'com/livinglogic/ul4/MethodLStrip.php';
 include_once 'com/livinglogic/ul4/MethodRStrip.php';
 include_once 'com/livinglogic/ul4/MethodUpper.php';
 include_once 'com/livinglogic/ul4/MethodLower.php';
+include_once 'com/livinglogic/ul4/MethodCapitalize.php';
 
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadColor.php';

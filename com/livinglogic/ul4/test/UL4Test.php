@@ -914,6 +914,12 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array());
 		$p->evaluate($c);
 		var_dump($c->getOutput());
+		// capitalize
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS30|<?print 'abCde'.capitalize()?>S5|printi0|i30|i8|i28|OS27|de.livinglogic.ul4.callmeth^2|S10|capitalizeOS22|de.livinglogic.ul4.str^2|S5|abCdeL]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array());
+		$p->evaluate($c);
+		var_dump($c->getOutput());
 
 	}
 }
