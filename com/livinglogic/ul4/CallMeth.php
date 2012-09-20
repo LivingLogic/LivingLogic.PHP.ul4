@@ -19,10 +19,10 @@ class CallMeth extends AST
 			"rsplit" => new MethodRSplit(),
 			"strip" => new MethodStrip(),
 			"lstrip" => new MethodLStrip(),
-			"rstrip" => new MethodRStrip()
-/*
+			"rstrip" => new MethodRStrip(),
 			"upper" => new MethodUpper(),
-			"lower" => new MethodLower(),
+			"lower" => new MethodLower()
+/*
 			"capitalize" => new MethodCapitalize(),
 			"items" => new MethodItems(),
 			"isoformat" => new MethodISOFormat(),
