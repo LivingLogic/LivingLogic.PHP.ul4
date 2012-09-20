@@ -23,9 +23,13 @@ class CallMeth extends AST
 			"upper" => new MethodUpper(),
 			"lower" => new MethodLower(),
 			"capitalize" => new MethodCapitalize(),
-			"items" => new MethodItems()
+			"items" => new MethodItems(),
+			"microsecond" => new MethodMicrosecond(),
+			"hour" => new MethodHour(),
+			"minute" => new MethodMinute(),
+			"second" => new MethodSecond(),
+			"isoformat" => new MethodISOFormat()
 /*
-			"isoformat" => new MethodISOFormat(),
 			"mimeformat" => new MethodMIMEFormat(),
 			"r" => new MethodR(),
 			"g" => new MethodG(),
@@ -39,10 +43,6 @@ class CallMeth extends AST
 			"day" => new MethodDay(),
 			"month" => new MethodMonth(),
 			"year" => new MethodYear(),
-			"hour" => new MethodHour(),
-			"minute" => new MethodMinute(),
-			"second" => new MethodSecond(),
-			"microsecond" => new MethodMicrosecond(),
 			"weekday" => new MethodWeekday(),
 			"yearday" => new MethodYearday(),
 			"render" => new MethodRender(),

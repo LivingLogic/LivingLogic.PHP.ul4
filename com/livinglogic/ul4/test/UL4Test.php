@@ -926,6 +926,42 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array());
 		$p->evaluate($c);
 		var_dump($c->getOutput());
+		// microsecond
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS37|<?print @(2012-09-08).microsecond()?>S5|printi0|i37|i8|i35|OS27|de.livinglogic.ul4.callmeth^2|S11|microsecondOS23|de.livinglogic.ul4.date^2|T20120908000000000000L]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array());
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// isoformat (const)
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS35|<?print @(2012-09-08).isoformat()?>S5|printi0|i35|i8|i33|OS27|de.livinglogic.ul4.callmeth^2|S9|isoformatOS23|de.livinglogic.ul4.date^2|T20120908000000000000L]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array());
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// isoformat
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS23|<?print x.isoformat()?>S5|printi0|i23|i8|i21|OS27|de.livinglogic.ul4.callmeth^2|S9|isoformatOS22|de.livinglogic.ul4.var^2|S1|xL]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => new \DateTime()));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// hour
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS18|<?print x.hour()?>S5|printi0|i18|i8|i16|OS27|de.livinglogic.ul4.callmeth^2|S4|hourOS22|de.livinglogic.ul4.var^2|S1|xL]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => new \DateTime()));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// minute
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS20|<?print x.minute()?>S5|printi0|i20|i8|i18|OS27|de.livinglogic.ul4.callmeth^2|S6|minuteOS22|de.livinglogic.ul4.var^2|S1|xL]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => new \DateTime()));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// second
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS20|<?print x.second()?>S5|printi0|i20|i8|i18|OS27|de.livinglogic.ul4.callmeth^2|S6|secondOS22|de.livinglogic.ul4.var^2|S1|xL]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => new \DateTime()));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
 
 	}
 }

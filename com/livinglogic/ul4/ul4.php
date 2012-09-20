@@ -90,6 +90,11 @@ include_once 'com/livinglogic/ul4/MethodUpper.php';
 include_once 'com/livinglogic/ul4/MethodLower.php';
 include_once 'com/livinglogic/ul4/MethodCapitalize.php';
 include_once 'com/livinglogic/ul4/MethodItems.php';
+include_once 'com/livinglogic/ul4/MethodHour.php';
+include_once 'com/livinglogic/ul4/MethodMinute.php';
+include_once 'com/livinglogic/ul4/MethodSecond.php';
+include_once 'com/livinglogic/ul4/MethodMicrosecond.php';
+include_once 'com/livinglogic/ul4/MethodISOFormat.php';
 
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadColor.php';
