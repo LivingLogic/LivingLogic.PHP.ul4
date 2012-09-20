@@ -542,6 +542,41 @@ class ListReversedIterator implements \Iterator
 	}
 }
 
+class MapItemIterator implements \Iterator
+{
+	private $iterator;
+
+	public function __construct($map)
+	{
+		$this->iterator = new \ArrayIterator($map);
+	}
+
+	public function current()
+	{
+		return array($this->iterator->key(), $this->iterator->current());
+	}
+
+	public function key()
+	{
+		return $this->iterator->key();
+	}
+
+	public function next()
+	{
+		$this->iterator->next();
+	}
+
+	public function rewind()
+	{
+		$this->iterator->rewind();
+	}
+
+	public function valid()
+	{
+		return $this->iterator->valid();
+	}
+}
+
 
 class Utils
 {
