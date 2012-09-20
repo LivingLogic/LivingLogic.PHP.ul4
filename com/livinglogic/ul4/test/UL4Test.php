@@ -890,6 +890,18 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array());
 		$p->evaluate($c);
 		var_dump($c->getOutput());
+		// lstrip
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS27|<?print '  a b '.lstrip()?>S5|printi0|i27|i8|i25|OS27|de.livinglogic.ul4.callmeth^2|S6|lstripOS22|de.livinglogic.ul4.str^2|S6|  a b L]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array());
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// rstrip
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS27|<?print '  a b '.rstrip()?>S5|printi0|i27|i8|i25|OS27|de.livinglogic.ul4.callmeth^2|S6|rstripOS22|de.livinglogic.ul4.str^2|S6|  a b L]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array());
+		$p->evaluate($c);
+		var_dump($c->getOutput());
 
 	}
 }

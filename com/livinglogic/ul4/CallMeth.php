@@ -17,10 +17,10 @@ class CallMeth extends AST
 		self::$methods = array(
 			"split" => new MethodSplit(),
 			"rsplit" => new MethodRSplit(),
-			"strip" => new MethodStrip()
-/*
+			"strip" => new MethodStrip(),
 			"lstrip" => new MethodLStrip(),
-			"rstrip" => new MethodRStrip(),
+			"rstrip" => new MethodRStrip()
+/*
 			"upper" => new MethodUpper(),
 			"lower" => new MethodLower(),
 			"capitalize" => new MethodCapitalize(),
