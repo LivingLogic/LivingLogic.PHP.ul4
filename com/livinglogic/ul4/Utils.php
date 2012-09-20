@@ -770,6 +770,8 @@ class Utils
 			return "float";
 		else if (is_double($obj))
 			return "double";
+		else if (is_string($obj))
+			return "string";
 
 		if (!is_null($obj) && !is_object($obj))
 			throw new \Exception("unknown object type");
