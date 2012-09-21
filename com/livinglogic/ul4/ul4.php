@@ -100,6 +100,8 @@ include_once 'com/livinglogic/ul4/MethodR.php';
 include_once 'com/livinglogic/ul4/MethodG.php';
 include_once 'com/livinglogic/ul4/MethodB.php';
 include_once 'com/livinglogic/ul4/MethodA.php';
+include_once 'com/livinglogic/ul4/MethodHLS.php';
+include_once 'com/livinglogic/ul4/MethodHLSA.php';
 
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadColor.php';

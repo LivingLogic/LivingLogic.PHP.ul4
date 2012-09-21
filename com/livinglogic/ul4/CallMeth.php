@@ -33,10 +33,10 @@ class CallMeth extends AST
 			"r" => new MethodR(),
 			"g" => new MethodG(),
 			"b" => new MethodB(),
-			"a" => new MethodA()
-/*
+			"a" => new MethodA(),
 			"hls" => new MethodHLS(),
-			"hlsa" => new MethodHLSA(),
+			"hlsa" => new MethodHLSA()
+/*
 			"hsv" => new MethodHSV(),
 			"hsva" => new MethodHSVA(),
 			"lum" => new MethodLum(),

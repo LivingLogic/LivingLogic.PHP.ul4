@@ -303,7 +303,7 @@ class Color implements JsonSerializable
 	public function hls()
 	{
 		$maxc = max(intval($this->r), intval($this->g), intval($this->b));
-		$minc = NumberUtils.min(intval($this->r), intval($this->g), intval($this->b));
+		$minc = min(intval($this->r), intval($this->g), intval($this->b));
 
 		$dmaxc = $maxc/255.;
 		$dminc = $minc/255.;
@@ -327,7 +327,7 @@ class Color implements JsonSerializable
 		$h;
 		if ($this->r == $maxc)
 			$h = $bc-$gc;
-		else if ($g == $maxc)
+		else if ($this->g == $maxc)
 			$h = 2.0+$rc-$bc;
 		else
 			$h = 4.0+$gc-$rc;
