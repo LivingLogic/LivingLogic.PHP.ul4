@@ -38,11 +38,11 @@ class CallMeth extends AST
 			"hlsa" => new MethodHLSA(),
 			"hsv" => new MethodHSV(),
 			"hsva" => new MethodHSVA(),
-			"lum" => new MethodLum()
-/*
+			"lum" => new MethodLum(),
 			"day" => new MethodDay(),
 			"month" => new MethodMonth(),
-			"year" => new MethodYear(),
+			"year" => new MethodYear()
+/*
 			"weekday" => new MethodWeekday(),
 			"yearday" => new MethodYearday(),
 			"render" => new MethodRender(),

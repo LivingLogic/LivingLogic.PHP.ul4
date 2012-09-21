@@ -26,3 +26,5 @@ class MethodLum implements Method
 		return $obj->lum();
 	}
 }
+
+?>
