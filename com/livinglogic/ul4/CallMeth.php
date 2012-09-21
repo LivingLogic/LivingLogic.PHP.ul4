@@ -41,10 +41,10 @@ class CallMeth extends AST
 			"lum" => new MethodLum(),
 			"day" => new MethodDay(),
 			"month" => new MethodMonth(),
-			"year" => new MethodYear()
-/*
+			"year" => new MethodYear(),
 			"weekday" => new MethodWeekday(),
-			"yearday" => new MethodYearday(),
+			"yearday" => new MethodYearday()
+/*
 			"render" => new MethodRender(),
 			"renders" => new MethodRenderS(),
 			"startswith" => new MethodStartsWith(),
