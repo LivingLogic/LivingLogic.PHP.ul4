@@ -37,9 +37,9 @@ class CallMeth extends AST
 			"hls" => new MethodHLS(),
 			"hlsa" => new MethodHLSA(),
 			"hsv" => new MethodHSV(),
-			"hsva" => new MethodHSVA()
+			"hsva" => new MethodHSVA(),
+			"lum" => new MethodLum()
 /*
-			"lum" => new MethodLum(),
 			"day" => new MethodDay(),
 			"month" => new MethodMonth(),
 			"year" => new MethodYear(),
