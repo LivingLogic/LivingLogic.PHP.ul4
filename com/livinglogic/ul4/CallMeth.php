@@ -28,9 +28,9 @@ class CallMeth extends AST
 			"hour" => new MethodHour(),
 			"minute" => new MethodMinute(),
 			"second" => new MethodSecond(),
-			"isoformat" => new MethodISOFormat()
+			"isoformat" => new MethodISOFormat(),
+			"mimeformat" => new MethodMIMEFormat()
 /*
-			"mimeformat" => new MethodMIMEFormat(),
 			"r" => new MethodR(),
 			"g" => new MethodG(),
 			"b" => new MethodB(),
