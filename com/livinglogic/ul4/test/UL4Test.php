@@ -998,8 +998,20 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array('x' => new Color(2, 4, 6, 8)));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
-		// hls
+		// hlsa
 		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS18|<?print x.hlsa()?>S5|printi0|i18|i8|i16|OS27|de.livinglogic.ul4.callmeth^2|S4|hlsaOS22|de.livinglogic.ul4.var^2|S1|xL]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => new Color(2, 4, 6, 8)));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// hsv
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS17|<?print x.hsv()?>S5|printi0|i17|i8|i15|OS27|de.livinglogic.ul4.callmeth^2|S3|hsvOS22|de.livinglogic.ul4.var^2|S1|xL]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => new Color(2, 4, 6, 8)));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// hsva
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS18|<?print x.hsva()?>S5|printi0|i18|i8|i16|OS27|de.livinglogic.ul4.callmeth^2|S4|hsvaOS22|de.livinglogic.ul4.var^2|S1|xL]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => new Color(2, 4, 6, 8)));
 		$p->evaluate($c);

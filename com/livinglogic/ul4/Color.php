@@ -371,9 +371,9 @@ class Color implements JsonSerializable
 		$bc = ($dmaxc-$this->b/255.) / ($dmaxc-$dminc);
 
 		$h = 0;
-		if ($r == $maxc)
+		if ($this->r == $maxc)
 			$h = $bc-$gc;
-		else if ($g == $maxc)
+		else if ($this->g == $maxc)
 			$h = 2.0+$rc-$bc;
 		else
 			$h = 4.0+$gc-$rc;
@@ -389,7 +389,7 @@ class Color implements JsonSerializable
 	public function hsva()
 	{
 		$retVal = $this->hsv();
-		array_push($retVal, doubleval($a/255.));
+		array_push($retVal, doubleval($this->a/255.));
 		return $retVal;
 	}
 

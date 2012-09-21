@@ -29,8 +29,6 @@ class MethodMIMEFormat implements Method
 		if (!$obj instanceof \DateTime)
 			throw new ArgumentTypeMismatchException("{}.mimeformat()", $obj);
 
-		print "mimeDateFormat=" . self::$mimeDateFormat . "\n";
-		print "obj->getTimestamp=" . $obj->getTimestamp() . "\n";
 		return gmdate(self::$mimeDateFormat, $obj->getTimestamp());
 	}
 }
