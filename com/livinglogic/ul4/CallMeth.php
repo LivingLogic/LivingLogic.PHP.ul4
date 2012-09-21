@@ -29,12 +29,12 @@ class CallMeth extends AST
 			"minute" => new MethodMinute(),
 			"second" => new MethodSecond(),
 			"isoformat" => new MethodISOFormat(),
-			"mimeformat" => new MethodMIMEFormat()
-/*
+			"mimeformat" => new MethodMIMEFormat(),
 			"r" => new MethodR(),
 			"g" => new MethodG(),
 			"b" => new MethodB(),
-			"a" => new MethodA(),
+			"a" => new MethodA()
+/*
 			"hls" => new MethodHLS(),
 			"hlsa" => new MethodHLSA(),
 			"hsv" => new MethodHSV(),

@@ -96,6 +96,10 @@ include_once 'com/livinglogic/ul4/MethodSecond.php';
 include_once 'com/livinglogic/ul4/MethodMicrosecond.php';
 include_once 'com/livinglogic/ul4/MethodISOFormat.php';
 include_once 'com/livinglogic/ul4/MethodMIMEFormat.php';
+include_once 'com/livinglogic/ul4/MethodR.php';
+include_once 'com/livinglogic/ul4/MethodG.php';
+include_once 'com/livinglogic/ul4/MethodB.php';
+include_once 'com/livinglogic/ul4/MethodA.php';
 
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadColor.php';

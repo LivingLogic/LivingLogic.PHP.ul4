@@ -968,6 +968,30 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array('x' => new \DateTime()));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
+		// r
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS15|<?print x.r()?>S5|printi0|i15|i8|i13|OS27|de.livinglogic.ul4.callmeth^2|S1|rOS22|de.livinglogic.ul4.var^2|S1|xL]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => new Color(2, 4, 6, 8)));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// g
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS15|<?print x.g()?>S5|printi0|i15|i8|i13|OS27|de.livinglogic.ul4.callmeth^2|S1|gOS22|de.livinglogic.ul4.var^2|S1|xL]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => new Color(2, 4, 6, 8)));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// b
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS15|<?print x.b()?>S5|printi0|i15|i8|i13|OS27|de.livinglogic.ul4.callmeth^2|S1|bOS22|de.livinglogic.ul4.var^2|S1|xL]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => new Color(2, 4, 6, 8)));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// a
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS15|<?print x.a()?>S5|printi0|i15|i8|i13|OS27|de.livinglogic.ul4.callmeth^2|S1|aOS22|de.livinglogic.ul4.var^2|S1|xL]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => new Color(2, 4, 6, 8)));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
 
 	}
 }
