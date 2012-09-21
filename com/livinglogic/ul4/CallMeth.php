@@ -43,12 +43,14 @@ class CallMeth extends AST
 			"month" => new MethodMonth(),
 			"year" => new MethodYear(),
 			"weekday" => new MethodWeekday(),
-			"yearday" => new MethodYearday()
+			"yearday" => new MethodYearday(),
 /*
 			"render" => new MethodRender(),
 			"renders" => new MethodRenderS(),
+*/
 			"startswith" => new MethodStartsWith(),
-			"endswith" => new MethodEndsWith(),
+			"endswith" => new MethodEndsWith()
+/*
 			"find" => new MethodFind(),
 			"rfind" => new MethodRFind(),
 			"get" => new MethodGet(),

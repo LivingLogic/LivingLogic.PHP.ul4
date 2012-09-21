@@ -110,6 +110,8 @@ include_once 'com/livinglogic/ul4/MethodMonth.php';
 include_once 'com/livinglogic/ul4/MethodYear.php';
 include_once 'com/livinglogic/ul4/MethodWeekday.php';
 include_once 'com/livinglogic/ul4/MethodYearday.php';
+include_once 'com/livinglogic/ul4/MethodStartsWith.php';
+include_once 'com/livinglogic/ul4/MethodEndsWith.php';
 
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadColor.php';
