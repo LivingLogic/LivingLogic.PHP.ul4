@@ -49,9 +49,9 @@ class CallMeth extends AST
 			"renders" => new MethodRenderS(),
 */
 			"startswith" => new MethodStartsWith(),
-			"endswith" => new MethodEndsWith()
+			"endswith" => new MethodEndsWith(),
+			"find" => new MethodFind()
 /*
-			"find" => new MethodFind(),
 			"rfind" => new MethodRFind(),
 			"get" => new MethodGet(),
 			"withlum" => new MethodWithLum(),
