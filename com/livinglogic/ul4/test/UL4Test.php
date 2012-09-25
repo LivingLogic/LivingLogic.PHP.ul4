@@ -1064,16 +1064,28 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array('x' => "abcd", 'y' => 'bd'));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
-		// find
+		// find with string
 		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS19|<?print x.find(y)?>S5|printi0|i19|i8|i17|OS27|de.livinglogic.ul4.callmeth^2|S4|findOS22|de.livinglogic.ul4.var^2|S1|xLO^10|^2|S1|y]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => "abcd", 'y' => 'c'));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
-		// find
+		// find with array
 		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS19|<?print x.find(y)?>S5|printi0|i19|i8|i17|OS27|de.livinglogic.ul4.callmeth^2|S4|findOS22|de.livinglogic.ul4.var^2|S1|xLO^10|^2|S1|y]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s1);
 		$c = new EvaluationContext(array('x' => array(0, 1, 2, 3), 'y' => 3));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// rfind with array
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS20|<?print x.rfind(y)?>S5|printi0|i20|i8|i18|OS27|de.livinglogic.ul4.callmeth^2|S5|rfindOS22|de.livinglogic.ul4.var^2|S1|xLO^10|^2|S1|y]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => array(0, 1, 2, 3), 'y' => 3));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// rfind with string
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS20|<?print x.rfind(y)?>S5|printi0|i20|i8|i18|OS27|de.livinglogic.ul4.callmeth^2|S5|rfindOS22|de.livinglogic.ul4.var^2|S1|xLO^10|^2|S1|y]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => "adebcdef", 'y' => "de"));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
 
