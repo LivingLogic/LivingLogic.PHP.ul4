@@ -55,10 +55,8 @@ class CallMeth extends AST
 			"get" => new MethodGet(),
 			"withlum" => new MethodWithLum(),
 			"witha" => new MethodWithA(),
-			"join" => new MethodJoin()
-/*
+			"join" => new MethodJoin(),
 			"replace" => new MethodReplace()
-*/
 		);
 	}
 

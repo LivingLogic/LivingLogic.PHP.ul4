@@ -118,6 +118,7 @@ include_once 'com/livinglogic/ul4/MethodGet.php';
 include_once 'com/livinglogic/ul4/MethodWithLum.php';
 include_once 'com/livinglogic/ul4/MethodWithA.php';
 include_once 'com/livinglogic/ul4/MethodJoin.php';
+include_once 'com/livinglogic/ul4/MethodReplace.php';
 
 include_once 'com/livinglogic/ul4/LoadConst.php';
 include_once 'com/livinglogic/ul4/LoadColor.php';
