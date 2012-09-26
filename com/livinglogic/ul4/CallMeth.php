@@ -53,9 +53,9 @@ class CallMeth extends AST
 			"find" => new MethodFind(),
 			"rfind" => new MethodRFind(),
 			"get" => new MethodGet(),
-			"withlum" => new MethodWithLum()
+			"withlum" => new MethodWithLum(),
+			"witha" => new MethodWithA()
 /*
-			"witha" => new MethodWithA(),
 			"join" => new MethodJoin(),
 			"replace" => new MethodReplace()
 */
