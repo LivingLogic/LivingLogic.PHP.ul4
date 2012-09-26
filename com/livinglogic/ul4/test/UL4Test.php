@@ -1088,6 +1088,18 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array('x' => "adebcdef", 'y' => "de"));
 		$p->evaluate($c);
 		var_dump($c->getOutput());
+		// x.get(y)
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS18|<?print x.get(y)?>S5|printi0|i18|i8|i16|OS27|de.livinglogic.ul4.callmeth^2|S3|getOS22|de.livinglogic.ul4.var^2|S1|xLO^10|^2|S1|y]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => array('a'=> 0, 'b'=>1, 'c'=>2), 'y' => "b"));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
+		// x.get(y, z)
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS21|<?print x.get(y, z)?>S5|printi0|i21|i8|i19|OS27|de.livinglogic.ul4.callmeth^2|S3|getOS22|de.livinglogic.ul4.var^2|S1|xLO^10|^2|S1|yO^10|^2|S1|z]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array('x' => array('a'=> 0, 'b'=>1, 'c'=>2), 'y' => "d", 'z'=>4));
+		$p->evaluate($c);
+		var_dump($c->getOutput());
 
 	}
 }
