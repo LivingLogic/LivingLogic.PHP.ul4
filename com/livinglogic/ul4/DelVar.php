@@ -8,9 +8,9 @@ class DelVar extends AST
 {
 	var $varname;
 
-	public function __construct($location=null, $varname=null)
+	public function __construct($varname=null)
 	{
-		parent::__construct($location);
+		parent::__construct();
 		$this->varname = $varname;
 	}
 

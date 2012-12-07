@@ -4,7 +4,7 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class _Break extends AST
+class _Break extends Tag
 {
 	public function __construct($location=null)
 	{

@@ -8,9 +8,9 @@ class List_ extends AST
 {
 	protected $items = array();
 
-	public function __construct($location=null)
+	public function __construct()
 	{
-		parent::__construct($location);
+		parent::__construct();
 	}
 
 	public function toString($indent)

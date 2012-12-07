@@ -8,9 +8,9 @@ class Dict extends AST
 {
 	var $items = array();
 
-	public function __construct($location=null)
+	public function __construct()
 	{
-		parent::__construct($location);
+		parent::__construct();
 	}
 
 	public function append($arg1)

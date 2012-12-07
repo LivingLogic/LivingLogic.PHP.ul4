@@ -6,9 +6,9 @@ include_once 'com/livinglogic/ul4/ul4.php';
 
 class TrueDiv extends Binary
 {
-	public function __construct($location=null, $obj1=null, $obj2=null)
+	public function __construct($obj1=null, $obj2=null)
 	{
-		parent::__construct($location, $obj1, $obj2);
+		parent::__construct($obj1, $obj2);
 	}
 
 	public function getType()

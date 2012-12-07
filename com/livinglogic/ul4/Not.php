@@ -6,9 +6,9 @@ include_once 'com/livinglogic/ul4/ul4.php';
 
 class Not extends Unary
 {
-	public function __construct($location=null, $obj=null)
+	public function __construct($obj=null)
 	{
-		parent::__construct($location, $obj);
+		parent::__construct($obj);
 	}
 
 	public function getType()

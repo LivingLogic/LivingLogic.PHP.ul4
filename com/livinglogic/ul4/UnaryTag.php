@@ -4,19 +4,14 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-abstract class Unary extends AST
+abstract class UnaryTag extends Tag
 {
-	protected $obj;
+	var $obj; // AST
 
-	public function __construct($obj=null)
+	public function ___construct($location=null, $obj=null)
 	{
-		parent::__construct();
+		parent::__construct($location);
 		$this->obj = $obj;
-	}
-
-	public function toString($indent=0)
-	{
-		return $this->getType() . "(" . $this->obj . ")";
 	}
 
 	public function dumpUL4ON($encoder)
@@ -39,7 +34,7 @@ abstract class Unary extends AST
 		if (valueMakers == null)
 		{
 			HashMap<String, ValueMaker> v = new HashMap<String, ValueMaker>(super.getValueMakers());
-			v.put("obj", new ValueMaker(){public Object getValue(Object object){return ((Unary)object).obj;}});
+			v.put("obj", new ValueMaker(){public Object getValue(Object object){return ((UnaryTag)object).obj;}});
 			valueMakers = v;
 		}
 		return valueMakers;

@@ -4,7 +4,7 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-abstract class ChangeVar extends AST
+abstract class ChangeVar extends Tag
 {
 	var $varname;
 	var $value;

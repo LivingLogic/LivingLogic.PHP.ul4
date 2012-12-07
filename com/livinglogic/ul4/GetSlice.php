@@ -10,9 +10,9 @@ class GetSlice extends AST
 	var $index1;
 	var $index2;
 
-	public function __construct($location=null, $obj=null, $index1=null, $index2=null)
+	public function __construct($obj=null, $index1=null, $index2=null)
 	{
-		parent::__construct($location);
+		parent::__construct();
 		$this->obj = $obj;
 		$this->index1 = $index1;
 		$this->index2 = $index2;

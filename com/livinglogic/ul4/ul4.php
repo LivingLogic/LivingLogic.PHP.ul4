@@ -7,6 +7,8 @@ include_once 'com/livinglogic/ul4on/Utils.php';
 
 
 include_once 'com/livinglogic/ul4/AST.php';
+include_once 'com/livinglogic/ul4/Tag.php';
+include_once 'com/livinglogic/ul4/Const.php';
 include_once 'com/livinglogic/ul4/Text.php';
 include_once 'com/livinglogic/ul4/Block.php';
 include_once 'com/livinglogic/ul4/Break.php';
@@ -120,16 +122,17 @@ include_once 'com/livinglogic/ul4/MethodWithA.php';
 include_once 'com/livinglogic/ul4/MethodJoin.php';
 include_once 'com/livinglogic/ul4/MethodReplace.php';
 
+/*
 include_once 'com/livinglogic/ul4/LoadConst.php';
-include_once 'com/livinglogic/ul4/LoadColor.php';
-include_once 'com/livinglogic/ul4/LoadDate.php';
-include_once 'com/livinglogic/ul4/LoadFalse.php';
-include_once 'com/livinglogic/ul4/LoadFloat.php';
-include_once 'com/livinglogic/ul4/LoadInt.php';
-include_once 'com/livinglogic/ul4/LoadNone.php';
-include_once 'com/livinglogic/ul4/LoadStr.php';
-include_once 'com/livinglogic/ul4/LoadTrue.php';
-include_once 'com/livinglogic/ul4/LoadVar.php';
+include_once 'com/livinglogic/ul4/LoadColor.php'; // de.livinglogic.ul4.color  1
+include_once 'com/livinglogic/ul4/LoadDate.php';  // de.livinglogic.ul4.date   3
+include_once 'com/livinglogic/ul4/LoadFalse.php'; // de.livinglogic.ul4.false  1
+include_once 'com/livinglogic/ul4/LoadFloat.php'; // de.livinglogic.ul4.float  1
+include_once 'com/livinglogic/ul4/LoadInt.php';   // de.livinglogic.ul4.int   15  TODO
+include_once 'com/livinglogic/ul4/LoadNone.php';  // de.livinglogic.ul4.none   1
+include_once 'com/livinglogic/ul4/LoadStr.php';   // de.livinglogic.ul4.str   12
+include_once 'com/livinglogic/ul4/LoadTrue.php';  // de.livinglogic.ul4.true   3
+*/
 include_once 'com/livinglogic/ul4/List.php';
 include_once 'com/livinglogic/ul4/CallFunc.php';
 include_once 'com/livinglogic/ul4/CallMeth.php';
@@ -140,8 +143,6 @@ include_once 'com/livinglogic/ul4/And.php';
 include_once 'com/livinglogic/ul4/Or.php';
 include_once 'com/livinglogic/ul4/Sub.php';
 include_once 'com/livinglogic/ul4/Mul.php';
-include_once 'com/livinglogic/ul4/LoadAnd.php';
-include_once 'com/livinglogic/ul4/LoadOr.php';
 include_once 'com/livinglogic/ul4/Contains.php';
 include_once 'com/livinglogic/ul4/EQ.php';
 include_once 'com/livinglogic/ul4/FloorDiv.php';
@@ -158,6 +159,7 @@ include_once 'com/livinglogic/ul4/NotContains.php';
 include_once 'com/livinglogic/ul4/TrueDiv.php';
 
 include_once 'com/livinglogic/ul4/Unary.php';
+include_once 'com/livinglogic/ul4/UnaryTag.php';
 include_once 'com/livinglogic/ul4/Neg.php';
 include_once 'com/livinglogic/ul4/Not.php';
 include_once 'com/livinglogic/ul4/PPrint.php';

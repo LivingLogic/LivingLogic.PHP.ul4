@@ -4,44 +4,31 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-abstract class AST implements \com\livinglogic\ul4on\UL4ONSerializable
+abstract class Tag extends AST
 {
-	public function __construct()
+	protected $location = null;
+
+	public function __construct($location=null)
 	{
+		parent::__construct();
+		$this->location = $location;
 	}
 
-	abstract public function evaluate($context);
-
-	abstract public function getType();
-
-	public abstract function toString($indent);
-
-	public function __toString()
+	public function getLocation()
 	{
-		return $this->toString(0);
-	}
-
-	protected static function line($indent, $line)
-	{
-		$buffer = "";
-
-		for ($i = 0; $i < $indent; $i++)
-			$buffer .= "\t";
-
-		return $buffer . $line . "\n";
-	}
-
-	public function getUL4ONName()
-	{
-		return "de.livinglogic.ul4." . $this->getType();
+		return $this->location;
 	}
 
 	public function dumpUL4ON($encoder)
 	{
+		parent::dumpUL4ON($encoder);
+		$encoder->dump($this->location);
 	}
 
 	public function loadUL4ON($decoder)
 	{
+		parent::loadUL4ON($decoder);
+		$this->location = $decoder->load();
 	}
 
 	/*

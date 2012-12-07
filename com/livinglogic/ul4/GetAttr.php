@@ -9,9 +9,9 @@ class GetAttr extends AST
 	var $obj;
 	var $attrname;
 
-	public function __construct($location=null, $obj=null, $attrname=null)
+	public function __construct($obj=null, $attrname=null)
 	{
-		parent::__construct($location);
+		parent::__construct();
 		$this->obj = $obj;
 		$this->attrname = $attrname;
 	}

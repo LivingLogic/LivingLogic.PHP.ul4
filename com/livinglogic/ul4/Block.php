@@ -4,7 +4,7 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-abstract class Block extends AST
+abstract class Block extends Tag
 {
 	protected $endlocation;
 	protected $content = array();

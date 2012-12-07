@@ -8,15 +8,15 @@ class _Var extends AST
 {
 	var $name;
 
-	public function __construct($location=null, $name=null)
+	public function __construct($name=null)
 	{
-		parent::__construct($location);
+		parent::__construct();
 		$this->name = $name;
 	}
 
 	public function toString($indent)
 	{
-		return name;
+		return $this->name;
 	}
 
 	public function getType()
