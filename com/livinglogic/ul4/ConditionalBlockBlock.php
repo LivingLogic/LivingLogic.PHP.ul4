@@ -68,7 +68,7 @@ class ConditionalBlockBlock extends Block
 		$this->content[count($this->content)-1]->endlocation = $endlocation;
 		$type = trim($endlocation->getCode());
 		if (!is_null($type) && strlen($type) != 0 && $type != "if")
-			throw new \Exception("if ended by end" + type);
+			throw new BlockException("if ended by end" + type);
 	}
 
 	public function evaluate($context)

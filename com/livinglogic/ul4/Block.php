@@ -20,8 +20,9 @@ abstract class Block extends Tag
 		array_push($this->content, $item);
 	}
 
-	public function finish($itemplate, $startLocation, $endLocation)
+	public function finish($itemplate, $endlocation)
 	{
+		$this->endlocation = $endlocation;
 	}
 
 	public function evaluate($context)

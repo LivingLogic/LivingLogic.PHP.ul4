@@ -617,7 +617,7 @@ class Utils
 			if (array_key_exists($key, $container))
 				return $container[$key];
 			else
-				throw new \Exception("Key " . self::repr($key) . " not found");
+				throw new \Exception("Key " . self::repr($key) . " not found in container " . self::repr($container));
 		}
 		else if (\com\livinglogic\ul4on\Utils::isList($container))
 		{
@@ -1374,6 +1374,48 @@ class Utils
 		}
 		return $retVal;
 	}
+
+	public static function unpackVariable(&$variables, $varname, $item)
+	{
+		if (is_string($varname))
+		{
+			$variables[$varname] = $item;
+		}
+		else
+		{
+			$itemIter = self::iterator($item);
+			$varnames = $varname;
+			$varnameCount = count($varnames);
+
+			for ($i = 0;;++$i)
+			{
+				if ($itemIter->valid())
+				{
+					if ($i < $varnameCount)
+					{
+						self::unpackVariable($variables, $varnames[$i], $itemIter->current());
+						$itemIter->next();
+					}
+					else
+					{
+						throw new UnpackingException("mismatched for loop unpacking: " . $varnameCount . " varnames, >" . $i . " items");
+					}
+				}
+				else
+				{
+					if ($i < $varnameCount)
+					{
+						throw new UnpackingException("mismatched for loop unpacking: " . $varnameCount . "+ varnames, " . $i . " items");
+					}
+					else
+					{
+						break;
+					}
+				}
+			}
+		}
+	}
+
 
 }
 

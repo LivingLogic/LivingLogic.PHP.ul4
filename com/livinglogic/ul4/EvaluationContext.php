@@ -17,7 +17,7 @@ class EvaluationContext
 		$this->variables = $variables;
 	}
 
-	public function getVariables()
+	public function &getVariables()
 	{
 		return $this->variables;
 	}
