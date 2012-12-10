@@ -168,13 +168,19 @@ include_once 'com/livinglogic/ul4/PrintX.php';
 
 include_once 'com/livinglogic/ul4/For.php';
 
+include_once 'com/livinglogic/ul4/ASTException.php';
 include_once 'com/livinglogic/ul4/BlockException.php';
 include_once 'com/livinglogic/ul4/BreakException.php';
 include_once 'com/livinglogic/ul4/ContinueException.php';
+include_once 'com/livinglogic/ul4/KeyException.php';
 include_once 'com/livinglogic/ul4/LocationException.php';
 include_once 'com/livinglogic/ul4/ArgumentCountMismatchException.php';
 include_once 'com/livinglogic/ul4/ArgumentTypeMismatchException.php';
+include_once 'com/livinglogic/ul4/SyntaxException.php';
+include_once 'com/livinglogic/ul4/TagException.php';
+include_once 'com/livinglogic/ul4/TemplateException.php';
 include_once 'com/livinglogic/ul4/UnknownFunctionException.php';
+include_once 'com/livinglogic/ul4/UnknownMethodException.php';
 include_once 'com/livinglogic/ul4/UnpackingException.php';
 
 include_once 'com/livinglogic/ul4/Block.php';
