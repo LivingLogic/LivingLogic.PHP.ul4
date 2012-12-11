@@ -828,6 +828,7 @@ class Utils
 			return $obj != 0.;
 		else if ($obj instanceof \DateTime)
 			return True;
+		// TODO TimeDelta, MonthDelta
 		else if (\com\livinglogic\ul4on\Utils::isList($obj) || \com\livinglogic\ul4on\Utils::isDict($obj))
 			return count($obj) > 0;
 
@@ -1416,6 +1417,26 @@ class Utils
 		}
 	}
 
+
+	public static function formatVarname(&$buffer, $varname)
+	{
+		if (is_string($varname))
+			$buffer .= $varname;
+		else
+		{
+			$varnames = $varname;
+			$buffer .= "(";
+			$count = 0;
+			foreach ($varnames as $subvarname)
+			{
+				++$count;
+				self::formatVarname($buffer, $subvarname);
+				if ($count == 1 || $count != len($varnames))
+					$buffer .= ", ";
+			}
+			$buffer .= ")";
+		}
+	}
 
 }
 

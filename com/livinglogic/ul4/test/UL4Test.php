@@ -51,6 +51,41 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		print $c->getOutput() . "\n";
 	}
+
+	/*
+	function testDictComp()
+	{
+		$s = 'OS27|de.livinglogic.ul4.storevarOS27|de.livinglogic.ul4.locationS79|<?code x = { c.upper() : "(" + c + ")" for c in "hurz" if c < "u"}?><?print x?>S4|codei0|i68|i7|i66|S1|xOS27|de.livinglogic.ul4.dictcompOS27|de.livinglogic.ul4.callmethS5|upperOS22|de.livinglogic.ul4.varS1|cL]OS22|de.livinglogic.ul4.addO^17|OS24|de.livinglogic.ul4.constS1|(O^13|^14|O^20|S1|)^14|O^20|S4|hurzOS21|de.livinglogic.ul4.ltO^13|^14|O^20|S1|u';
+		$p = \com\livinglogic\ul4on\Utils::loads($s);
+		$c = new EvaluationContext();
+		$p->evaluate($c);
+		print $c->getOutput() . "\n";
+	}
+	*/
+
+	function testFunctionAll()
+	{
+		$s = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print all(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfuncS3|allLOS22|de.livinglogic.ul4.varS1|x]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s);
+		$c = new EvaluationContext(array("x" => array(1, 2, 3)));
+		$p->evaluate($c);
+		$this->assertEquals("True", $c->getOutput());
+		$c = new EvaluationContext(array("x" => array(1, 2, 3, 0)));
+		$p->evaluate($c);
+		$this->assertEquals("False", $c->getOutput());
+	}
+
+	function testFunctionAny()
+	{
+		$s = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print any(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfuncS3|anyLOS22|de.livinglogic.ul4.varS1|x]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s);
+		$c = new EvaluationContext(array("x" => array(0,0,0, 3)));
+		$p->evaluate($c);
+		$this->assertEquals("True", $c->getOutput());
+		$c = new EvaluationContext(array("x" => ""));
+		$p->evaluate($c);
+		$this->assertEquals("False", $c->getOutput());
+	}
 }
 
 ?>

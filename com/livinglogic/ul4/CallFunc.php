@@ -60,7 +60,9 @@ class CallFunc extends AST
  			"zip" => new FunctionZip(),
  			"rgb" => new FunctionRGB(),
  			"hls" => new FunctionHLS(),
-			"hsv" => new FunctionHSV()
+			"hsv" => new FunctionHSV(),
+			"all" => new FunctionAll(),
+			"any" => new FunctionAny()
 		);
 	}
 

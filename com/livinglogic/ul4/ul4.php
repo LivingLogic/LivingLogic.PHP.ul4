@@ -5,6 +5,9 @@ include_once 'com/livinglogic/ul4on/Encoder.php';
 include_once 'com/livinglogic/ul4on/UL4ONSerializable.php';
 include_once 'com/livinglogic/ul4on/Utils.php';
 
+include_once 'com/livinglogic/ul4/Execution.php';
+include_once 'com/livinglogic/ul4/Executor.php';
+include_once 'com/livinglogic/ul4/FilteredIterator.php';
 
 include_once 'com/livinglogic/ul4/AST.php';
 include_once 'com/livinglogic/ul4/Tag.php';
@@ -32,6 +35,7 @@ include_once 'com/livinglogic/ul4/Location.php';
 include_once 'com/livinglogic/ul4/EvaluationContext.php';
 include_once 'com/livinglogic/ul4/InterpretedTemplate.php';
 include_once 'com/livinglogic/ul4/Var.php';
+include_once 'com/livinglogic/ul4/DictComprehension.php';
 
 include_once 'com/livinglogic/ul4/Function.php';
 include_once 'com/livinglogic/ul4/FunctionNow.php';
@@ -81,6 +85,8 @@ include_once 'com/livinglogic/ul4/FunctionZip.php';
 include_once 'com/livinglogic/ul4/FunctionRGB.php';
 include_once 'com/livinglogic/ul4/FunctionHLS.php';
 include_once 'com/livinglogic/ul4/FunctionHSV.php';
+include_once 'com/livinglogic/ul4/FunctionAll.php';
+include_once 'com/livinglogic/ul4/FunctionAny.php';
 
 include_once 'com/livinglogic/ul4/Method.php';
 include_once 'com/livinglogic/ul4/MethodSplit.php';
