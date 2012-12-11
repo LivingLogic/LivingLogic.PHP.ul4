@@ -86,6 +86,15 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		$this->assertEquals("False", $c->getOutput());
 	}
+
+	function testFunctionDate()
+	{
+		$s = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS32|<?print date(a, b, c, d, e, f)?>S5|printi0|i32|i8|i30|OS27|de.livinglogic.ul4.callfuncS4|dateLOS22|de.livinglogic.ul4.varS1|aO^11|S1|bO^11|S1|cO^11|S1|dO^11|S1|eO^11|S1|f]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s);
+		$c = new EvaluationContext(array("a" => 2001, "b" => 9, "c" => 11, "d" => 14, "e" => 0, "f" => 49));
+		$p->evaluate($c);
+		print $c->getOutput() . "\n";
+	}
 }
 
 ?>

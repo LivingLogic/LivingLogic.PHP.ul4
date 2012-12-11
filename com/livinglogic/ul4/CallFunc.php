@@ -62,7 +62,8 @@ class CallFunc extends AST
  			"hls" => new FunctionHLS(),
 			"hsv" => new FunctionHSV(),
 			"all" => new FunctionAll(),
-			"any" => new FunctionAny()
+			"any" => new FunctionAny(),
+			"date" => new FunctionDate()
 		);
 	}
 
