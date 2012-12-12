@@ -37,7 +37,8 @@ class Utils
 	public static function loads($s)
 	{
 		$d = new Decoder($s);
-		return $d->load();
+		$result = $d->load();
+		return $result;
 	}
 
 	/**

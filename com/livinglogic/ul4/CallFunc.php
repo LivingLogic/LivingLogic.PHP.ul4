@@ -76,7 +76,7 @@ class CallFunc extends AST
 		if ($_function instanceof _Function)
 			$this->_function = $_function;
 		else if (is_string($_function))
-			$this->function = self::getFunction($_function);
+			$this->_function = self::getFunction($_function);
 	}
 
 	public function append($arg)
@@ -89,7 +89,7 @@ class CallFunc extends AST
 		$buffer = "";
 
 		$buffer .= "callfunc(";
-		$buffer .= Utils.repr($_function.getName());
+		$buffer .= Utils::repr($this->_function->getName());
 
 		foreach ($this->args as $arg)
 		{

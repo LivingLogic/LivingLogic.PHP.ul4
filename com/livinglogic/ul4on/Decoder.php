@@ -23,9 +23,12 @@ use \com\livinglogic\ul4\TimeDelta as TimeDelta;
 			$this->objects = array();
 		}
 
-		private function loading($obj)
+		private function loading(&$obj)
 		{
-			array_push($this->objects, $obj);
+			if ($obj === $this)
+				array_push($this->objects, null);
+			else
+				array_push($this->objects, $obj);
 		}
 
 		public function load()
@@ -183,7 +186,7 @@ use \com\livinglogic\ul4\TimeDelta as TimeDelta;
 					// once we've created it (This shouldn't be a problem, because during the time the backreference
 					// is wrong, only the class name is read, so our object won't be refenced).
 					$oldpos = count($this->objects);
-					$this->loading(null);
+					$this->loading($this);
 				}
 				$name = $this->load();
 
