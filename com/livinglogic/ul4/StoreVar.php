@@ -18,17 +18,17 @@ class StoreVar extends ChangeVar
 
 	public function evaluate($context)
 	{
-		if (is_null($this->value))
-			print "StoreVar: this->value is null\n";
-		else
-		{
-			print "StoreVar: this->value is not null: " . gettype($this->value) . "\n";
-			if (gettype($this->value) == "string")
-				print "StoreVar: this->value = " . $this->value . "\n";
-		}
+// 		if (is_null($this->value))
+// 			print "StoreVar: this->value is null\n";
+// 		else
+// 		{
+// 			print "StoreVar: this->value is not null: " . gettype($this->value) . ",  this->varname = " . $this->varname . "\n";
+// 			if (gettype($this->value) == "string")
+// 				print "StoreVar: this->value = " . $this->value . "\n";
+// 		}
 
 // 		$context->put($this->varname, $this->value->evaluate($context));
-		$variables = $context->getVariables();
+		$variables = &$context->getVariables();
 		Utils::unpackVariable($variables, $this->varname, $this->value->evaluate($context));
 		return null;
 	}

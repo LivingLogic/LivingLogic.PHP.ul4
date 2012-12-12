@@ -88,6 +88,7 @@ include_once 'com/livinglogic/ul4/FunctionHSV.php';
 include_once 'com/livinglogic/ul4/FunctionAll.php';
 include_once 'com/livinglogic/ul4/FunctionAny.php';
 include_once 'com/livinglogic/ul4/FunctionDate.php';
+include_once 'com/livinglogic/ul4/FunctionFromJSON.php';
 
 include_once 'com/livinglogic/ul4/Method.php';
 include_once 'com/livinglogic/ul4/MethodSplit.php';

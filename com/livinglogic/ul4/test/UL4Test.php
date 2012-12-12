@@ -13,6 +13,7 @@ use \com\livinglogic\ul4\Color as Color;
 
 class UL4Test extends \PHPUnit_Framework_TestCase
 {
+	/*
 	function testColor()
 	{
 		$this->assertEquals("#3f7f7f4c", Color::fromhsv(0.5, 0.5, 0.5, 0.3)->repr());
@@ -51,18 +52,9 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		print $c->getOutput() . "\n";
 	}
-
-	/*
-	function testDictComp()
-	{
-		$s = 'OS27|de.livinglogic.ul4.storevarOS27|de.livinglogic.ul4.locationS79|<?code x = { c.upper() : "(" + c + ")" for c in "hurz" if c < "u"}?><?print x?>S4|codei0|i68|i7|i66|S1|xOS27|de.livinglogic.ul4.dictcompOS27|de.livinglogic.ul4.callmethS5|upperOS22|de.livinglogic.ul4.varS1|cL]OS22|de.livinglogic.ul4.addO^17|OS24|de.livinglogic.ul4.constS1|(O^13|^14|O^20|S1|)^14|O^20|S4|hurzOS21|de.livinglogic.ul4.ltO^13|^14|O^20|S1|u';
-		$p = \com\livinglogic\ul4on\Utils::loads($s);
-		$c = new EvaluationContext();
-		$p->evaluate($c);
-		print $c->getOutput() . "\n";
-	}
 	*/
 
+	/*
 	function testFunctionAll()
 	{
 		$s = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print all(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfuncS3|allLOS22|de.livinglogic.ul4.varS1|x]";
@@ -95,6 +87,37 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		print $c->getOutput() . "\n";
 	}
+	*/
+
+	/*
+	function testDictComp()
+	{
+		$s = 'OS27|de.livinglogic.ul4.storevarOS27|de.livinglogic.ul4.locationS79|<?code x = { c.upper() : "(" + c + ")" for c in "hurz" if c < "u"}?><?print x?>S4|codei0|i68|i7|i66|S1|xOS27|de.livinglogic.ul4.dictcompOS27|de.livinglogic.ul4.callmethS5|upperOS22|de.livinglogic.ul4.varS1|cL]OS22|de.livinglogic.ul4.addO^17|OS24|de.livinglogic.ul4.constS1|(O^13|^14|O^20|S1|)^14|O^20|S4|hurzOS21|de.livinglogic.ul4.ltO^13|^14|O^20|S1|u';
+		$p = \com\livinglogic\ul4on\Utils::loads($s);
+		print $p->toString(0) . "\n";
+		$c = new EvaluationContext();
+		$p->evaluate($c);
+		print $c->getOutput() . "\n";
+	}
+	*/
+
+	function testFromJson()
+	{
+		$s = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS21|<?print fromjson(x)?>S5|printi0|i21|i8|i19|OS27|de.livinglogic.ul4.callfuncS8|fromjsonLOS22|de.livinglogic.ul4.varS1|x]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s);
+		$c = new EvaluationContext(array("x" => '{"people":{"person":{"firstName":"Guillame","lastName":"Laforge","address":{"city":"Paris","country":"France","zip":12345},"married":true,"conferences":["JavaOne","Gr8conf"]}}}'));
+		$p->evaluate($c);
+		print $c->getOutput() . "\n";
+		$s = "OS27|de.livinglogic.ul4.storevarOS27|de.livinglogic.ul4.locationS24|<?code y = fromjson(x)?>S4|codei0|i24|i7|i22|S1|yOS27|de.livinglogic.ul4.callfuncS8|fromjsonLOS22|de.livinglogic.ul4.varS1|x]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s);
+		$c = new EvaluationContext(array("x" => '{"people":{"person":{"firstName":"Guillame","lastName":"Laforge","address":{"city":"Paris","country":"France","zip":12345},"married":true,"conferences":["JavaOne","Gr8conf"]}}}'));
+		$p->evaluate($c);
+		$y = $c->get("y");
+		$this->assertEquals($y["people"]["person"]["firstName"], "Guillame");
+	}
+	/*
+	*/
 }
+
 
 ?>

@@ -22,7 +22,7 @@ abstract class ChangeVar extends Tag
 
 		for ($i = 0; $i < $indent; ++$i)
 			$buffer .= "\t";
-		$buffer .= (getType() . "(" . FunctionRepr::call($this->varname) . ", " . $this->value . ")\n");
+		$buffer .= ($this->getType() . "(" . Utils::repr($this->varname) . ", " . $this->value . ")\n");
 		return $buffer;
 	}
 
