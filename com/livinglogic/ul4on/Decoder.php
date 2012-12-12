@@ -7,6 +7,8 @@ include_once "com/livinglogic/ul4/ul4.php";
 use com\livinglogic\ul4on\Utils as Utils;
 
 use \com\livinglogic\ul4\Color as Color;
+use \com\livinglogic\ul4\MonthDelta as MonthDelta;
+use \com\livinglogic\ul4\TimeDelta as TimeDelta;
 
 	class Decoder
 	{
@@ -79,9 +81,18 @@ use \com\livinglogic\ul4\Color as Color;
 					$this->loading($value);
 				return $value;
 			}
-			else if ($typecode == 't' || $typecode == 'T')
+			else if ($typecode == 'c' || $typecode == 'C')
 			{
 				$buffer = "";
+				for ($i = 0; $i < 8; $i++)
+					$buffer .= $this->nextChar();
+				$value = Color::fromdump($buffer);
+				if ($typecode == 'C')
+					$this->loading($value);
+				return $value;
+			}
+			else if ($typecode == 'z' || $typecode == 'Z')
+			{
 				$value  = new \DateTime();
 
 				$year   = $this->convertCharsToInt(4);
@@ -95,18 +106,28 @@ use \com\livinglogic\ul4\Color as Color;
 				$value->setDate($year, $month, $day);
 				$value->setTime($hour, $minute, $second);
 
+				if ($typecode == 'Z')
+					$this->loading($value);
+				return $value;
+			}
+			else if ($typecode == 't' || $typecode == 'T')
+			{
+				$days    = $this->readInt();
+				$seconds = $this->readInt();
+				$msecs   = $this->readInt(); // read the here unused microseconds
+
+				$value = new TimeDelta($days, $seconds, $msecs);
+
 				if ($typecode == 'T')
 					$this->loading($value);
 
 				return $value;
 			}
-			else if ($typecode == 'c' || $typecode == 'C')
+			else if ($typecode == 'm' || $typecode == 'M')
 			{
-				$buffer = "";
-				for ($i = 0; $i < 8; $i++)
-					$buffer .= $this->nextChar();
-				$value = Color::fromdump($buffer);
-				if ($typecode == 'C')
+				$months = $this->readInt();
+				$value = new MonthDelta($months);
+				if ($typecode == 'M')
 					$this->loading($value);
 				return $value;
 			}

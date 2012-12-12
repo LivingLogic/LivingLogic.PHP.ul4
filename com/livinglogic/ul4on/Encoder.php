@@ -6,6 +6,8 @@ include_once 'com/livinglogic/ul4/ul4.php';
 
 use \com\livinglogic\ul4\Color as Color;
 use \com\livinglogic\ul4on\UL4ONSerializable as UL4ONSerializable;
+use \com\livinglogic\ul4\MonthDelta as MonthDelta;
+use \com\livinglogic\ul4\TimeDelta as TimeDelta;
 
 class Encoder
 {
@@ -71,6 +73,16 @@ class Encoder
 				$this->record($obj);
 				$this->buffer .= "T" . date_format($obj, "YmdHis") . "000000";
 			}
+		}
+		else if ($obj instanceof TimeDelta)
+		{
+			$this->record($obj);
+			$this->buffer .= "T" . $obj->getDays() . "|" . $obj->getSeconds() . "|" . $obj->getMicroseconds() . "|";
+		}
+		else if ($obj instanceof MonthDelta)
+		{
+			$this->record($obj);
+			$this->buffer .= "M" . $obj->getMonths() . "|";
 		}
 		else if ($obj instanceof Color)
 		{

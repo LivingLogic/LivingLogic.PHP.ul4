@@ -31,6 +31,8 @@ include_once 'com/livinglogic/ul4/DictItemKeyValue.php';
 include_once 'com/livinglogic/ul4/Dict.php';
 include_once 'com/livinglogic/ul4/JsonSerializable.php';
 include_once 'com/livinglogic/ul4/Color.php';
+include_once 'com/livinglogic/ul4/MonthDelta.php';
+include_once 'com/livinglogic/ul4/TimeDelta.php';
 include_once 'com/livinglogic/ul4/Location.php';
 include_once 'com/livinglogic/ul4/EvaluationContext.php';
 include_once 'com/livinglogic/ul4/InterpretedTemplate.php';

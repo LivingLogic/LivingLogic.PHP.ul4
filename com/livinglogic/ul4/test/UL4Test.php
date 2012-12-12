@@ -29,6 +29,7 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 
 		$this->assertEquals("#fff", Color::fromdump("ffffffff")->repr());
 	}
+	*/
 
 	function testLoadDump()
 	{
@@ -42,8 +43,23 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array("x" => 42, "y" => 3));
 		$p->evaluate($c);
 		$this->assertEquals(45, $c->getOutput());
+
+		$md = new \com\livinglogic\ul4\MonthDelta(2);
+		$s1 = $md->repr();
+		$d = \com\livinglogic\ul4on\Utils::dumps($md);
+		$l = \com\livinglogic\ul4on\Utils::loads($d);
+		$s2 = $l->repr();
+		$this->assertEquals($s1, $s2);
+
+		$md = new \com\livinglogic\ul4\TimeDelta(2, 3, 4);
+		$s1 = $md->repr();
+		$d = \com\livinglogic\ul4on\Utils::dumps($md);
+		$l = \com\livinglogic\ul4on\Utils::loads($d);
+		$s2 = $l->repr();
+		$this->assertEquals($s1, $s2);
 	}
 
+	/*
 	function testFor()
 	{
 		$s = "OS22|de.livinglogic.ul4.forOS27|de.livinglogic.ul4.locationS69|<?for (a,b,c) in d?><?printx a?> <?printx b?> <?printx c?><?end for?>S3|fori0|i20|i6|i18|O^3|^4|S3|endi58|i69|i64|i67|LOS25|de.livinglogic.ul4.printxO^3|^4|S6|printxi20|i32|i29|i30|OS22|de.livinglogic.ul4.varS1|aOS23|de.livinglogic.ul4.textO^3|^4|ni32|i33|i32|i33|O^10|O^3|^4|^12|i33|i45|i42|i43|O^14|S1|bO^17|O^3|^4|ni45|i46|i45|i46|O^10|O^3|^4|^12|i46|i58|i55|i56|O^14|S1|c]L^15|^22|^28|]O^14|S1|d";
@@ -101,6 +117,7 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 	}
 	*/
 
+	/*
 	function testFromJson()
 	{
 		$s = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS21|<?print fromjson(x)?>S5|printi0|i21|i8|i19|OS27|de.livinglogic.ul4.callfuncS8|fromjsonLOS22|de.livinglogic.ul4.varS1|x]";
@@ -115,7 +132,6 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$y = $c->get("y");
 		$this->assertEquals($y["people"]["person"]["firstName"], "Guillame");
 	}
-	/*
 	*/
 }
 
