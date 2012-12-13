@@ -123,6 +123,20 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$y = $c->get("y");
 		$this->assertEquals($y["people"]["person"]["firstName"], "Guillame");
 	}
+
+	function testFromUL4ON()
+	{
+		$obj = array("a" => 1, "b" => array("b1" => 42, "b2" => 2.71), "c" => "gurk");
+		$dump = \com\livinglogic\ul4on\Utils::dumps($obj);
+		$s = "OS27|de.livinglogic.ul4.storevarOS27|de.livinglogic.ul4.locationS25|<?code x = fromul4on(x)?>S4|codei0|i25|i7|i23|S1|xOS27|de.livinglogic.ul4.callfuncS9|fromul4onLOS22|de.livinglogic.ul4.var^6|]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s);
+		$c = new EvaluationContext(array("x" => $dump));
+		$p->evaluate($c);
+		$x = $c->get("x");
+		$this->assertEquals(1, $x["a"]);
+		$this->assertEquals(42, $x["b"]["b1"]);
+		$this->assertEquals("gurk", $x["c"]);
+	}
 }
 
 

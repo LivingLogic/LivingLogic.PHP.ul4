@@ -124,7 +124,7 @@ class Encoder
 				$this->dump($keys[$i]);
 				$this->dump($obj[$keys[$i]]);
 			}
-			$this->buffer .= "]";
+			$this->buffer .= "}";
 		}
 	}
 }

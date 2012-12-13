@@ -64,7 +64,8 @@ class CallFunc extends AST
 			"all" => new FunctionAll(),
 			"any" => new FunctionAny(),
 			"date" => new FunctionDate(),
-			"fromjson" => new FunctionFromJSON()
+			"fromjson" => new FunctionFromJSON(),
+			"fromul4on" => new FunctionFromUL4ON()
 		);
 	}
 
