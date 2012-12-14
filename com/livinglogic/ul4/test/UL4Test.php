@@ -13,6 +13,8 @@ use \com\livinglogic\ul4\Color as Color;
 use \com\livinglogic\ul4\UndefinedIndex as UndefinedIndex;
 use \com\livinglogic\ul4\UndefinedKey as UndefinedKey;
 use \com\livinglogic\ul4\UndefinedVariable as UndefinedVariable;
+use \com\livinglogic\ul4\MonthDelta as MonthDelta;
+use \com\livinglogic\ul4\TimeDelta as TimeDelta;
 
 class UL4Test extends \PHPUnit_Framework_TestCase
 {
@@ -175,6 +177,30 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array("x" => 42));
 		$p->evaluate($c);
 		$this->assertEquals("False", $c->getOutput());
+	}
+
+	function testIsMonthDelta()
+	{
+		$s = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS25|<?print ismonthdelta(x)?>S5|printi0|i25|i8|i23|OS27|de.livinglogic.ul4.callfuncS12|ismonthdeltaLOS22|de.livinglogic.ul4.varS1|x]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s);
+		$c = new EvaluationContext(array("x" => new UndefinedIndex(0)));
+		$p->evaluate($c);
+		$this->assertEquals("False", $c->getOutput());
+		$c = new EvaluationContext(array("x" => new MonthDelta(2)));
+		$p->evaluate($c);
+		$this->assertEquals("True", $c->getOutput());
+	}
+
+	function testIsTimeDelta()
+	{
+		$s = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS24|<?print istimedelta(x)?>S5|printi0|i24|i8|i22|OS27|de.livinglogic.ul4.callfuncS11|istimedeltaLOS22|de.livinglogic.ul4.varS1|x]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s);
+		$c = new EvaluationContext(array("x" => new UndefinedIndex(0)));
+		$p->evaluate($c);
+		$this->assertEquals("False", $c->getOutput());
+		$c = new EvaluationContext(array("x" => new TimeDelta(2, 3, 4)));
+		$p->evaluate($c);
+		$this->assertEquals("True", $c->getOutput());
 	}
 }
 

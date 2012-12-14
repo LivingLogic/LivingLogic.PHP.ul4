@@ -98,6 +98,8 @@ include_once 'com/livinglogic/ul4/FunctionFromJSON.php';
 include_once 'com/livinglogic/ul4/FunctionFromUL4ON.php';
 include_once 'com/livinglogic/ul4/FunctionIsDefined.php';
 include_once 'com/livinglogic/ul4/FunctionIsUndefined.php';
+include_once 'com/livinglogic/ul4/FunctionIsMonthDelta.php';
+include_once 'com/livinglogic/ul4/FunctionIsTimeDelta.php';
 
 include_once 'com/livinglogic/ul4/Method.php';
 include_once 'com/livinglogic/ul4/MethodSplit.php';

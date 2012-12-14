@@ -67,7 +67,9 @@ class CallFunc extends AST
 			"fromjson" => new FunctionFromJSON(),
 			"fromul4on" => new FunctionFromUL4ON(),
 			"isdefined" => new FunctionIsDefined(),
-			"isundefined" => new FunctionIsUndefined()
+			"isundefined" => new FunctionIsUndefined(),
+			"ismonthdelta" => new FunctionIsMonthDelta(),
+			"istimedelta" => new FunctionIsTimeDelta()
 		);
 	}
 
