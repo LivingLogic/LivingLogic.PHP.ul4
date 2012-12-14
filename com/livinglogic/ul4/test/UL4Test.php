@@ -220,6 +220,16 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		$this->assertEquals("1", $c->getOutput());
 	}
+
+	function testMonthDelta()
+	{
+		$s = "OS27|de.livinglogic.ul4.storevarOS27|de.livinglogic.ul4.locationS26|<?code x = monthdelta(x)?>S4|codei0|i26|i7|i24|S1|xOS27|de.livinglogic.ul4.callfuncS10|monthdeltaLOS22|de.livinglogic.ul4.var^6|]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s);
+		$c = new EvaluationContext(array("x" => 4));
+		$p->evaluate($c);
+		$x = $c->get("x");
+		$this->assertEquals(4, $x->getMonths());
+	}
 }
 
 
