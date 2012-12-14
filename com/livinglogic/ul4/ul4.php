@@ -101,6 +101,7 @@ include_once 'com/livinglogic/ul4/FunctionIsUndefined.php';
 include_once 'com/livinglogic/ul4/FunctionIsMonthDelta.php';
 include_once 'com/livinglogic/ul4/FunctionIsTimeDelta.php';
 include_once 'com/livinglogic/ul4/FunctionMax.php';
+include_once 'com/livinglogic/ul4/FunctionMin.php';
 
 include_once 'com/livinglogic/ul4/Method.php';
 include_once 'com/livinglogic/ul4/MethodSplit.php';

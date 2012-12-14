@@ -70,7 +70,8 @@ class CallFunc extends AST
 			"isundefined" => new FunctionIsUndefined(),
 			"ismonthdelta" => new FunctionIsMonthDelta(),
 			"istimedelta" => new FunctionIsTimeDelta(),
-			"max" => new FunctionMax()
+			"max" => new FunctionMax(),
+			"min" => new FunctionMin()
 		);
 	}
 
