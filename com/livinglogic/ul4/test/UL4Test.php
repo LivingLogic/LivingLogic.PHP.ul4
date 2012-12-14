@@ -202,6 +202,15 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		$this->assertEquals("True", $c->getOutput());
 	}
+
+	function testMax()
+	{
+		$s = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS16|<?print max(x)?>S5|printi0|i16|i8|i14|OS27|de.livinglogic.ul4.callfuncS3|maxLOS22|de.livinglogic.ul4.varS1|x]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s);
+		$c = new EvaluationContext(array("x" => array(0, 4, 1, 2)));
+		$p->evaluate($c);
+		$this->assertEquals("4", $c->getOutput());
+	}
 }
 
 
