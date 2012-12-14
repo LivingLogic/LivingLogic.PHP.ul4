@@ -38,6 +38,10 @@ include_once 'com/livinglogic/ul4/EvaluationContext.php';
 include_once 'com/livinglogic/ul4/InterpretedTemplate.php';
 include_once 'com/livinglogic/ul4/Var.php';
 include_once 'com/livinglogic/ul4/DictComprehension.php';
+include_once 'com/livinglogic/ul4/Undefined.php';
+include_once 'com/livinglogic/ul4/UndefinedIndex.php';
+include_once 'com/livinglogic/ul4/UndefinedKey.php';
+include_once 'com/livinglogic/ul4/UndefinedVariable.php';
 
 include_once 'com/livinglogic/ul4/Function.php';
 include_once 'com/livinglogic/ul4/FunctionNow.php';
@@ -92,6 +96,7 @@ include_once 'com/livinglogic/ul4/FunctionAny.php';
 include_once 'com/livinglogic/ul4/FunctionDate.php';
 include_once 'com/livinglogic/ul4/FunctionFromJSON.php';
 include_once 'com/livinglogic/ul4/FunctionFromUL4ON.php';
+include_once 'com/livinglogic/ul4/FunctionIsDefined.php';
 
 include_once 'com/livinglogic/ul4/Method.php';
 include_once 'com/livinglogic/ul4/MethodSplit.php';

@@ -10,6 +10,9 @@ require_once 'PHPUnit/Autoload.php';
 include_once 'com/livinglogic/ul4/ul4.php';
 
 use \com\livinglogic\ul4\Color as Color;
+use \com\livinglogic\ul4\UndefinedIndex as UndefinedIndex;
+use \com\livinglogic\ul4\UndefinedKey as UndefinedKey;
+use \com\livinglogic\ul4\UndefinedVariable as UndefinedVariable;
 
 class UL4Test extends \PHPUnit_Framework_TestCase
 {
@@ -136,6 +139,24 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$this->assertEquals(1, $x["a"]);
 		$this->assertEquals(42, $x["b"]["b1"]);
 		$this->assertEquals("gurk", $x["c"]);
+	}
+
+	function testIsIsDefined()
+	{
+		$s = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS22|<?print isdefined(x)?>S5|printi0|i22|i8|i20|OS27|de.livinglogic.ul4.callfuncS9|isdefinedLOS22|de.livinglogic.ul4.varS1|x]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s);
+		$c = new EvaluationContext(array("x" => new UndefinedIndex(0)));
+		$p->evaluate($c);
+		$this->assertEquals("False", $c->getOutput());
+		$c = new EvaluationContext(array("x" => new UndefinedKey('b')));
+		$p->evaluate($c);
+		$this->assertEquals("False", $c->getOutput());
+		$c = new EvaluationContext(array("x" => new UndefinedVariable('b')));
+		$p->evaluate($c);
+		$this->assertEquals("False", $c->getOutput());
+		$c = new EvaluationContext(array("x" => 42));
+		$p->evaluate($c);
+		$this->assertEquals("True", $c->getOutput());
 	}
 }
 
