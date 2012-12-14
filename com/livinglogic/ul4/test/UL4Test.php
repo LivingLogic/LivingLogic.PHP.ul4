@@ -141,7 +141,7 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$this->assertEquals("gurk", $x["c"]);
 	}
 
-	function testIsIsDefined()
+	function testIsDefined()
 	{
 		$s = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS22|<?print isdefined(x)?>S5|printi0|i22|i8|i20|OS27|de.livinglogic.ul4.callfuncS9|isdefinedLOS22|de.livinglogic.ul4.varS1|x]";
 		$p = \com\livinglogic\ul4on\Utils::loads($s);
@@ -157,6 +157,24 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$c = new EvaluationContext(array("x" => 42));
 		$p->evaluate($c);
 		$this->assertEquals("True", $c->getOutput());
+	}
+
+	function testIsUndefined()
+	{
+		$s = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS24|<?print isundefined(x)?>S5|printi0|i24|i8|i22|OS27|de.livinglogic.ul4.callfuncS11|isundefinedLOS22|de.livinglogic.ul4.varS1|x]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s);
+		$c = new EvaluationContext(array("x" => new UndefinedIndex(0)));
+		$p->evaluate($c);
+		$this->assertEquals("True", $c->getOutput());
+		$c = new EvaluationContext(array("x" => new UndefinedKey('b')));
+		$p->evaluate($c);
+		$this->assertEquals("True", $c->getOutput());
+		$c = new EvaluationContext(array("x" => new UndefinedVariable('b')));
+		$p->evaluate($c);
+		$this->assertEquals("True", $c->getOutput());
+		$c = new EvaluationContext(array("x" => 42));
+		$p->evaluate($c);
+		$this->assertEquals("False", $c->getOutput());
 	}
 }
 
