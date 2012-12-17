@@ -230,6 +230,18 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$x = $c->get("x");
 		$this->assertEquals(4, $x->getMonths());
 	}
+
+	function testTimeDelta()
+	{
+		$s = "OS27|de.livinglogic.ul4.storevarOS27|de.livinglogic.ul4.locationS31|<?code x = timedelta(a, b, c)?>S4|codei0|i31|i7|i29|S1|xOS27|de.livinglogic.ul4.callfuncS9|timedeltaLOS22|de.livinglogic.ul4.varS1|aO^12|S1|bO^12|S1|c]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s);
+		$c = new EvaluationContext(array("a" => 1, "b" => 2, "c" => 3));
+		$p->evaluate($c);
+		$x = $c->get("x");
+		$this->assertEquals(1, $x->getDays());
+		$this->assertEquals(2, $x->getSeconds());
+		$this->assertEquals(3, $x->getMicroseconds());
+	}
 }
 
 

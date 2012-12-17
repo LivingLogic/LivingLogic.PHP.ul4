@@ -72,7 +72,8 @@ class CallFunc extends AST
 			"istimedelta" => new FunctionIsTimeDelta(),
 			"max" => new FunctionMax(),
 			"min" => new FunctionMin(),
-			"monthdelta" => new FunctionMonthDelta()
+			"monthdelta" => new FunctionMonthDelta(),
+			"timedelta" => new FunctionTimeDelta()
 		);
 	}
 
