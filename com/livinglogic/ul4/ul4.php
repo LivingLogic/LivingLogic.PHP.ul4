@@ -105,6 +105,7 @@ include_once 'com/livinglogic/ul4/FunctionMin.php';
 include_once 'com/livinglogic/ul4/FunctionMonthDelta.php';
 include_once 'com/livinglogic/ul4/FunctionTimeDelta.php';
 include_once 'com/livinglogic/ul4/FunctionURLQuote.php';
+include_once 'com/livinglogic/ul4/FunctionURLUnquote.php';
 
 include_once 'com/livinglogic/ul4/Method.php';
 include_once 'com/livinglogic/ul4/MethodSplit.php';

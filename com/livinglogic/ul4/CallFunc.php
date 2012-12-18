@@ -74,7 +74,8 @@ class CallFunc extends AST
 			"min" => new FunctionMin(),
 			"monthdelta" => new FunctionMonthDelta(),
 			"timedelta" => new FunctionTimeDelta(),
-			"urlquote" => new FunctionURLQuote()
+			"urlquote" => new FunctionURLQuote(),
+			"urlunquote" => new FunctionURLUnquote()
 		);
 	}
 
