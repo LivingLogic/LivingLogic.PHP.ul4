@@ -260,6 +260,15 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
 		$this->assertEquals("abc def", $c->getOutput());
 	}
+
+	function testGeneratorExpression()
+	{
+		$s = 'OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS75|<?print ", ".join("(" + str(c) + ")" for c in [1, 2, 3, 4] if c % 2 == 0)?>S5|printi0|i75|i8|i73|OS27|de.livinglogic.ul4.callmethS4|joinOS24|de.livinglogic.ul4.constS2|, LOS26|de.livinglogic.ul4.genexprOS22|de.livinglogic.ul4.addO^16|O^10|S1|(OS27|de.livinglogic.ul4.callfuncS3|strLOS22|de.livinglogic.ul4.varS1|c]O^10|S1|)^26|OS23|de.livinglogic.ul4.listLO^10|i1|O^10|i2|O^10|i3|O^10|i4|]OS21|de.livinglogic.ul4.eqOS22|de.livinglogic.ul4.modO^25|^26|O^10|i2|O^10|i0|]';
+		$p = \com\livinglogic\ul4on\Utils::loads($s);
+		$c = new EvaluationContext(array());
+		$p->evaluate($c);
+ 		$this->assertEquals("(2), (4)", $c->getOutput());
+	}
 }
 
 ?>

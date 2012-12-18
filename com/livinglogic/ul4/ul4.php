@@ -42,6 +42,7 @@ include_once 'com/livinglogic/ul4/Undefined.php';
 include_once 'com/livinglogic/ul4/UndefinedIndex.php';
 include_once 'com/livinglogic/ul4/UndefinedKey.php';
 include_once 'com/livinglogic/ul4/UndefinedVariable.php';
+include_once 'com/livinglogic/ul4/GeneratorExpression.php';
 
 include_once 'com/livinglogic/ul4/Function.php';
 include_once 'com/livinglogic/ul4/FunctionNow.php';

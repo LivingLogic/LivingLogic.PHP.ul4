@@ -26,8 +26,16 @@ class MethodJoin implements Method
 	{
 		if (is_string($obj))
 		{
-			if (\com\livinglogic\ul4on\Utils::isList($iterable))
-				return join($obj, $iterable);
+			if ($iterable instanceof \Iterator)
+			{
+				$array = array();
+				while ($iterable->valid())
+				{
+					array_push($array, $iterable->current());
+					$iterable->next();
+				}
+				return join($obj, $array);
+			}
 			return join($obj, str_split($iterable));
 		}
 		else
