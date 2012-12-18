@@ -242,6 +242,15 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$this->assertEquals(2, $x->getSeconds());
 		$this->assertEquals(3, $x->getMicroseconds());
 	}
+
+	function testURLQuote()
+	{
+		$s = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationS21|<?print urlquote(x)?>S5|printi0|i21|i8|i19|OS27|de.livinglogic.ul4.callfuncS8|urlquoteLOS22|de.livinglogic.ul4.varS1|x]";
+		$p = \com\livinglogic\ul4on\Utils::loads($s);
+		$c = new EvaluationContext(array("x" => "abc def"));
+		$p->evaluate($c);
+		$this->assertEquals("abc+def", $c->getOutput());
+	}
 }
 
 
