@@ -43,6 +43,9 @@ include_once 'com/livinglogic/ul4/UndefinedIndex.php';
 include_once 'com/livinglogic/ul4/UndefinedKey.php';
 include_once 'com/livinglogic/ul4/UndefinedVariable.php';
 include_once 'com/livinglogic/ul4/GeneratorExpression.php';
+include_once 'com/livinglogic/ul4/JavascriptSource4Template.php';
+include_once 'com/livinglogic/ul4/KeywordMethod.php';
+include_once 'com/livinglogic/ul4/ListComprehension.php';
 
 include_once 'com/livinglogic/ul4/Function.php';
 include_once 'com/livinglogic/ul4/FunctionNow.php';

@@ -269,6 +269,16 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$p->evaluate($c);
  		$this->assertEquals("(2), (4)", $c->getOutput());
 	}
+
+	function testListComprehension()
+	{
+		$s = 'OS27|de.livinglogic.ul4.storevarOS27|de.livinglogic.ul4.locationS63|<?code x = ["(" + c.upper() + ")" for c in "hurz" if c < "u"]?>S4|codei0|i63|i7|i61|S1|xOS27|de.livinglogic.ul4.listcompOS22|de.livinglogic.ul4.addO^10|OS24|de.livinglogic.ul4.constS1|(OS27|de.livinglogic.ul4.callmethS5|upperOS22|de.livinglogic.ul4.varS1|cL]O^13|S1|)^20|O^13|S4|hurzOS21|de.livinglogic.ul4.ltO^19|^20|O^13|S1|u';
+		$p = \com\livinglogic\ul4on\Utils::loads($s);
+		$c = new EvaluationContext(array());
+		$p->evaluate($c);
+		$x = $c->get("x");
+		$this->assertEquals("(H)", $x[0]);
+	}
 }
 
 ?>
