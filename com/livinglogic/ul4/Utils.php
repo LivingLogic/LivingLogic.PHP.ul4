@@ -753,6 +753,42 @@ class Utils
 		else if ((is_int($obj1) || is_long($obj1) || is_float($obj1) || is_double($obj1) || is_bool($obj1)) &&
 				(is_int($obj2) || is_long($obj2) || is_float($obj2) || is_double($obj2) || is_bool($obj2)))
 			return $obj1 + $obj2;
+		else if ($obj1 instanceof \DateTime && ($obj2 instanceof TimeDelta || $obj2 instanceof MonthDelta))
+		{
+			if ($obj2 instanceof MonthDelta)
+			{
+				$dateInterval = new \DateInterval("P" . $obj2->getMonths() . "M");
+				$obj1->add($dateInterval);
+				return $dateTime;
+			}
+			else
+			{
+				$distr = "P" . $obj2->getDays() . "D";
+				if (!is_null($obj2->getSeconds()) && $obj2->getSeconds() != 0)
+					$distr .= "T" . $obj2->getSeconds() . "S";
+				$dateInterval = new \DateInterval($distr);
+				$obj1->add($dateInterval);
+				return $dateTime;
+			}
+		}
+		else if (($obj1 instanceof TimeDelta || $obj1 instanceof MonthDelta) && $obj2 instanceof \DateTime)
+		{
+			if ($obj1 instanceof MonthDelta)
+			{
+				$dateInterval = new \DateInterval("P" . $obj1->getMonths() . "M");
+				$obj2->add($dateInterval);
+				return $dateTime;
+			}
+			else
+			{
+				$distr = "P" . $obj1->getDays() . "D";
+				if (!is_null($obj1->getSeconds()) && $obj1->getSeconds() != 0)
+					$distr .= "T" . $obj1->getSeconds() . "S";
+				$dateInterval = new \DateInterval($distr);
+				$obj2->add($dateInterval);
+				return $dateTime;
+			}
+		}
 
 		throw new \Exception(self::objectType($obj1) . " + " . self::objectType($obj2) . " not supported");
 	}

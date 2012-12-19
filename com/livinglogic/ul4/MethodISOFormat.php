@@ -23,7 +23,7 @@ class MethodISOFormat implements Method
 	}
 
 	private static $isoDateFormat = "Y-m-d";
-	private static $isoDateTime2Format = "Y-m-d'T'H:i:s";
+	private static $isoDateTime2Format = "Y-m-d\TH:i:s";
 	private static $isoTimestampMicroFormat = "Y-m-d'T'H:i:s000000";
 
 	public function call($obj)
