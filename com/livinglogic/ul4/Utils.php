@@ -14,6 +14,8 @@ class Repr
 	{
 		if (is_null($obj))
 			return "None";
+		else if ($obj instanceof Undefined)
+			return "Undefined";
 		else if (is_bool($obj))
 			return $obj ? "True" : "False";
 		else if (is_int($obj) || is_long($obj) || is_double($obj) || is_float($obj))
@@ -617,7 +619,7 @@ class Utils
 			if (array_key_exists($key, $container))
 				return $container[$key];
 			else
-				throw new \Exception("Key " . self::repr($key) . " not found in container " . self::repr($container));
+				return new UndefinedKey($key);
 		}
 		else if (\com\livinglogic\ul4on\Utils::isList($container))
 		{
@@ -627,7 +629,7 @@ class Utils
 				if ($key < 0)
 					$key += count($container);
 				if ($key < 0 || $key >= count($container))
-					throw new \Exception("Index $orgkey is out of bounds!");
+					return new UndefinedIndex($key);
 				return $container[$key];
 			}
 			else
@@ -641,7 +643,7 @@ class Utils
 				if ($key < 0)
 					$key += strlen($container);
 				if ($key < 0 || $key >= strlen($container))
-					throw new\Exception("Index $orgkey is out of bounds!");
+					return new UndefinedIndex($key);
 				return $container[$key];
 			}
 			else
@@ -652,7 +654,7 @@ class Utils
 			if (is_int($key))
 			{
 				if ($key < 0 || $key > 3)
-					throw new\Exception("Index $key is not in [0..3]!");
+					return new UndefinedIndex($key);
 
 				return $container->get($key);
 			}
@@ -664,6 +666,8 @@ class Utils
 	public static function str($obj)
 	{
 		if (is_null($obj))
+			return "";
+		else if ($obj instanceof Undefined)
 			return "";
 		else if (is_bool($obj))
 			return $obj ? "True" : "False";
@@ -818,6 +822,8 @@ class Utils
 	{
 		if (is_null($obj))
 			return false;
+		else if ($obj instanceof Undefined)
+			return false;
 		else if (is_bool($obj))
 			return $obj;
 		else if (is_string($obj))
@@ -828,7 +834,10 @@ class Utils
 			return $obj != 0.;
 		else if ($obj instanceof \DateTime)
 			return True;
-		// TODO TimeDelta, MonthDelta
+		else if ($obj instanceof TimeDelta)
+			return $obj->getDays() != 0 || $obj->getSeconds() != 0 || $obj->getMicroseconds() != 0;
+		else if ($obj instanceof MonthDelta)
+			return $obj->getMonths() != 0;
 		else if (\com\livinglogic\ul4on\Utils::isList($obj) || \com\livinglogic\ul4on\Utils::isDict($obj))
 			return count($obj) > 0;
 
@@ -1438,6 +1447,15 @@ class Utils
 		}
 	}
 
+	public static function date($year, $month, $day, $hour=0, $minute=0, $second=0, $microsecond=0)
+	{
+		$dt = new \DateTime();
+
+		$dt->setDate($year, $month, $day);
+		$dt->setTime($hour, $minute, $second);
+
+		return $dt;
+	}
 }
 
 ?>

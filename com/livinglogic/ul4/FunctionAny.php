@@ -40,7 +40,7 @@ class FunctionAny implements _Function
 		}
 		else if ($obj instanceof \Iterator)
 		{
-			for (; $obj->valid(); $obj.next())
+			for (; $obj->valid(); $obj->next())
 			{
 				if (Utils::getBool($obj->current()))
 					return true;
