@@ -17,7 +17,7 @@ class FunctionRange implements _Function
 			case 3:
 				return Utils::range($args[0], $args[1], $args[2]);
 			default:
-				throw new ArgumentCountMismatchException("function", "range", args.length, 1, 3);
+				throw new ArgumentCountMismatchException("function", "range", count($args), 1, 3);
 		}
 	}
 
