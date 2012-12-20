@@ -24,7 +24,30 @@ class Repr
 			return '"' . addslashes($obj)	. '"';
 		else if ($obj instanceof \DateTime)
 		{
-			return date_format($obj, "YmdHis") . "000000";
+			$date = date_format($obj, "Y-m-d");
+			$time = date_format($obj, "H:i:s");
+			if ($time == "00:00:00")
+				return "@(" . $date . ")";
+			else
+				return "@(" . $date . "T" . $time . ")";
+		}
+		else if ($obj instanceof TimeDelta)
+		{
+			if ($obj->getMicroseconds() != 0)
+				return "timedelta(" . $obj->getDays() . ", " . $obj->getSeconds() . ", " . $obj->getMicroseconds() . ")";
+			else if ($obj->getSeconds() != 0)
+				return "timedelta(" . $obj->getDays() . ", " . $obj->getSeconds() . ")";
+			else if ($obj->getDays() != 0)
+				return "timedelta(" . $obj->getDays() . ")";
+			else
+				return "timedelta()";
+		}
+		else if ($obj instanceof MonthDelta)
+		{
+			if ($obj->getMonths() != 0)
+				return "monthdelta(" . $obj->getMonths() . ")";
+			else
+				return "monthdelta()";
 		}
 		else if ($obj instanceof Color)
 			return $obj->repr();
@@ -698,7 +721,7 @@ class Utils
 			return $obj;
 		else if ($obj instanceof \DateTime)
 		{
-			return date_format($obj, "YmdHis") . "000000";
+			return date_format($obj, "Y-m-d H:i:s");
 			// FIXME
 // 			if (microsecond(obj) != 0)
 // 				return strTimestampMicroFormatter.format(obj);
