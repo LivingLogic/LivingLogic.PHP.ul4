@@ -32,23 +32,9 @@ class Repr
 				return "@(" . $date . "T" . $time . ")";
 		}
 		else if ($obj instanceof TimeDelta)
-		{
-			if ($obj->getMicroseconds() != 0)
-				return "timedelta(" . $obj->getDays() . ", " . $obj->getSeconds() . ", " . $obj->getMicroseconds() . ")";
-			else if ($obj->getSeconds() != 0)
-				return "timedelta(" . $obj->getDays() . ", " . $obj->getSeconds() . ")";
-			else if ($obj->getDays() != 0)
-				return "timedelta(" . $obj->getDays() . ")";
-			else
-				return "timedelta()";
-		}
+			return $obj->repr();
 		else if ($obj instanceof MonthDelta)
-		{
-			if ($obj->getMonths() != 0)
-				return "monthdelta(" . $obj->getMonths() . ")";
-			else
-				return "monthdelta()";
-		}
+			return $obj->repr();
 		else if ($obj instanceof Color)
 			return $obj->repr();
 		else if (\com\livinglogic\ul4on\Utils::isList($obj))
@@ -735,6 +721,10 @@ class Utils
 		}
 		else if ($obj instanceof Color)
 			return $obj->__toString();
+		else if ($obj instanceof TimeDelta)
+			return $obj->toString();
+		else if ($obj instanceof MonthDelta)
+			return $obj->toString();
 		else
 			return self::repr($obj);
 
