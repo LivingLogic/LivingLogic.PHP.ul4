@@ -32,6 +32,10 @@ class FunctionType implements _Function
 			return "float";
 		else if ($obj instanceof \DateTime)
 			return "date";
+		else if ($obj instanceof TimeDelta)
+			return "timedelta";
+		else if ($obj instanceof MonthDelta)
+			return "monthdelta";
 		else if ($obj instanceof Color)
 			return "color";
 		else if (\com\livinglogic\ul4on\Utils::isList($obj))
