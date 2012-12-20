@@ -81,8 +81,8 @@ class GetSlice extends AST
 			$size = count($obj);
 			$start = Utils::getSliceStartPos($size, $start);
 			$end = Utils::getSliceEndPos($size, $end);
-			if ($end < $start)
-				$end = $start;
+			if ($end < $start || $start >= $size)
+				return array();
 			return array_slice($obj, $start, $end - $start);
 		}
 		else if (is_string($obj))
@@ -93,8 +93,8 @@ class GetSlice extends AST
 			$size = strlen($obj);
 			$start = Utils::getSliceStartPos($size, $start);
 			$end = Utils::getSliceEndPos($size, $end);
-			if ($end < $start)
-				$end = $start;
+			if ($end < $start || $start >= $size)
+				return "";
 			return substr($obj, $start, $end - $start);
 		}
 		throw new ArgumentTypeMismatchException("{}[{}:{}]", $obj, $startIndex, $endIndex);
