@@ -90,7 +90,7 @@ class Utils
 		for ($i = 0; $i < count($keys); $i++)
 		{
 			$key = $keys[$i];
-			if (! is_int($key))
+			if (!is_int($key) || $key != $i)
 				return false;
 		}
 
@@ -103,14 +103,16 @@ class Utils
 			return false;
 
 		$keys = array_keys($obj);
+		if (!count($keys))
+			return true;
 		for ($i = 0; $i < count($keys); $i++)
 		{
 			$key = $keys[$i];
-			if (! is_string($key))
-				return false;
+			if (!is_int($key) || $key != $i)
+				return true;
 		}
 
-		return true;
+		return false;
 	}
 
 }
