@@ -193,7 +193,7 @@ use \com\livinglogic\ul4\TimeDelta as TimeDelta;
 				$factory = Utils::$registry[$name];
 
 				if ($factory == null)
-					throw new Exception("can't load object of type " . $name);
+					throw new \Exception("can't load object of type " . $name);
 				$value = new $factory;
 				// Fix object in backreference list
 				if ($oldpos != -1)
@@ -222,7 +222,7 @@ use \com\livinglogic\ul4\TimeDelta as TimeDelta;
 		private function nextChar()
 		{
 			if (\strlen($this->buffer) <= ($this->index - 1))
-				throw new Exception("buffer is completely read. buffer = '$this->buffer', index = $this->index,  count =   " . \strlen($this->buffer));
+				throw new \Exception("buffer is completely read. buffer = '$this->buffer', index = $this->index,  count =   " . \strlen($this->buffer));
 
 			$c = $this->buffer[++$this->index];
 
