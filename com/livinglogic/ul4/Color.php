@@ -42,16 +42,13 @@ class Color implements JsonSerializable
 		$member = $value;
 	}
 
-	private function hexstr($value)
+	private static function hexstr($value)
 	{
-		$buffer = "";
 		$svalue = dechex($value);
 
 		if (strlen($svalue) < 2)
-			$buffer .= "0";
-		$buffer .= $svalue;
-
-		return $buffer;
+			return "0" . $svalue;
+		return $svalue;
 	}
 
 	public static function fromhsv($h, $s, $v, $a=1.0)
@@ -197,23 +194,9 @@ class Color implements JsonSerializable
 		if ($this->a === 255)
 		{
 			if ((($this->r>>4) == ($this->r&0xf)) && (($this->g>>4) == ($this->g&0xf)) && (($this->b>>4) == ($this->b&0xf)))
-				return "#" + Integer.toHexString($this->r>>4) + Integer.toHexString($this->g>>4) + Integer.toHexString($this->b>>4);
+				return "#" . dechex($this->r>>4) . dechex($this->g>>4) . dechex($this->b>>4);
 			else
-			{
-				$sr = dechex($this->r);
-				if (strlen($sr) < 2)
-					$sr = "0" . $sr;
-
-				$sg = dechex($this->g);
-				if (strlen($sg) < 2)
-					$sg = "0" . $sg;
-
-				$sb = dechex($this->b);
-				if (strlen($sb) < 2)
-					$sb = "0" . $sb;
-
-				return "#" . $sr . $sg . $sb;
-			}
+				return "#" . self::hexstr($this->r) . self::hexstr($this->g) . self::hexstr($this->b);
 		}
 		else
 		{
