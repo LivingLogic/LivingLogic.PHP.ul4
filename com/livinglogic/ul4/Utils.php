@@ -896,6 +896,8 @@ class Utils
 			return in_array($obj, $container, True);
 		else if (\com\livinglogic\ul4on\Utils::isDict($container))
 			return array_key_exists($obj, $container);
+		else if (\com\livinglogic\ul4\FunctionIsColor::_call($container))
+			return $container->getR() == $obj || $container->getG() == $obj || $container->getB() == $obj || $container->getA() == $obj;
 
 		throw new \Exception(self::objectType($obj) . " in " . self::objectType($container) . " not supported!");
 	}
