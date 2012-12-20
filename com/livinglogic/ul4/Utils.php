@@ -913,6 +913,19 @@ class Utils
 				$obj2 = $obj2 ? 1 : 0;
 			return ($obj1 > $obj2) - ($obj1 < $obj2);
 		}
+		else if (\com\livinglogic\ul4\FunctionIsTimeDelta::_call($obj1) && \com\livinglogic\ul4\FunctionIsTimeDelta::_call($obj2))
+		{
+			$temp = Utils::cmp($obj1->getDays(), $obj2->getDays(), "==");
+			if ($temp == 0)
+				$temp = Utils::cmp($obj1->getSeconds(), $obj2->getSeconds(), "==");
+			if ($temp == 0)
+				$temp = Utils::cmp($obj1->getMicroseconds(), $obj2->getMicroseconds(), "==");
+			return $temp;
+		}
+		else if (\com\livinglogic\ul4\FunctionIsMonthDelta::_call($obj1) && \com\livinglogic\ul4\FunctionIsMonthDelta::_call($obj2))
+		{
+			return Utils::cmp($obj1->getMonths(), $obj2->getMonths(), "==");
+		}
 
 		throw new \Exception(self::objectType($obj1) . " " . $op . " " . self::objectType($obj2) . " not supported!");
 	}
@@ -1461,7 +1474,6 @@ class Utils
 			}
 		}
 	}
-
 
 	public static function formatVarname(&$buffer, $varname)
 	{
