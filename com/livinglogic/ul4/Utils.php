@@ -629,7 +629,6 @@ class MapItemIterator implements \Iterator
 	}
 }
 
-
 class Utils
 {
 	public static function repr($obj)

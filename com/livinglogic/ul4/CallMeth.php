@@ -24,6 +24,7 @@ class CallMeth extends AST
 			"lower" => new MethodLower(),
 			"capitalize" => new MethodCapitalize(),
 			"items" => new MethodItems(),
+			"values" => new MethodValues(),
 			"microsecond" => new MethodMicrosecond(),
 			"hour" => new MethodHour(),
 			"minute" => new MethodMinute(),

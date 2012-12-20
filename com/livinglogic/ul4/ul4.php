@@ -121,6 +121,7 @@ include_once 'com/livinglogic/ul4/MethodUpper.php';
 include_once 'com/livinglogic/ul4/MethodLower.php';
 include_once 'com/livinglogic/ul4/MethodCapitalize.php';
 include_once 'com/livinglogic/ul4/MethodItems.php';
+include_once 'com/livinglogic/ul4/MethodValues.php';
 include_once 'com/livinglogic/ul4/MethodHour.php';
 include_once 'com/livinglogic/ul4/MethodMinute.php';
 include_once 'com/livinglogic/ul4/MethodSecond.php';
