@@ -39,7 +39,10 @@ class EvaluationContext
 
 	public function get($key)
 	{
-		return Utils::getItem($this->variables, $key);
+		if (array_key_exists($key, $this->variables))
+			return $this->variables[$key];
+		else
+			return new UndefinedVariable($key);
 	}
 
 	public function remove($key)
