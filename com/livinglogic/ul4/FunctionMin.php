@@ -13,8 +13,8 @@ class FunctionMin implements _Function
 
 	public function call($context, $args)
 	{
-		if (count($args) == 1)
-			return self::_call($args[0]);
+		if (count($args) > 0)
+			return self::_call($args);
 		throw new ArgumentCountMismatchException("function", "min", 0, 1, -1);
 	}
 
@@ -33,7 +33,7 @@ class FunctionMin implements _Function
 			$first = false;
 		}
 		if ($first)
-			throw new Exception("max() arg is an empty sequence!");
+			throw new \Exception("max() arg is an empty sequence!");
 		return $minValue;
 	}
 }
