@@ -26,17 +26,15 @@ class MethodJoin implements Method
 	{
 		if (is_string($obj))
 		{
-			if ($iterable instanceof \Iterator)
+			$iterator = Utils::iterator($iterable);
+
+			$array = array();
+			while ($iterator->valid())
 			{
-				$array = array();
-				while ($iterable->valid())
-				{
-					array_push($array, $iterable->current());
-					$iterable->next();
-				}
-				return join($obj, $array);
+				array_push($array, $iterator->current());
+				$iterator->next();
 			}
-			return join($obj, str_split($iterable));
+			return join($obj, $array);
 		}
 		else
 			throw new ArgumentTypeMismatchException("{}.join({})", $obj, $iterable);
