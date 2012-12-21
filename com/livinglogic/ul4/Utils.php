@@ -1284,25 +1284,12 @@ class Utils
 		return new SequenceIsLast(self::iterator($obj));
 	}
 
-	public static function unichr($intval)
-	{
-		return mb_convert_encoding(pack('n', $intval), 'UTF-8', 'UTF-16BE');
-	}
-
-	public static function uniord($u)
-	{
-		$k = mb_convert_encoding($u, 'UCS-2LE', 'UTF-8');
-		$k1 = ord(substr($k, 0, 1));
-		$k2 = ord(substr($k, 1, 1));
-		return $k2 * 256 + $k1;
-	}
-
 	public static function chr($obj)
 	{
 		if (is_int($obj) || is_long($obj))
 		{
-			$charValue = self::unichr($obj);
-			if ($obj != self::uniord($charValue))
+			$charValue = mb_convert_encoding(pack('n', $obj), 'UTF-8', 'UTF-16BE');
+			if ($obj != self::ord($charValue))
 			{
 				throw new \Exception("Code point " . $obj . " is invalid!");
 			}
@@ -1310,7 +1297,7 @@ class Utils
 		}
 		else if (is_bool($obj))
 		{
-			return $obj ? pack("c", 0x01) : pack("c", 0x00);
+			return pack("c", $obj ? 0x01 : 0x00);
 		}
 
 		throw new \Exception("chr(" . self::objectType($obj) . ") not supported!");
@@ -1320,11 +1307,12 @@ class Utils
 	{
 		if (is_string($obj))
 		{
-			if (1 != mb_strlen($obj)) // TODO: "й" fuehrt zu\Exception
-			{
+			$k = mb_convert_encoding($obj, 'UCS-2LE', 'UTF-8');
+			if (1 != mb_strlen($k, 'UCS-2LE'))
 				throw new \Exception("String " . $obj . " contains more than one unicode character!");
-			}
-			return self::uniord($obj[0]);
+			$k1 = ord(substr($k, 0, 1));
+			$k2 = ord(substr($k, 1, 1));
+			return $k2 * 256 + $k1;
 		}
 		throw new \Exception("ord(" . self::objectType($obj) . ") not supported!");
 	}
