@@ -12,7 +12,7 @@ class TimeDelta
 
 	public function __construct($days=0, $seconds=0, $microseconds=0)
 	{
-		if ((is_float($days) || is_double($days)) && (is_float($seconds) || is_double($seconds)) && (is_float($microseconds) || is_double($microseconds)))
+		if (is_float($days) || is_double($days) || is_float($seconds) || is_double($seconds) || is_float($microseconds) || is_double($microseconds))
 		{
 			$microseconds = Utils::toInteger(($days%(1./(24*60*60)))*24*60*60*1000000+($seconds%1.0)*1000000+$microseconds);
 			$seconds = Utils::toInteger(($days % 1.0)*24*60*60+seconds);
