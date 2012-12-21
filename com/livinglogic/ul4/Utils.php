@@ -1174,7 +1174,15 @@ class Utils
 		if (func_num_args() == 1)
 		{
 			if (is_string($obj))
-				return intval($obj);
+			{
+				$obj = trim($obj);
+				if (ctype_digit($obj))
+					return intval($obj);
+				else if ((strpos($obj, "-") === 0) || (strpos($obj, "+") === 0) && ctype_digit(substr($obj, 1)))
+					return intval($obj);
+				else
+					throw new \Exception("invalid literal for int(): " . Utils::repr($obj) . "!");
+			}
 			else if (is_int($obj) || is_long($obj))
 				return $obj;
 			else if (is_bool($obj))
