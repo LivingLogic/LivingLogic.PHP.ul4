@@ -9,7 +9,7 @@ class FunctionIsInt implements _Function
 	public function call($context, $args)
 	{
 		if (count($args) == 1)
-			return is_int($args[0]);
+			return is_int($args[0]) || is_long($args[0]);
 		throw new ArgumentCountMismatchException("function", "isint", count($args), 1);
 	}
 
