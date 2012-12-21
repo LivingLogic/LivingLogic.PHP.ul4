@@ -647,6 +647,8 @@ class Utils
 			return 'int';
 		else if (is_float($obj) || is_double($obj))
 			return 'float';
+		else if (is_string($obj))
+			return 'str';
 		else if ($obj instanceof \com\livinglogic\ul4\Color)
 			return 'color';
 		else if ($obj instanceof InterpretedTemplate)
