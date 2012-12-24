@@ -861,6 +861,14 @@ class Utils
 		if ((is_int($obj1) || is_long($obj1) || is_float($obj1) || is_double($obj1) || is_bool($obj1)) &&
 				(is_int($obj2) || is_long($obj2) || is_float($obj2) || is_double($obj2) || is_bool($obj2)))
 			return $obj1 - $obj2;
+		else if ($obj1 instanceof TimeDelta && $obj2 instanceof TimeDelta)
+		{
+			return new TimeDelta($obj1->getDays() - $obj2->getDays(), $obj1->getSeconds() - $obj2->getSeconds(), $obj1->getMicroseconds() - $obj2->getMicroseconds());
+		}
+		else if ($obj1 instanceof MonthDelta && $obj2 instanceof MonthDelta)
+		{
+			return new MonthDelta($obj1->getMonths() - $obj2->getMonths());
+		}
 
 		throw new \Exception(self::objectType($obj1) + " - " + self::objectType($obj2) . " not supported");
 	}
