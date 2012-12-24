@@ -814,7 +814,7 @@ class Utils
 			{
 				$dateInterval = new \DateInterval("P" . $obj2->getMonths() . "M");
 				$obj1->add($dateInterval);
-				return $dateTime;
+				return $obj1;
 			}
 			else
 			{
@@ -823,7 +823,7 @@ class Utils
 					$distr .= "T" . $obj2->getSeconds() . "S";
 				$dateInterval = new \DateInterval($distr);
 				$obj1->add($dateInterval);
-				return $dateTime;
+				return $obj1;
 			}
 		}
 		else if (($obj1 instanceof TimeDelta || $obj1 instanceof MonthDelta) && $obj2 instanceof \DateTime)
@@ -832,7 +832,7 @@ class Utils
 			{
 				$dateInterval = new \DateInterval("P" . $obj1->getMonths() . "M");
 				$obj2->add($dateInterval);
-				return $dateTime;
+				return $obj2;
 			}
 			else
 			{
@@ -841,8 +841,16 @@ class Utils
 					$distr .= "T" . $obj1->getSeconds() . "S";
 				$dateInterval = new \DateInterval($distr);
 				$obj2->add($dateInterval);
-				return $dateTime;
+				return $obj2;
 			}
+		}
+		else if ($obj1 instanceof TimeDelta && $obj2 instanceof TimeDelta)
+		{
+			return new TimeDelta($obj1->getDays() + $obj2->getDays(), $obj1->getSeconds() + $obj2->getSeconds(), $obj1->getMicroseconds() + $obj2->getMicroseconds());
+		}
+		else if ($obj1 instanceof MonthDelta && $obj2 instanceof MonthDelta)
+		{
+			return new MonthDelta($obj1->getMonths() + $obj2->getMonths());
 		}
 
 		throw new \Exception(self::objectType($obj1) . " + " . self::objectType($obj2) . " not supported");
@@ -854,7 +862,7 @@ class Utils
 				(is_int($obj2) || is_long($obj2) || is_float($obj2) || is_double($obj2) || is_bool($obj2)))
 			return $obj1 - $obj2;
 
-		throw new \Exception(self::objectType($obj1) + " + " + self::objectType($obj2) . " not supported");
+		throw new \Exception(self::objectType($obj1) + " - " + self::objectType($obj2) . " not supported");
 	}
 
 	private static function mulArray($array, $count)
