@@ -861,6 +861,21 @@ class Utils
 		if ((is_int($obj1) || is_long($obj1) || is_float($obj1) || is_double($obj1) || is_bool($obj1)) &&
 				(is_int($obj2) || is_long($obj2) || is_float($obj2) || is_double($obj2) || is_bool($obj2)))
 			return $obj1 - $obj2;
+		else if ($obj1 instanceof \DateTime && $obj2 instanceof TimeDelta)
+		{
+			$distr = "P" . $obj2->getDays() . "D";
+			if (!is_null($obj2->getSeconds()) && $obj2->getSeconds() != 0)
+				$distr .= "T" . $obj2->getSeconds() . "S";
+			$dateInterval = new \DateInterval($distr);
+			$obj1->sub($dateInterval);
+			return $obj1;
+		}
+		else if ($obj1 instanceof \DateTime && $obj2 instanceof MonthDelta)
+		{
+			$dateInterval = new \DateInterval("P" . $obj2->getMonths() . "M");
+			$obj1->sub($dateInterval);
+			return $obj1;
+		}
 		else if ($obj1 instanceof TimeDelta && $obj2 instanceof TimeDelta)
 		{
 			return new TimeDelta($obj1->getDays() - $obj2->getDays(), $obj1->getSeconds() - $obj2->getSeconds(), $obj1->getMicroseconds() - $obj2->getMicroseconds());
