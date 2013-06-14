@@ -71,7 +71,7 @@ class Encoder
 			else
 			{
 				$this->record($obj);
-				$this->buffer .= "T" . date_format($obj, "YmdHis") . "000000";
+				$this->buffer .= "Z" . date_format($obj, "YmdHis") . "000000";
 			}
 		}
 		else if ($obj instanceof TimeDelta)
@@ -125,6 +125,17 @@ class Encoder
 				$this->dump($obj[$keys[$i]]);
 			}
 			$this->buffer .= "}";
+		}
+		else
+		{
+			if (gettype($obj) == "object")
+			{
+				throw new \Exception("unknown type " . \get_class($obj));
+			}
+			else
+			{
+				throw new \Exception("unknown type " . \gettype($obj));
+			}
 		}
 	}
 }

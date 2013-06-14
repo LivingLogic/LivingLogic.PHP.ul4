@@ -8,9 +8,9 @@ abstract class Unary extends AST
 {
 	protected $obj;
 
-	public function __construct($obj=null)
+	public function __construct($location=null, $start=0, $end=0, $obj=null)
 	{
-		parent::__construct();
+		parent::__construct($location, $start, $end);
 		$this->obj = $obj;
 	}
 

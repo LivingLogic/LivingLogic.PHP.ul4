@@ -266,7 +266,7 @@ class Color implements JsonSerializable
 			$a = ($len == 7) ? 0xff : hexdec(substr($value, 7, 2));
 		}
 		else
-			throw new Exception("Invalid color repr '" + $value + "'");
+			throw new \Exception("Invalid color repr '" + $value + "'");
 
 		return new Color($r, $g, $b, $a);
 	}

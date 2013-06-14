@@ -6,9 +6,9 @@ include_once 'com/livinglogic/ul4/ul4.php';
 
 class ElIf extends ConditionalBlockWithCondition
 {
-	public function __construct($location=null, $condition=null)
+	public function __construct($location=null, $start=0, $end=0, $condition=null)
 	{
-		parent::__construct($location, $condition);
+		parent::__construct($location, $start, $end, $condition);
 	}
 
 	public function getType()

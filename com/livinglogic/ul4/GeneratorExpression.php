@@ -15,9 +15,9 @@ class GeneratorExpression extends AST implements \Iterator
 	private $iterator;
 	private $valid;
 
-	public function __construct($item=null, $varname=null, $container=null, $condition=null)
+	public function __construct($location=null, $start=0, $end=0, $item=null, $varname=null, $container=null, $condition=null)
 	{
-		parent::__construct();
+		parent::__construct($location, $start, $end);
 		$this->item = $item;
 		$this->varname = $varname;
 		$this->container = $container;

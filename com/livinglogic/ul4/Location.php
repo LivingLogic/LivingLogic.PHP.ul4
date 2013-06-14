@@ -9,6 +9,7 @@ use com\livinglogic\ul4on\UL4ONSerializable as UL4ONSerializable;
 
 class Location implements UL4ONSerializable
 {
+	public $root;
 	public $source;
 	protected $type;
 	public $starttag;
@@ -16,8 +17,9 @@ class Location implements UL4ONSerializable
 	public $startcode;
 	public $endcode;
 
-	public function __construct($source=null, $type=null, $starttag=null, $endtag=null, $startcode=null, $endcode=null)
+	public function __construct($root=null, $source=null, $type=null, $starttag=null, $endtag=null, $startcode=null, $endcode=null)
 	{
+		$this->root = $root;
 		$this->source = $source;
 		$this->type = $type;
 		$this->starttag = $starttag;
@@ -86,6 +88,7 @@ class Location implements UL4ONSerializable
 
 	public function dumpUL4ON($encoder)
 	{
+		$encoder->dump($this->root);
 		$encoder->dump($this->source);
 		$encoder->dump($this->type);
 		$encoder->dump($this->starttag);
@@ -96,6 +99,7 @@ class Location implements UL4ONSerializable
 
 	public function loadUL4ON($decoder)
 	{
+		$this->root = $decoder->load();
 		$this->source = $decoder->load();
 		$this->type = $decoder->load();
 		$this->starttag = $decoder->load();

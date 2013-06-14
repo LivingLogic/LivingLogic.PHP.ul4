@@ -6,9 +6,9 @@ include_once 'com/livinglogic/ul4/ul4.php';
 
 class ConditionalBlockBlock extends Block
 {
-	public function __construct($location=null, $block=null)
+	public function __construct($location=null, $start=0, $end=0, $block=null)
 	{
-		parent::__construct($location);
+		parent::__construct($location, $start, $end);
 		if (!is_null($block))
 			startNewBlock($block);
 	}
@@ -62,13 +62,14 @@ class ConditionalBlockBlock extends Block
 		array_push($this->content, $item);
 	}
 
-	public function finish($template, $endlocation)
+	public function finish($endlocation)
 	{
-		parent::finish($template, $endlocation);
+		parent::finish($endlocation);
 		$this->content[count($this->content)-1]->endlocation = $endlocation;
 		$type = trim($endlocation->getCode());
+
 		if (!is_null($type) && strlen($type) != 0 && $type != "if")
-			throw new BlockException("if ended by end" + type);
+			throw new BlockException("if ended by end " . type);
 	}
 
 	public function evaluate($context)

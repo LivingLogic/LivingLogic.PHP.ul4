@@ -6,9 +6,9 @@ include_once 'com/livinglogic/ul4/ul4.php';
 
 class Mul extends Binary
 {
-	public function __construct($obj1=null, $obj2=null)
+	public function __construct($location=null, $start=0, $end=0, $obj1=null, $obj2=null)
 	{
-		parent::__construct($obj1, $obj2);
+		parent::__construct($location, $start, $end, $obj1, $obj2);
 	}
 
 	public function getType()

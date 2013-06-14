@@ -9,9 +9,9 @@ abstract class Binary extends AST
 	protected $obj1;
 	protected $obj2;
 
-	public function __construct($obj1=null, $obj2=null)
+	public function __construct($location=null, $start=0, $end=0, $obj1=null, $obj2=null)
 	{
-		parent::__construct();
+		parent::__construct($location, $start, $end);
 		$this->obj1 = $obj1;
 		$this->obj2 = $obj2;
 	}

@@ -9,9 +9,9 @@ class _For extends Block
 	protected $varname;
 	protected $container;
 
-	public function __construct($location=null, $varname=null, $container=null)
+	public function __construct($location=null, $start=0, $end=0, $varname=null, $container=null)
 	{
-		parent::__construct($location);
+		parent::__construct($location, $start, $end);
 		$this->varname = $varname;
 		$this->container = $container;
 	}
@@ -82,13 +82,13 @@ public function toString($indent)
 		$this->container = $container;
 	}
 
-	public function finish($template, $endlocation)
+	public function finish($endlocation)
 	{
-		parent::finish($template, $endlocation);
+		parent::finish($endlocation);
 		$type = $endlocation->getCode()->strip();
 
 		if (!is_null($type) && strlen($type) != 0 && $type != "for")
-			throw new BlockException("for ended by end" . $type);
+			throw new BlockException("for ended by end " . $type);
 	}
 
 	public function handleLoopControl($name)

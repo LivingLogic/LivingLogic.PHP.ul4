@@ -61,9 +61,9 @@ class CallMeth extends AST
 		);
 	}
 
-	public function __construct($location=null, $obj=null, $method=null)
+	public function __construct($location=null, $start=0, $end=0, $obj=null, $method=null)
 	{
-		parent::__construct($location);
+		parent::__construct($location, $start, $end);
 		$this->obj = $obj;
 
 		if (is_string($method))

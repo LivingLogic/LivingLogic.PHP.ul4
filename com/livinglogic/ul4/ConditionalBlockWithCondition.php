@@ -8,9 +8,9 @@ abstract class ConditionalBlockWithCondition extends ConditionalBlock
 {
 	protected $condition;
 
-	public function __construct($location, $condition)
+	public function __construct($location, $start=0, $end=0, $condition)
 	{
-		parent::__construct($location);
+		parent::__construct($location, $start, $end);
 		$this->condition = $condition;
 	}
 

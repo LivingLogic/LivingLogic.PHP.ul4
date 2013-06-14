@@ -6,11 +6,13 @@ include_once 'com/livinglogic/ul4/ul4.php';
 
 class InterpretedTemplate extends Block /*implements Template*/
 {
-	protected static $VERSION = "21";
+	protected static $VERSION = "25";
+
 	protected $source;
 	protected $name;
 	protected $startdelim;
 	protected $enddelim;
+	public    $keepWhitespace = true;
 
 	public function handleLoopControl($name)
 	{
@@ -49,6 +51,7 @@ class InterpretedTemplate extends Block /*implements Template*/
 		$encoder->dump(self::$VERSION);
 		$encoder->dump($this->source);
 		$encoder->dump($this->name);
+		$encoder->dump($this->keepWhitespace);
 		$encoder->dump($this->startdelim);
 		$encoder->dump($this->enddelim);
 		parent::dumpUL4ON($encoder);
@@ -63,6 +66,7 @@ class InterpretedTemplate extends Block /*implements Template*/
 		}
 		$this->source = $decoder->load();
 		$this->name = $decoder->load();
+		$this->keepWhitespace = $decoder->load();
 		$this->startdelim = $decoder->load();
 		$this->enddelim = $decoder->load();
 		parent::loadUL4ON($decoder);

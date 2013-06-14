@@ -4,11 +4,11 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class PPrint extends UnaryTag
+class PPrint extends Unary
 {
-	public function __construct($location=null, $obj=null)
+	public function __construct($location=null, $start=0, $end=0, $obj=null)
 	{
-		parent::__construct($location, $obj);
+		parent::__construct($location, $start, $end, $obj);
 	}
 
 	public function toString($indent=0)
@@ -23,6 +23,8 @@ class PPrint extends UnaryTag
 
 	public function evaluate($context)
 	{
+// 		echo "PPrint.evaluate: this->obj: " . gettype($this->obj) . "\n";
+// 		$x = Utils::str($this->obj->evaluate($context));
 		$context->write(Utils::str($this->obj->evaluate($context)));
 		return null;
 	}

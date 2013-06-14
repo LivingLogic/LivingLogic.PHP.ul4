@@ -4,15 +4,14 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-abstract class Block extends Tag
+abstract class Block extends AST
 {
 	protected $endlocation;
 	protected $content = array();
 
-	public function __construct($location=null, $endlocation=null)
+	public function __construct($location=null, $start=0, $end=0)
 	{
-		parent::__construct($location);
-		$this->endlocation = $endlocation;
+		parent::__construct($location, $start, $end);
 	}
 
 	public function append($item)
@@ -20,7 +19,7 @@ abstract class Block extends Tag
 		array_push($this->content, $item);
 	}
 
-	public function finish($itemplate, $endlocation)
+	public function finish($endlocation)
 	{
 		$this->endlocation = $endlocation;
 	}
@@ -28,7 +27,11 @@ abstract class Block extends Tag
 	public function evaluate($context)
 	{
 		foreach ($this->content as $item)
+		{
+			if (!is_object($item))
+				print "Block.evaluate: item is " . gettype($item) . "\n";
 			$item->evaluate($context);
+		}
 		return null;
 	}
 

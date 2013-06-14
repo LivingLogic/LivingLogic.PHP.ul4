@@ -12,9 +12,9 @@ class DictComprehension extends AST
 	protected $container;
 	protected $condition;
 
-	public function __construct($key=null, $value=null, $varname=null, $container=null, $condition=null)
+	public function __construct($location=null, $start=0, $end=0, $key=null, $value=null, $varname=null, $container=null, $condition=null)
 	{
-		parent::__construct();
+		parent::__construct($location, $start, $end);
 		$this->key = $key;
 		$this->value = $value;
 		$this->varname = $varname;

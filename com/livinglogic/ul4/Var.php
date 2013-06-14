@@ -8,9 +8,9 @@ class _Var extends AST
 {
 	var $name;
 
-	public function __construct($name=null)
+	public function __construct($location=null, $start=0, $end=0, $name=null)
 	{
-		parent::__construct();
+		parent::__construct($location, $start, $end);
 		$this->name = $name;
 	}
 

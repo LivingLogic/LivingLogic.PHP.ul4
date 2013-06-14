@@ -4,14 +4,14 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-abstract class ChangeVar extends Tag
+abstract class ChangeVar extends AST
 {
 	var $varname;
 	var $value;
 
-	public function __construct($location=null, $varname=null, $value=null)
+	public function __construct($location=null, $start=0, $end=0, $varname=null, $value=null)
 	{
-		parent::__construct($location);
+		parent::__construct($location, $start, $end);
 		$this->varname = $varname;
 		$this->value = $value;
 	}

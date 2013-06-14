@@ -8,7 +8,7 @@ class _Else extends ConditionalBlock
 {
 	public function __construct($location=null)
 	{
-		parent::__construct($location);
+		parent::__construct($location, $start, $end, $start=0, $end=0);
 	}
 
 	public function getType()

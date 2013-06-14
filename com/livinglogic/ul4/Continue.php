@@ -4,11 +4,11 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class _Continue extends Tag
+class _Continue extends AST
 {
-	public function __construct($location=null)
+	public function __construct($location=null, $start=0, $end=0)
 	{
-		parent::__construct($location);
+		parent::__construct($location, $start, $end);
 	}
 
 	public function getType()

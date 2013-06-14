@@ -6,9 +6,9 @@ include_once 'com/livinglogic/ul4/ul4.php';
 
 abstract class ConditionalBlock extends Block
 {
-	public function __construct($location=null)
+	public function __construct($location=null, $start=0, $end=0)
 	{
-		parent::__construct($location);
+		parent::__construct($location, $start, $end);
 	}
 
 	abstract public function hasToBeExecuted($context);

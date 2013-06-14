@@ -8,9 +8,9 @@ class _Const extends AST
 {
 	var $value;
 
-	function __construct($value=null)
+	function __construct($location=null, $start=0, $end=0, $value=null)
 	{
-		parent::__construct();
+		parent::__construct($location, $start, $end);
 		$this->value = $value;
 	}
 

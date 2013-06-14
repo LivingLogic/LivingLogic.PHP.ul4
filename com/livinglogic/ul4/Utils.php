@@ -6,126 +6,6 @@ include_once 'com/livinglogic/ul4/ul4.php';
 
 use com\livinglogic\ul4\Color as Color;
 
-class Repr
-{
-	private $visited = array();
-
-	public function toString($obj)
-	{
-		if (is_null($obj))
-			return "None";
-		else if ($obj instanceof Undefined)
-			return "Undefined";
-		else if (is_bool($obj))
-			return $obj ? "True" : "False";
-		else if (is_int($obj) || is_long($obj) || is_double($obj) || is_float($obj))
-			return "" . $obj;
-		else if (is_string($obj))
-			return '"' . addslashes($obj)	. '"';
-		else if ($obj instanceof \DateTime)
-		{
-			$date = date_format($obj, "Y-m-d");
-			$time = date_format($obj, "H:i:s");
-			if ($time == "00:00:00")
-				return "@(" . $date . ")";
-			else
-				return "@(" . $date . "T" . $time . ")";
-		}
-		else if ($obj instanceof TimeDelta)
-			return $obj->repr();
-		else if ($obj instanceof MonthDelta)
-			return $obj->repr();
-		else if ($obj instanceof Color)
-			return $obj->repr();
-		else if (\com\livinglogic\ul4on\Utils::isList($obj))
-		{
-			if ($this->seen($obj))
-				return "[...]";
-			array_push($this->visited, $obj);
-
-			try
-			{
-				$sb = "[";
-				$first = true;
-				foreach ($obj as $o)
-				{
-					if ($first)
-						$first = false;
-					else
-						$sb .= ", ";
-					$sb .= $this->toString($o);
-				}
-				$sb .= "]";
-
-				return $sb;
-			}
-			catch (Exception $e)
-			{
-				array_pop($this->visited);
-				return "{?}";
-			}
-		}
-		else if (\com\livinglogic\ul4on\Utils::isDict($obj))
-		{
-			if ($this->seen($obj))
-				return "{...}";
-			array_push($this->visited, $obj);
-
-			try
-			{
-				$sb = "{";
-				$first = true;
-
-				foreach ($obj as $key => $value)
-				{
-					if ($first)
-						$first = false;
-					else
-						$sb .= ", ";
-					$sb .= $this->toString($key);
-					$sb .= ": ";
-					$sb .= $this->toString($value);
-				}
-				$sb .= "}";
-				return $sb;
-			}
-			catch (Exception $e)
-			{
-				array_pop($this->visited);
-				return "{?}";
-			}
-		}
-		/*
-		else if ($obj instanceof \Iterator)
-		{
-			$first = true;
-			$sb = "iterator[";
-			foreach ($obj as $o)
-			{
-				if ($first)
-					$first = false;
-				else
-					$sb .= ", ";
-				$sb .= $this->toString($o);
-			}
-			$sb .= "]";
-			return $sb;
-		}
-		*/
-		return "?";
-	}
-
-	private function seen($obj)
-	{
-		foreach ($this->visited as $item)
-		{
-			if ($obj === $item)
-				return true;
-		}
-		return false;
-	}
-}
-
 class Range implements \Iterator
 {
 	var $start;
@@ -631,12 +511,6 @@ class MapItemIterator implements \Iterator
 
 class Utils
 {
-	public static function repr($obj)
-	{
-		$r = new Repr();
-		return $r->toString($obj);
-	}
-
 	public static function type($obj)
 	{
 		if (is_null($obj))
@@ -712,93 +586,6 @@ class Utils
 			else
 				throw new\Exception("color[" . self::type($key) . "] not supported!");
 		}
-	}
-
-	public static function str($obj)
-	{
-		if (is_null($obj))
-			return "";
-		else if ($obj instanceof Undefined)
-			return "";
-		else if (is_bool($obj))
-			return $obj ? "True" : "False";
-		else if (is_int($obj) || is_long($obj))
-			return "$obj";
-		else if (is_float($obj) || is_double($obj))
-		{
-			$sobj = "$obj";
-			$pos = strpos($sobj, "E");
-			if (!is_bool($pos))
-			{
-				return strtolower(str_replace(".0E", "E", $sobj));
-			}
-			else
-			{
-				$pos = strpos($sobj, ".");
-				if (!is_bool($pos))
-				{
-					return $sobj;
-				}
-				else
-				{
-					return $sobj . ".0";
-				}
-			}
-		}
-		else if (is_string($obj))
-			return $obj;
-		else if ($obj instanceof \DateTime)
-		{
-			return date_format($obj, "Y-m-d H:i:s");
-			// FIXME
-// 			if (microsecond(obj) != 0)
-// 				return strTimestampMicroFormatter.format(obj);
-// 			else
-// 			{
-// 				if (hour(obj) != 0 || minute(obj) != 0 || second(obj) != 0)
-// 					return strDateTimeFormatter.format(obj);
-// 				else
-// 					return isoDateFormatter.format(obj);
-// 			}
-		}
-		else if ($obj instanceof Color)
-			return $obj->__toString();
-		else if ($obj instanceof TimeDelta)
-			return $obj->toString();
-		else if ($obj instanceof MonthDelta)
-			return $obj->toString();
-		else
-			return self::repr($obj);
-
-	}
-
-	public static function xmlescape($obj)
-	{
-		if (is_null($obj))
-			return "";
-
-		$str = self::str($obj);
-		$length = strlen($str);
-
-		$search = array( "&");
-		$replace = array("&amp;");
-		$str = str_replace($search, $replace, $str);
-
-		$search = array( "<"   , ">"   , "'"    , '"'     );
-		$replace = array("&lt;", "&gt;", "&#39;", '&quot;');
-		$str = str_replace($search, $replace, $str);
-
-		$buffer = "";
-		for ($i = 0; $i < 32; $i++)
-		{
-			$c = chr($i);
-			if ($c != '\t' && $c != '\n' && $c != '\r')
-				$str = str_replace($c, "&#$i;", $str);
-		}
-		for ($i = 128; $i < 160; $i++)
-			$str = str_replace(chr($i), "&#$i;", $str);
-
-		return $str;
 	}
 
 	public static function add($obj1, $obj2)
@@ -1169,19 +956,6 @@ class Utils
 			return $obj ? -1 : 0;
 
 		throw new \Exception("-" . self::objectType($obj) . " not supported!");
-	}
-
-	public static function utcnow()
-	{
-		$utcTimeZone = new \DateTimeZone("GMT");
-		$dateTime = new \DateTime("now", $utcTimeZone);
-
-		return $dateTime;
-	}
-
-	public static function random()
-	{
-		return rand()/(getrandmax() + 1);
 	}
 
 	public static function csv($obj)

@@ -6,9 +6,9 @@ include_once 'com/livinglogic/ul4/ul4.php';
 
 class SubVar extends ChangeVar
 {
-	public function __construct($location=null, $varname=null, $value=null)
+	public function __construct($location=null, $start=0, $end=0, $varname=null, $value=null)
 	{
-		parent::__construct($location, $varname, $value);
+		parent::__construct($location, $start, $end, $varname, $value);
 	}
 
 	public function getType()
