@@ -31,7 +31,7 @@ class FunctionMonthDelta implements _Function
 		else
 		{
 			$months = func_get_arg(0);
-			return new MonthDelta(Utils::toInteger($months));
+			return new MonthDelta(FunctionInt::call($months));
 		}
 	}
 }

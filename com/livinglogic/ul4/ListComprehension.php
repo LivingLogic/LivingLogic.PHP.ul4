@@ -56,7 +56,7 @@ class ListComprehension extends AST
 			$variables = &$context->getVariables();
 			Utils::unpackVariable($variables, $this->varname, $iter->current());
 
-			if (is_null($this->condition) || Utils::getBool($this->condition->evaluate($context)))
+			if (is_null($this->condition) || FunctionBool::call($this->condition->evaluate($context)))
 			{
 				$item = $this->item->evaluate($context);
 				array_push($result, $item);

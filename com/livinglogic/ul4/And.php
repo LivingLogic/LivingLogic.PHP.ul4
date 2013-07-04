@@ -19,7 +19,7 @@ class _And extends Binary
 	public function evaluate($context)
 	{
 		$obj2ev = $this->obj2->evaluate($context);
-		if (Utils::getBool($obj2ev))
+		if (FunctionBool::call($obj2ev))
 			return $this->obj1->evaluate($context);
 		else
 			return $obj2ev;

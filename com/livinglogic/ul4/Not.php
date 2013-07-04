@@ -18,7 +18,7 @@ class Not extends Unary
 
 	public function evaluate($context)
 	{
-		return !Utils::getBool($this->obj->evaluate($context));
+		return !FunctionBool::call($this->obj->evaluate($context));
 	}
 
 }

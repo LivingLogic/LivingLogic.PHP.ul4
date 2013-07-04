@@ -19,7 +19,7 @@ class _Or extends Binary
 	public function evaluate($context)
 	{
 		$obj1ev = $this->obj1->evaluate($context);
-		if (Utils::getBool($obj1ev))
+		if (FunctionBool::call($obj1ev))
 			return $obj1ev;
 		else
 			return $this->obj2->evaluate($context);

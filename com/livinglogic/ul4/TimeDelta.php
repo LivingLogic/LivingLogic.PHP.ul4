@@ -14,9 +14,9 @@ class TimeDelta
 	{
 		if (is_float($days) || is_double($days) || is_float($seconds) || is_double($seconds) || is_float($microseconds) || is_double($microseconds))
 		{
-			$microseconds = Utils::toInteger(($days%(1./(24*60*60)))*24*60*60*1000000+($seconds%1.0)*1000000+$microseconds);
-			$seconds = Utils::toInteger(($days % 1.0)*24*60*60+seconds);
-			$days = Utils::toInteger($days);
+			$microseconds = FunctionInt::call(($days%(1./(24*60*60)))*24*60*60*1000000+($seconds%1.0)*1000000+$microseconds);
+			$seconds = FunctionInt::call(($days % 1.0)*24*60*60+seconds);
+			$days = FunctionInt::call($days);
 		}
 
 		$microseconds_div = Utils::floordiv($microseconds, 1000000);
@@ -28,7 +28,7 @@ class TimeDelta
 			--$microseconds_div;
 		}
 		$seconds += $microseconds_div;
-		$this->microseconds = Utils::toInteger($microseconds);
+		$this->microseconds = FunctionInt::call($microseconds);
 
 		$seconds_div = Utils::floordiv($seconds, 24*60*60);
 		$seconds = $seconds % (24*60*60);
@@ -39,7 +39,7 @@ class TimeDelta
 			--$seconds_div;
 		}
 		$days += $seconds_div;
-		$this->seconds = Utils::toInteger($seconds);
+		$this->seconds = FunctionInt::call($seconds);
 
 		$this->days = $days;
 	}

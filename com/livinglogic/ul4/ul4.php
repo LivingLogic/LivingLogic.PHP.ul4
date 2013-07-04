@@ -44,12 +44,12 @@ include_once 'com/livinglogic/ul4/FunctionNow.php';
 include_once 'com/livinglogic/ul4/FunctionUTCNow.php';
 include_once 'com/livinglogic/ul4/FunctionRandom.php';
 include_once 'com/livinglogic/ul4/FunctionXMLEscape.php';
-include_once 'com/livinglogic/ul4/FunctionCSV.php';
-include_once 'com/livinglogic/ul4/FunctionStr.php';
-include_once 'com/livinglogic/ul4/FunctionRepr.php';
-include_once 'com/livinglogic/ul4/FunctionInt.php';
-include_once 'com/livinglogic/ul4/FunctionFloat.php';
-include_once 'com/livinglogic/ul4/FunctionBool.php';
+include_once 'com/livinglogic/ul4/FunctionCSV.php';  // done
+include_once 'com/livinglogic/ul4/FunctionStr.php';  // done
+include_once 'com/livinglogic/ul4/FunctionRepr.php'; // done
+include_once 'com/livinglogic/ul4/FunctionInt.php';  // done
+include_once 'com/livinglogic/ul4/FunctionFloat.php'; // done
+include_once 'com/livinglogic/ul4/FunctionBool.php';  // done
 include_once 'com/livinglogic/ul4/FunctionLen.php';
 include_once 'com/livinglogic/ul4/FunctionEnumerate.php';
 include_once 'com/livinglogic/ul4/FunctionEnumFL.php';

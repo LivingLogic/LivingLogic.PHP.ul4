@@ -21,7 +21,7 @@ class FunctionXMLEscape extends _Function
 
 	public function evaluate($args)
 	{
-		return call($args[0]);
+		return self::call($args[0]);
 	}
 
 	public static function call($obj)

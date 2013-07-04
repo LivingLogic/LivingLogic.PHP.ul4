@@ -24,9 +24,9 @@ class FunctionRGB implements _Function
 	public static function _call($arg1, $arg2, $arg3)
 	{
 		if (func_num_args() == 3)
-			return new Color(Utils::toFloat($arg1), Utils::toFloat($arg2), Utils::toFloat($arg3));
+			return new Color(FunctionFloat::call($arg1), FunctionFloat::call($arg2), FunctionFloat::call($arg3));
 		elseif (func_num_args() == 4)
-			return new Color(Utils::toFloat($arg1), Utils::toFloat($arg2), Utils::toFloat($arg3), Utils::toFloat(func_get_arg(3)));
+			return new Color(FunctionFloat::call($arg1), FunctionFloat::call($arg2), FunctionFloat::call($arg3), FunctionFloat::call(func_get_arg(3)));
 	}
 }
 

@@ -31,7 +31,7 @@ class FunctionRandRange implements _Function
 		if (func_num_args() == 1)
 		{
 			$stopObj = $obj1;
-			$stop = Utils::toInteger($stopObj);
+			$stop = FunctionInt::call($stopObj);
 			$value = Utils::random();
 			return intval($value*$stop);
 		}
@@ -39,8 +39,8 @@ class FunctionRandRange implements _Function
 		{
 			$startObj = $obj1;
 			$stopObj = func_get_arg(1);
-			$start = Utils::toInteger($startObj);
-			$stop = Utils::toInteger($stopObj);
+			$start = FunctionInt::call($startObj);
+			$stop = FunctionInt::call($stopObj);
 			$width = $stop - $start;
 			$value = Utils::random();
 			return $start + intval($value * $width);
@@ -51,9 +51,9 @@ class FunctionRandRange implements _Function
 			$stopObj = func_get_arg(1);
 			$stepObj = func_get_arg(2);
 
-			$start = Utils::toInteger($startObj);
-			$stop = Utils::toInteger($stopObj);
-			$step = Utils::toInteger($stepObj);
+			$start = FunctionInt::call($startObj);
+			$stop = FunctionInt::call($stopObj);
+			$step = FunctionInt::call($stepObj);
 			$width = $stop - $start;
 			$value = Utils::random();
 

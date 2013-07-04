@@ -32,19 +32,19 @@ class FunctionDate implements _Function
 
 	public static function _call($year, $month, $day)
 	{
-		$iyear   = Utils::toInteger($year);
-		$imonth  = Utils::toInteger($month);
-		$iday    = Utils::toInteger($day);
+		$iyear   = FunctionInt::call($year);
+		$imonth  = FunctionInt::call($month);
+		$iday    = FunctionInt::call($day);
 		$ihour   = 0;
 		$iminute = 0;
 		$isecond = 0;
 
 		if (func_num_args() >= 4)
-			$ihour = Utils::toInteger(func_get_arg(3));
+			$ihour = FunctionInt::call(func_get_arg(3));
 		if (func_num_args() >= 5)
-			$iminute = Utils::toInteger(func_get_arg(4));
+			$iminute = FunctionInt::call(func_get_arg(4));
 		if (func_num_args() >= 6)
-			$isecond = Utils::toInteger(func_get_arg(5));
+			$isecond = FunctionInt::call(func_get_arg(5));
 
 		$dateTime = new \DateTime();
 		$dateTime->setDate($iyear, $imonth, $iday);

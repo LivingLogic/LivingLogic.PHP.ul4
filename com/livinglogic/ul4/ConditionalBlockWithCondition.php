@@ -16,7 +16,7 @@ abstract class ConditionalBlockWithCondition extends ConditionalBlock
 
 	public function hasToBeExecuted($context)
 	{
-		return Utils::getBool($this->condition->evaluate($context));
+		return FunctionBool::call($this->condition->evaluate($context));
 	}
 
 	public function toString($indent)

@@ -4,19 +4,31 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class FunctionCSV implements _Function
+class FunctionCSV extends _Function
 {
-	public function call($context, $args)
-	{
-		if (count($args) == 1)
-			return Utils::csv($args[0]);
-		throw new ArgumentCountMismatchException("function", "csv", count($args), 1);
-	}
-
 	public function getName()
 	{
 		return "csv";
 	}
+
+	protected function makeSignature()
+	{
+		return new Signature(
+				$this->nameUL4(),
+				"obj", Signature::$required
+		);
+	}
+
+	public function evaluate($args)
+	{
+		return self::call($args[0]);
+	}
+
+	public static function call($obj)
+	{
+		return Utils::csv($obj);
+	}
+
 }
 
 ?>

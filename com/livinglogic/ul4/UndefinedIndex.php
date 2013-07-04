@@ -10,7 +10,7 @@ class UndefinedIndex extends Undefined
 
 	public function __construct($index)
 	{
-		$this->index = Utils::toInteger($index);
+		$this->index = FunctionInt::call($index);
 	}
 
 	public function toString()

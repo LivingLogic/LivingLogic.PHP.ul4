@@ -60,7 +60,7 @@ class DictComprehension extends AST
 			$variables = &$context->getVariables();
 			Utils::unpackVariable($variables, $this->varname, $iter->current());
 
-			if ($this->condition == null || Utils::getBool($this->condition->evaluate($context)))
+			if ($this->condition == null || FunctionBool::call($this->condition->evaluate($context)))
 			{
 				$key = $this->key->evaluate($context);
 				$value = $this->value->evaluate($context);

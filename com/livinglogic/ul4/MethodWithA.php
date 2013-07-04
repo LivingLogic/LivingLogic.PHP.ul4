@@ -26,7 +26,7 @@ class MethodWithA implements Method
 	{
 		if (!$obj instanceof Color)
 			throw new ArgumentTypeMismatchException("{}.witha({})", $obj, $a);
-		return $obj->witha(Utils::toInteger($a));
+		return $obj->witha(FunctionInt::call($a));
 	}
 }
 

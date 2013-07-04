@@ -33,7 +33,7 @@ class FunctionAll implements _Function
 		{
 			for ($i = 0; $i < count($obj); ++$i)
 			{
-				if (!Utils::getBool($obj[$i]))
+				if (!FunctionBool::call($obj[$i]))
 					return false;
 			}
 			return true;
@@ -42,7 +42,7 @@ class FunctionAll implements _Function
 		{
 			for (; $obj->valid(); $obj->next())
 			{
-				if (!Utils::getBool($obj->current()))
+				if (!FunctionBool::call($obj->current()))
 					return false;
 			}
 			return true;

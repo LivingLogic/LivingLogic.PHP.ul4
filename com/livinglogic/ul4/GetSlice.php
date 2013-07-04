@@ -75,8 +75,8 @@ class GetSlice extends AST
 	{
 		if (\com\livinglogic\ul4on\Utils::isList($obj))
 		{
-			$start = $startIndex != null ? Utils::toInteger($startIndex) : 0;
-			$end = $endIndex != null ? Utils::toInteger($endIndex) : count($obj);
+			$start = $startIndex != null ? FunctionInt::call($startIndex) : 0;
+			$end = $endIndex != null ? FunctionInt::call($endIndex) : count($obj);
 
 			$size = count($obj);
 			$start = Utils::getSliceStartPos($size, $start);
@@ -87,8 +87,8 @@ class GetSlice extends AST
 		}
 		else if (is_string($obj))
 		{
-			$start = $startIndex != null ? Utils::toInteger($startIndex) : 0;
-			$end = $endIndex != null ? Utils::toInteger($endIndex) : strlen($obj);
+			$start = $startIndex != null ? FunctionInt::call($startIndex) : 0;
+			$end = $endIndex != null ? FunctionInt::call($endIndex) : strlen($obj);
 
 			$size = strlen($obj);
 			$start = Utils::getSliceStartPos($size, $start);

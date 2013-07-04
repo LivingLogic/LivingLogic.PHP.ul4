@@ -62,9 +62,9 @@ class MethodRSplit implements Method
 			if (is_string($obj))
 			{
 				if (is_null($separator))
-					return $this->call2($obj, Utils::toInteger($maxsplit));
+					return $this->call2($obj, FunctionInt::call($maxsplit));
 				else if (is_string($separator))
-					return $this->call3($obj, $separator, Utils::toInteger($maxsplit));
+					return $this->call3($obj, $separator, FunctionInt::call($maxsplit));
 			}
 			throw new ArgumentTypeMismatchException("{}.rsplit({}, {})", $obj, $separator, $maxsplit);
 		}

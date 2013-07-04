@@ -84,7 +84,7 @@ class GeneratorExpression extends AST implements \Iterator
 				$useIt = true;
 			else
 			{
-				$useIt = Utils::getBool($this->condition->evaluate($this->context));
+				$useIt = FunctionBool::call($this->condition->evaluate($this->context));
 			}
 
 			$this->iterator->next();
