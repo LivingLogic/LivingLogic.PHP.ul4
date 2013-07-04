@@ -22,17 +22,17 @@ class FunctionRandChoice implements _Function
 	{
 		if (is_string($obj))
 		{
-			$index = intval(strlen($obj) * Utils::random());
+			$index = intval(strlen($obj) * FunctionRandom::call());
 			return substr($obj, $index, 1);
 		}
 		else if (\com\livinglogic\ul4on\Utils::isList($obj))
 		{
-			$index = intval(count($obj) * Utils::random());
+			$index = intval(count($obj) * FunctionRandom::call());
 			return $obj[$index];
 		}
 		else if ($obj instanceof Color)
 		{
-			$index = intval(4 * Utils::random());
+			$index = intval(4 * FunctionRandom::call());
 			switch ($index)
 			{
 				case 0:

@@ -23,7 +23,7 @@ class PrintX extends Unary
 
 	public function evaluate($context)
 	{
-		$context->write(Utils::xmlescape($this->obj->evaluate($context)));
+		$context->write(FunctionXMLEscape::call($this->obj->evaluate($context)));
 		return null;
 	}
 
