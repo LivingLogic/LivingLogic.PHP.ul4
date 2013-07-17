@@ -4,7 +4,7 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class FunctionRepr implements _Function
+class FunctionRepr extends _Function
 {
 	public function nameUL4()
 	{

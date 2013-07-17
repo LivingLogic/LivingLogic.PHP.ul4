@@ -6,7 +6,7 @@ include_once 'com/livinglogic/ul4/ul4.php';
 
 class FunctionFloat extends _Function
 {
-	public function getName()
+	public function nameUL4()
 	{
 		return "float";
 	}

@@ -4,18 +4,72 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class FunctionIsFirst implements _Function
+
+class SequenceIsFirst implements \Iterator
 {
-	public function call($context, $args)
+	var $sequenceIterator;
+
+	var $first = true;
+
+	public function __construct($sequenceIterator)
 	{
-		if (count($args) == 1)
-			return Utils::isfirst($args[0]);
-		throw new ArgumentCountMismatchException("function", "isfirst", count($args), 1);
+		$this->sequenceIterator = $sequenceIterator;
 	}
 
-	public function getName()
+	public function rewind()
+	{
+		// unused
+	}
+
+	public function current()
+	{
+		$retVal = array();
+		array_push($retVal, $this->first);
+		array_push($retVal, $this->sequenceIterator->current());
+		return $retVal;
+	}
+
+	public function key()
+	{
+		return $this->sequenceIterator->key();
+	}
+
+	public function next()
+	{
+		$this->sequenceIterator->next();
+		$this->first = false;
+	}
+
+	public function valid()
+	{
+		return $this->sequenceIterator->valid();
+	}
+}
+
+
+class FunctionIsFirst extends _Function
+{
+	public function nameUL4()
 	{
 		return "isfirst";
+	}
+
+	protected function makeSignature()
+	{
+		return new Signature(
+				$this->nameUL4(),
+				"iterable", Signature::$required
+		);
+	}
+
+	public function evaluate($args)
+	{
+		return self::call($args[0]);
+	}
+
+	public static function call($obj)
+	{
+		return new SequenceIsFirst(Utils::iterator($obj));
 	}
 }
 
