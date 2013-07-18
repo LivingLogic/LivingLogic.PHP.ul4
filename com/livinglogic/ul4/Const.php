@@ -21,7 +21,7 @@ class _Const extends AST
 
 	function toString($indent)
 	{
-		return Utils::repr($this->value);
+		return FunctionRepr::call($this->value);
 	}
 
 	function evaluate($context)

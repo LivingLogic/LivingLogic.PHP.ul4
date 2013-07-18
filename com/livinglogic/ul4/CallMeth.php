@@ -84,7 +84,7 @@ class CallMeth extends AST
 		$buffer .= "callmeth(";
 		$buffer .= $this->obj;
 		$buffer .= ", ";
-		$buffer .= Utils::repr($this->method->getName());
+		$buffer .= FunctionRepr::call($this->method->getName());
 		foreach ($this->args as $arg)
 		{
 			$buffer .= ", ";
