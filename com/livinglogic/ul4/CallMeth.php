@@ -6,9 +6,12 @@ include_once 'com/livinglogic/ul4/ul4.php';
 
 class CallMeth extends AST
 {
-	protected $method;
+	protected $methname;
 	protected $obj;
 	protected $args = array();
+	protected $kwargs = array();
+	protected $remargs = null;
+	protected $remkwargs = null;
 
 	private static $methods = null;
 
@@ -61,15 +64,16 @@ class CallMeth extends AST
 		);
 	}
 
-	public function __construct($location=null, $start=0, $end=0, $obj=null, $method=null)
+	public function __construct($location=null, $start=0, $end=0, $obj=null, $methname=null)
 	{
 		parent::__construct($location, $start, $end);
 		$this->obj = $obj;
 
-		if (is_string($method))
-			$this->method = $this->getMethod($method);
-		elseif ($method instanceof Method)
-			$this->method = $method;
+		$this->methname = $methname;
+		$this->args = array();
+		$this->kwargs = array();
+		$this->remargs = null;
+		$this->remkwargs = null;
 	}
 
 	public function append($arg)
@@ -84,7 +88,7 @@ class CallMeth extends AST
 		$buffer .= "callmeth(";
 		$buffer .= $this->obj;
 		$buffer .= ", ";
-		$buffer .= FunctionRepr::call($this->method->getName());
+		$buffer .= FunctionRepr::call($this->methname);
 		foreach ($this->args as $arg)
 		{
 			$buffer .= ", ";
@@ -107,7 +111,7 @@ class CallMeth extends AST
 
 		foreach ($this->args as $arg)
 			array_push($realArgs, $arg->evaluate($context));
-		return $this->method->evaluate($context, $obj, $realArgs);
+		return $this->getMethod($this->methname)->evaluate($context, $obj, $realArgs);
 	}
 
 	private static function getMethod($methname)
@@ -126,17 +130,23 @@ class CallMeth extends AST
 	public function dumpUL4ON($encoder)
 	{
 		parent::dumpUL4ON($encoder);
-		$encoder->dump($this->method->getName());
+		$encoder->dump($this->methname);
 		$encoder->dump($this->obj);
 		$encoder->dump($this->args);
+		$encoder->dump($this->kwargs);
+		$encoder->dump($this->remargs);
+		$encoder->dump($this->remkwargs);
 	}
 
 	public function loadUL4ON($decoder)
 	{
 		parent::loadUL4ON($decoder);
-		$this->method = $this->getMethod($decoder->load());
+		$this->methname = $decoder->load();
 		$this->obj = $decoder->load();
 		$this->args = $decoder->load();
+		$this->kwargs = $decoder->load();
+		$this->remargs = $decoder->load();
+		$this->remkwargs = $decoder->load();
 	}
 
 	/*
