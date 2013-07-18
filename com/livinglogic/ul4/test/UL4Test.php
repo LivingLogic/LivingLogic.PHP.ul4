@@ -18,6 +18,16 @@ use \com\livinglogic\ul4\TimeDelta as TimeDelta;
 
 class UL4Test extends \PHPUnit_Framework_TestCase
 {
+	function testNew()
+	{
+		$s1 = "OS24|de.livinglogic.ul4.printOS27|de.livinglogic.ul4.locationOS27|de.livinglogic.ul4.templateS2|25S35|<?print @(2000-02-29).isoformat()?>nbTS2|<?S2|?>ni0|i0|nL^0|]^7|S5|printi0|i35|i8|i33|i8|i33|OS27|de.livinglogic.ul4.callmeth^2|i8|i33|S9|isoformatOS24|de.livinglogic.ul4.const^2|i8|i21|Z20000229000000000000L]^18|nn";
+		$p = \com\livinglogic\ul4on\Utils::loads($s1);
+		$c = new EvaluationContext(array());
+		$p->evaluate($c);
+// 		$this->assertEquals(45, $c->getOutput());
+		print $c->getOutput() . "\n";
+	}
+/*
 	function testColor()
 	{
 		$this->assertEquals("#3f7f7f4c", Color::fromhsv(0.5, 0.5, 0.5, 0.3)->repr());
@@ -279,6 +289,7 @@ class UL4Test extends \PHPUnit_Framework_TestCase
 		$x = $c->get("x");
 		$this->assertEquals("(H)", $x[0]);
 	}
+	*/
 }
 
 ?>

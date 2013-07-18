@@ -4,18 +4,41 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class FunctionBin implements _Function
+class FunctionBin extends _Function
 {
-	public function call($context, $args)
-	{
-		if (count($args) == 1)
-			return Utils::bin($args[0]);
-		throw new ArgumentCountMismatchException("function", "bin", count($args), 1);
-	}
-
-	public function getName()
+	public function nameUL4()
 	{
 		return "bin";
+	}
+
+	protected function makeSignature()
+	{
+		return new Signature(
+			$this->nameUL4(),
+			"number", Signature::$required
+		);
+	}
+
+	public function evaluate($args)
+	{
+		return self::call($args[0]);
+	}
+
+	public static function call($obj)
+	{
+		if (is_int($obj) || is_long($obj))
+		{
+			if ($obj < 0)
+				return "-0b" . decbin(-$obj);
+			else
+				return "0b" . decbin($obj);
+		}
+		else if (is_bool($obj))
+		{
+			return $obj ? "0b1" : "0b0";
+		}
+
+		throw new \Exception("bin(" . Utils::objectType($obj) . ") not supported!");
 	}
 }
 

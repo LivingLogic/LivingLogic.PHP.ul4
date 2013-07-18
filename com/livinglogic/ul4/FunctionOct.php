@@ -4,18 +4,41 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class FunctionOct implements _Function
+class FunctionOct extends _Function
 {
-	public function call($context, $args)
-	{
-		if (count($args) == 1)
-			return Utils::oct($args[0]);
-		throw new ArgumentCountMismatchException("function", "oct", count($args), 1);
-	}
-
-	public function getName()
+	public function nameUL4()
 	{
 		return "oct";
+	}
+
+	protected function makeSignature()
+	{
+		return new Signature(
+			$this->nameUL4(),
+			"number", Signature::$required
+		);
+	}
+
+	public function evaluate($args)
+	{
+		return self::call($args[0]);
+	}
+
+	public static function call($obj)
+	{
+		if (is_int($obj) || is_long($obj))
+		{
+			if ($obj < 0)
+				return "-0o" . decoct(-$obj);
+			else
+				return "0o" . decoct($obj);
+		}
+		else if (is_bool($obj))
+		{
+			return $obj ? "0o1" : "0o0";
+		}
+
+		throw new \Exception("oct(" . Utils::objectType($obj) . ") not supported!");
 	}
 }
 

@@ -67,7 +67,6 @@ class EvaluationContext implements \com\livinglogic\utils\Closeable, \com\living
 				"range" => new FunctionRange(),
 				"sorted" => new FunctionSorted(),
 				"type" => new FunctionType(),
-				"get" => new FunctionGet(),
 				"asjson" => new FunctionAsJSON(),
 				"asul4on" => new FunctionAsUL4ON(),
 				"reversed" => new FunctionReversed(),

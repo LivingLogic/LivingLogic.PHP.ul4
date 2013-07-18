@@ -44,18 +44,18 @@ include_once 'com/livinglogic/ul4/FunctionNow.php';
 include_once 'com/livinglogic/ul4/FunctionUTCNow.php';
 include_once 'com/livinglogic/ul4/FunctionRandom.php';
 include_once 'com/livinglogic/ul4/FunctionXMLEscape.php';
-include_once 'com/livinglogic/ul4/FunctionCSV.php';         // done
-include_once 'com/livinglogic/ul4/FunctionStr.php';         // done
-include_once 'com/livinglogic/ul4/FunctionRepr.php';        // done
-include_once 'com/livinglogic/ul4/FunctionInt.php';         // done
-include_once 'com/livinglogic/ul4/FunctionFloat.php';       // done
-include_once 'com/livinglogic/ul4/FunctionBool.php';        // done
-include_once 'com/livinglogic/ul4/FunctionLen.php';         // done
-include_once 'com/livinglogic/ul4/FunctionEnumerate.php';   // done
-include_once 'com/livinglogic/ul4/FunctionEnumFL.php';      // done
-include_once 'com/livinglogic/ul4/FunctionIsFirstLast.php'; // done
-include_once 'com/livinglogic/ul4/FunctionIsFirst.php';     // done
-include_once 'com/livinglogic/ul4/FunctionIsLast.php';      // done
+include_once 'com/livinglogic/ul4/FunctionCSV.php';
+include_once 'com/livinglogic/ul4/FunctionStr.php';
+include_once 'com/livinglogic/ul4/FunctionRepr.php';
+include_once 'com/livinglogic/ul4/FunctionInt.php';
+include_once 'com/livinglogic/ul4/FunctionFloat.php';
+include_once 'com/livinglogic/ul4/FunctionBool.php';
+include_once 'com/livinglogic/ul4/FunctionLen.php';
+include_once 'com/livinglogic/ul4/FunctionEnumerate.php';
+include_once 'com/livinglogic/ul4/FunctionEnumFL.php';
+include_once 'com/livinglogic/ul4/FunctionIsFirstLast.php';
+include_once 'com/livinglogic/ul4/FunctionIsFirst.php';
+include_once 'com/livinglogic/ul4/FunctionIsLast.php';
 include_once 'com/livinglogic/ul4/FunctionIsNone.php';
 include_once 'com/livinglogic/ul4/FunctionIsStr.php';
 include_once 'com/livinglogic/ul4/FunctionIsInt.php';
@@ -75,7 +75,6 @@ include_once 'com/livinglogic/ul4/FunctionAbs.php';
 include_once 'com/livinglogic/ul4/FunctionRange.php';
 include_once 'com/livinglogic/ul4/FunctionSorted.php';
 include_once 'com/livinglogic/ul4/FunctionType.php';
-include_once 'com/livinglogic/ul4/FunctionGet.php';
 include_once 'com/livinglogic/ul4/FunctionAsJSON.php';
 include_once 'com/livinglogic/ul4/FunctionAsUL4ON.php';
 include_once 'com/livinglogic/ul4/FunctionReversed.php';

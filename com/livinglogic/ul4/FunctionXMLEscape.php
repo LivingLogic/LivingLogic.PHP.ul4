@@ -29,7 +29,7 @@ class FunctionXMLEscape extends _Function
 		if (is_null($obj))
 			return "";
 
-		$str = FunctionStr::str($obj);
+		$str = FunctionStr::call($obj);
 		$length = strlen($str);
 
 		$search = array( "&");

@@ -4,21 +4,27 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class FunctionIsUndefined implements _Function
+class FunctionIsUndefined extends _Function
 {
-	public function getName()
+	public function nameUL4()
 	{
 		return "isundefined";
 	}
 
-	public function call($context, $args)
+	protected function makeSignature()
 	{
-		if (count($args) == 1)
-			return self::_call($args[0]);
-		throw new ArgumentCountMismatchException("function", "isundefined", count($args), 1);
+		return new Signature(
+			$this->nameUL4(),
+			"obj", Signature::$required
+		);
 	}
 
-	public static function _call($obj)
+	public function evaluate($args)
+	{
+		return self::call($args[0]);
+	}
+
+	public static function call($obj)
 	{
 		return $obj instanceof Undefined;
 	}

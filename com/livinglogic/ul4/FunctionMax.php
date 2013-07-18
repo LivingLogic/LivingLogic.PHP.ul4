@@ -4,22 +4,38 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class FunctionMax implements _Function
+class FunctionMax extends _Function
 {
-	public function getName()
+	public function nameUL4()
 	{
 		return "max";
 	}
 
-	public function call($context, $args)
+	protected function makeSignature()
 	{
-		if (count($args) > 0)
-			return self::_call($args);
-		throw new ArgumentCountMismatchException("function", "max", 0, 1, -1);
+		return new Signature(
+			$this->nameUL4(),
+			"args", Signature::$remainingArguments
+		);
 	}
 
-	public static function _call($objs)
+	public function evaluate($args)
 	{
+		if (count($args) == 0)
+			self::call();
+		else
+			self::call($objs);
+	}
+
+	public static function call()
+	{
+		$objs = null;
+
+		if (func_num_args() == 0)
+			throw new MissingArgumentException("max", "args", 0);
+		else
+			$objs = func_get_arg(0);
+
 		$iter = Utils::iterator(count($objs) == 1 ? $objs[0] : $objs);
 
 		$maxValue = null;
@@ -32,8 +48,10 @@ class FunctionMax implements _Function
 				$maxValue = $testValue;
 			$first = false;
 		}
+
 		if ($first)
 			throw new \Exception("max() arg is an empty sequence!");
+
 		return $maxValue;
 	}
 }

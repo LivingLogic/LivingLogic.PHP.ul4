@@ -4,23 +4,29 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class FunctionIsColor implements _Function
+class FunctionIsColor extends _Function
 {
-	public function call($context, $args)
-	{
-		if (count($args) == 1)
-			return self::_call($args[0]);
-		throw new ArgumentCountMismatchException("function", "iscolor", count($args), 1);
-	}
-
-	public static function _call($arg)
-	{
-		return (!is_null($arg) && ($arg instanceof Color));
-	}
-
-	public function getName()
+	public function nameUL4()
 	{
 		return "iscolor";
+	}
+
+	protected function makeSignature()
+	{
+		return new Signature(
+			$this->nameUL4(),
+			"obj", Signature::$required
+		);
+	}
+
+	public function evaluate($args)
+	{
+		return self::call($args[0]);
+	}
+
+	public static function call($obj)
+	{
+		return !is_null($obj) && ($obj instanceof Color);
 	}
 }
 

@@ -4,26 +4,31 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class FunctionURLQuote implements _Function
+class FunctionURLQuote extends _Function
 {
-	public function getName()
+	public function nameUL4()
 	{
 		return "urlquote";
 	}
 
-	public function call($context, $args)
+	protected function makeSignature()
 	{
-		if (count($args) == 1)
-			return self::_call($args[0]);
-		throw new ArgumentCountMismatchException("function", "urlquote", count($args), 1);
+		return new Signature(
+			$this->nameUL4(),
+			"string", Signature::$required
+		);
 	}
 
-	public static function _call($obj)
+	public function evaluate($args)
+	{
+		return self::call($args[0]);
+	}
+
+	public static function call($obj)
 	{
 		if (is_string($obj))
-		{
 			return urlencode($obj);
-		}
+
 		throw new ArgumentTypeMismatchException("urlquote({})", $obj);
 	}
 }

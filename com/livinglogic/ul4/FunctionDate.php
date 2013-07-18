@@ -4,33 +4,33 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class FunctionDate implements _Function
+class FunctionDate extends _Function
 {
-	public function getName()
+	public function nameUL4()
 	{
 		return "date";
 	}
 
-	public function call($context, $args)
+	protected function makeSignature()
 	{
-		switch (count($args))
-		{
-			case 3:
-				return self::_call($args[0], $args[1], $args[2]);
-			case 4:
-				return self::_call($args[0], $args[1], $args[2], $args[3]);
-			case 5:
-				return self::_call($args[0], $args[1], $args[2], $args[3], $args[4]);
-			case 6:
-				return self::_call($args[0], $args[1], $args[2], $args[3], $args[4], $args[5]);
-			case 7:
-				return self::_call($args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6]);
-			default:
-				throw new ArgumentCountMismatchException("function", "date", count($args), 3, 7);
-		}
+		return new Signature(
+			$this->nameUL4(),
+			"year", Signature::$required,
+			"month", Signature::$required,
+			"day", Signature::$required,
+			"hour", 0,
+			"minute", 0,
+			"second", 0,
+			"microsecond", 0
+		);
 	}
 
-	public static function _call($year, $month, $day)
+	public function evaluate($args)
+	{
+		return self::call($args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6]);
+	}
+
+	public static function call($year, $month, $day)
 	{
 		$iyear   = FunctionInt::call($year);
 		$imonth  = FunctionInt::call($month);

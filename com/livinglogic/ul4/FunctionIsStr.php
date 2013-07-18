@@ -4,18 +4,29 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class FunctionIsStr implements _Function
+class FunctionIsStr extends _Function
 {
-	public function call($context, $args)
-	{
-		if (count($args) == 1)
-			return is_string($args[0]);
-		throw new ArgumentCountMismatchException("function", "isstr", count($args), 1);
-	}
-
-	public function getName()
+	public function nameUL4()
 	{
 		return "isstr";
+	}
+
+	protected function makeSignature()
+	{
+		return new Signature(
+			$this->nameUL4(),
+			"obj", Signature::$required
+		);
+	}
+
+	public function evaluate($args)
+	{
+		return self::call($args[0]);
+	}
+
+	public static function call($obj)
+	{
+		return !is_null($obj) && is_string($obj);
 	}
 }
 

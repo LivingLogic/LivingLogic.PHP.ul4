@@ -2,12 +2,24 @@
 
 namespace com\livinglogic\ul4;
 
-class Color implements JsonSerializable
+class Color implements UL4Repr, UL4Len, UL4Type, UL4MethodCall
 {
 	var $r;
 	var $g;
 	var $b;
 	var $a;
+
+	private $signatureR = null;
+	private $signatureG = null;
+	private $signatureB = null;
+	private $signatureA = null;
+	private $signatureLum = null;
+	private $signatureHLS = null;
+	private $signatureHLSA = null;
+	private $signatureHSV = null;
+	private $signatureHSVA = null;
+	private $signatureWithA = null;
+	private $signatureWithLum = null;
 
 	function __construct($r, $g, $b, $a=255)
 	{
@@ -15,6 +27,18 @@ class Color implements JsonSerializable
 		$this->setColorCoordinate($g, $this->g);
 		$this->setColorCoordinate($b, $this->b);
 		$this->setColorCoordinate($a, $this->a);
+
+		$this->signatureR = new Signature("r");
+		$this->signatureG = new Signature("g");
+		$this->signatureB = new Signature("b");
+		$this->signatureA = new Signature("a");
+		$this->signatureLum = new Signature("lum");
+		$this->signatureHLS = new Signature("hls");
+		$this->signatureHLSA = new Signature("hlsa");
+		$this->signatureHSV = new Signature("hsv");
+		$this->signatureHSVA = new Signature("hsva");
+		$this->signatureWithA = new Signature("witha", "a", Signature::$required);
+		$this->signatureWithLum = new Signature("withlum", "lum", Signature::$required);
 	}
 
 	public function get($idx)
@@ -423,21 +447,102 @@ class Color implements JsonSerializable
 		return new Color($this->r, $this->g, $this->b, $a);
 	}
 
-	public function jsonSerialize()
+	public function lenUL4()
 	{
-		$buffer = "ul4.Color.create(";
-		$buffer .= $this->getR();
-		$buffer .= ", ";
-		$buffer .= $this->getG();
-		$buffer .= ", ";
-		$buffer .= $this->getB();
-		$buffer .= ", ";
-		$buffer .= $this->getA();
-		$buffer .= ")";
-
-		return $buffer;
+		return 4;
 	}
 
+	public function typeUL4()
+	{
+		return "color";
+	}
+
+	public function getItemIntegerUL4($index)
+	{
+		switch ($index)
+		{
+			case 0:
+			case -4:
+				return $this->r;
+			case 1:
+			case -3:
+				return $this->g;
+			case 2:
+			case -2:
+				return $this->b;
+			case 3:
+			case -1:
+				return $this->a;
+			default:
+				throw new \Exception("invalid index: " . $index);
+		}
+	}
+
+	public function callMethodUL4($methodName, $args, $kwargs)
+	{
+		if ("r" == $methodName)
+		{
+			$args = $this->signatureR->makeArgumentArray($args, $kwargs);
+			return $this->r;
+		}
+		else if ("g" == $methodName)
+		{
+			$args = $this->signatureG->makeArgumentArray($args, $kwargs);
+			return $this->g;
+		}
+		else if ("b" == $methodName)
+		{
+			$args = $this->signatureB->makeArgumentArray($args, $kwargs);
+			return $this->b;
+		}
+		else if ("a" == $methodName)
+		{
+			$args = $this->signatureA->makeArgumentArray($args, $kwargs);
+			return $this->a;
+		}
+		else if ("lum" == $methodName)
+		{
+			$args = $this->signatureLum->makeArgumentArray($args, $kwargs);
+			return $this->lum();
+		}
+		else if ("hls" == $methodName)
+		{
+			$args = $this->signatureHLS->makeArgumentArray($args, $kwargs);
+			return $this->hls();
+		}
+		else if ("hlsa" == $methodName)
+		{
+			$args = $this->signatureHLSA->makeArgumentArray($args, $kwargs);
+			return $this->hlsa();
+		}
+		else if ("hsv" == $methodName)
+		{
+			$args = $this->signatureHSV->makeArgumentArray($args, $kwargs);
+			return $this->hsv();
+		}
+		else if ("hsva" == $methodName)
+		{
+			$args = $this->signatureHSVA->makeArgumentArray($args, $kwargs);
+			return $this->hsva();
+		}
+		else if ("witha" == $methodName)
+		{
+			$args = $this->signatureWithA->makeArgumentArray($args, $kwargs);
+			return $this->witha(FunctionInt::call($args[0]));
+		}
+		else if ("withlum" == $methodName)
+		{
+			$args = $this->signatureWithLum->makeArgumentArray($args, $kwargs);
+			return $this->withlum(FunctionFloat::call($args[0]));
+		}
+		else
+			throw new UnknownMethodException($methodName);
+	}
+
+	public function reprUL4()
+	{
+		return $this->repr();
+	}
 }
 
 ?>

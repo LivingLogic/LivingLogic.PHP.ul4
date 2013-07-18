@@ -4,21 +4,27 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class FunctionType implements _Function
+class FunctionType extends _Function
 {
-	public function call($context, $args)
-	{
-		if (count($args) == 1)
-			return self::_call($args[0]);
-		throw new ArgumentCountMismatchException("function", "type", count($args), 1);
-	}
-
-	public function getName()
+	public function nameUL4()
 	{
 		return "type";
 	}
 
-	public static function _call($obj)
+	protected function makeSignature()
+	{
+		return new Signature(
+			$this->nameUL4(),
+			"obj", Signature::$required
+		);
+	}
+
+	public function evaluate($args)
+	{
+		return self::call($args[0]);
+	}
+
+	public static function call($obj)
 	{
 		if (is_null($obj))
 			return "none";
@@ -32,16 +38,10 @@ class FunctionType implements _Function
 			return "float";
 		else if ($obj instanceof \DateTime)
 			return "date";
-		else if ($obj instanceof TimeDelta)
-			return "timedelta";
-		else if ($obj instanceof MonthDelta)
-			return "monthdelta";
-		else if ($obj instanceof Color)
-			return "color";
+		else if (obj instanceof UL4Type)
+			return $obj->typeUL4();
 		else if (\com\livinglogic\ul4on\Utils::isList($obj))
 			return "list";
-		else if ($obj instanceof InterpretedTemplate)
-			return "template";
 		else if (\com\livinglogic\ul4on\Utils::isDict($obj))
 			return "dict";
 		else

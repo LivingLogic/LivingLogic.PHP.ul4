@@ -23,9 +23,7 @@ class PPrint extends Unary
 
 	public function evaluate($context)
 	{
-// 		echo "PPrint.evaluate: this->obj: " . gettype($this->obj) . "\n";
-// 		$x = Utils::str($this->obj->evaluate($context));
-		$context->write(Utils::str($this->obj->evaluate($context)));
+		$context->write(FunctionStr::call($this->obj->evaluate($context)));
 		return null;
 	}
 

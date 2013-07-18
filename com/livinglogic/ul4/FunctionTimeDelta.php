@@ -4,31 +4,29 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class FunctionTimeDelta implements _Function
+class FunctionTimeDelta extends _Function
 {
-	public function getName()
+	public function nameUL4()
 	{
 		return "timedelta";
 	}
 
-	public function call($context, $args)
+	protected function makeSignature()
 	{
-		switch (count($args))
-		{
-			case 0:
-				return self::_call();
-			case 1:
-				return self::_call($args[0]);
-			case 2:
-				return self::_call($args[0], $args[1]);
-			case 3:
-				return self::_call($args[0], $args[1], $args[2]);
-			default:
-				throw new ArgumentCountMismatchException("function", "timedelta", count($args), 0, 3);
-		}
+		return new Signature(
+			$this->nameUL4(),
+			"days", 0,
+			"seconds", 0,
+			"microseconds", 0
+		);
 	}
 
-	public static function _call()
+	public function evaluate($args)
+	{
+		return self::call($args[0], $args[1], $args[2]);
+	}
+
+	public static function call()
 	{
 		if (func_num_args() == 0)
 		{

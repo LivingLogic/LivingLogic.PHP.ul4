@@ -4,8 +4,9 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class FunctionHSV implements _Function
+class FunctionHSV extends _Function
 {
+	/*
 	public function call($context, $args)
 	{
 		if (count($args) == 3)
@@ -15,13 +16,30 @@ class FunctionHSV implements _Function
 
 		throw new ArgumentCountMismatchException("function", "hsv", count($args), 3, 4);
 	}
+	*/
 
-	public function getName()
+	public function nameUL4()
 	{
 		return "hsv";
 	}
 
-	public static function _call($arg1, $arg2, $arg3)
+	protected function makeSignature()
+	{
+		return new Signature(
+			$this->nameUL4(),
+			"h", Signature::$required,
+			"s", Signature::$required,
+			"v", Signature::$required,
+			"a", 1.0
+		);
+	}
+
+	public function evaluate($args)
+	{
+		return self::call($args[0], $args[1], $args[2], $args[3]);
+	}
+
+	public static function call($arg1, $arg2, $arg3)
 	{
 		if (func_num_args() == 3)
 			return Color::fromhsv(FunctionFloat::call($arg1), FunctionFloat::call($arg2), FunctionFloat::call($arg3));

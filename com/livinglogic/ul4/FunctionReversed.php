@@ -4,28 +4,123 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class FunctionReversed implements _Function
+
+class StringReversedIterator implements \Iterator
 {
-	public function call($context, $args)
+	var $string;
+	var $stringSize;
+	var $index;
+
+	public function __construct($string)
 	{
-		if (count($args) == 1)
-			return self::_call($args[0]);
-		throw new ArgumentCountMismatchException("function", "reversed", count($args), 1);
+		$this->string = $string;
+		$this->stringSize = strlen($string);
+		$this->index = $this->stringSize - 1;
 	}
 
-	public function getName()
+	public function current()
+	{
+		if (!$this->valid())
+			throw new \Exception("No more characters available!");
+
+		return $this->string{$this->index};
+	}
+
+	public function key()
+	{
+		return $this->index;
+	}
+
+	public function next()
+	{
+		$this->index--;
+	}
+
+	public function rewind()
+	{
+		$this->index = $this->stringSize - 1;
+	}
+
+	public function valid()
+	{
+		return $this->index >= 0;
+	}
+}
+
+
+class ListReversedIterator implements \Iterator
+{
+	var $list;
+	var $listSize;
+	var $index;
+
+	public function __construct($list)
+	{
+		$this->list = $list;
+		$this->listSize = count($list);
+		$this->index = $this->listSize - 1;
+	}
+
+	public function current()
+	{
+		if (!$this->valid())
+			throw new \Exception("No more items available!");
+
+		return $this->list[$this->index];
+	}
+
+	public function key()
+	{
+		return $this->index;
+	}
+
+	public function next()
+	{
+		$this->index--;
+	}
+
+	public function rewind()
+	{
+		$this->index = $this->listSize - 1;
+	}
+
+	public function valid()
+	{
+		return $this->index >= 0;
+	}
+}
+
+
+class FunctionReversed extends _Function
+{
+	public function nameUL4()
 	{
 		return "reversed";
 	}
 
-	public static function _call($obj)
+	protected function makeSignature()
+	{
+		return new Signature(
+			$this->nameUL4(),
+			"sequence", Signature::$required
+		);
+	}
+
+	public function evaluate($args)
+	{
+		return self::call($args[0]);
+	}
+
+	public static function call($obj)
 	{
 		if (is_string($obj))
 			return new StringReversedIterator($obj);
 		else if (\com\livinglogic\ul4on\Utils::isList($obj))
 			return new ListReversedIterator($obj);
+
 		throw new ArgumentTypeMismatchException("reversed({})", $obj);
 	}
+
 }
 
 ?>

@@ -4,23 +4,33 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class FunctionZip implements _Function
-{
-	public function call($context, $args)
-	{
-		return self::_call($args);
-	}
 
-	public function getName()
+class FunctionZip extends _Function
+{
+	public function nameUL4()
 	{
 		return "zip";
 	}
 
-	public static function _call($objs)
+	protected function makeSignature()
 	{
-		return new ZipIterator($objs);
+		return new Signature(
+			$this->nameUL4(),
+			"iterables", Signature::$remainingArguments
+		);
+	}
+
+	public function evaluate($args)
+	{
+		return self::call($args[0]);
+	}
+
+	public static function call($iterables)
+	{
+		return new ZipIterator($iterables);
 	}
 }
+
 
 class ZipIterator implements \Iterator
 {
