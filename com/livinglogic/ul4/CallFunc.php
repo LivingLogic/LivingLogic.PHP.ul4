@@ -167,11 +167,19 @@ class CallFunc extends _Callable
 	*/
 
 	protected $obj;
+	protected $args;
+	protected $kwargs;
+	protected $remargs;
+	protected $remkwargs;
 
 	public function __construct($location=null, $start=0, $end=0, $obj=null)
 	{
 		parent::__construct($location, $start, $end);
 		$this->obj = $obj;
+		$this->args = array();
+		$this->kwargs = array();
+		$this->remargs = null;
+		$this->remkwargs = null;
 	}
 
 	public function getType()
@@ -263,29 +271,29 @@ class CallFunc extends _Callable
 	{
 		parent::dumpUL4ON($encoder);
 		$encoder->dump($this->obj);
-		$encoder->dump($this->arguments);
+		$encoder->dump($this->args);
 
-		$keywordArgumentList = array();
-		foreach ($this->keywordArguments as $arg)
-			array_push($keywordArgumentList, array($arg->getName(), $arg->getArg()));
+		$kwarglist = array();
+		foreach ($this->kwargs as $arg)
+			array_push($kwarglist, array($arg->getName(), $arg->getArg()));
 
-		$encoder->dump($keywordArgumentList);
-		$encoder->dump($this->remainingArguments);
-		$encoder->dump($this->remainingKeywordArguments);
+		$encoder->dump($kwarglist);
+		$encoder->dump($this->remargs);
+		$encoder->dump($this->remkwargs);
 	}
 
 	public function loadUL4ON($decoder)
 	{
 		parent::loadUL4ON($decoder);
 		$this->obj = $decoder->load();
-		$this->arguments = $decoder->load();
+		$this->args = $decoder->load();
 
-		$keywordArgumentList = $decoder->load();
-		foreach ($keywordArgumentList as $arg)
+		$kwarglist = $decoder->load();
+		foreach ($kwarglist as $arg)
 			$this->append($arg[0], $arg[1]);
 
-		$this->remainingArguments = $decoder->load();
-		$this->remainingKeywordArguments = $decoder->load();
+		$this->remargs = $decoder->load();
+		$this->remkwargs = $decoder->load();
 	}
 
 	protected static $attributes;
