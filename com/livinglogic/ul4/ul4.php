@@ -124,7 +124,6 @@ include_once 'com/livinglogic/ul4/DictItem.php';
 include_once 'com/livinglogic/ul4/DictItemDict.php';
 include_once 'com/livinglogic/ul4/DictItemKeyValue.php';
 include_once 'com/livinglogic/ul4/Dict.php';
-include_once 'com/livinglogic/ul4/JsonSerializable.php';
 include_once 'com/livinglogic/ul4/Color.php';
 include_once 'com/livinglogic/ul4/MonthDelta.php';
 include_once 'com/livinglogic/ul4/TimeDelta.php';
