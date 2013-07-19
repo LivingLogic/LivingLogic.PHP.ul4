@@ -7,6 +7,7 @@ include_once 'com/livinglogic/ul4on/Utils.php';
 
 include_once 'com/livinglogic/utils/Closeable.php';
 include_once 'com/livinglogic/utils/CloseableRegistry.php';
+include_once 'com/livinglogic/utils/MapChain.php';
 
 include_once 'com/livinglogic/ul4/Formatter.php';
 include_once 'com/livinglogic/ul4/Execution.php';

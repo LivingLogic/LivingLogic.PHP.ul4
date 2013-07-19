@@ -4,6 +4,9 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
+use \com\livinglogic\utils\MapChain as MapChain;
+
+
 class EvaluationContext implements \com\livinglogic\utils\Closeable, \com\livinglogic\utils\CloseableRegistry
 {
 	protected $buffer;
@@ -25,7 +28,7 @@ class EvaluationContext implements \com\livinglogic\utils\Closeable, \com\living
 	 * The user defined ones from {@link #variables} and the map containing the
 	 * global functions.
 	 */
-	protected $allVariables; // TODO MapChain<String, Object>
+	protected $allVariables;
 
 	private static $functions;
 
@@ -102,7 +105,7 @@ class EvaluationContext implements \com\livinglogic\utils\Closeable, \com\living
 			$variables = array();
 		$this->variables = $variables;
 		$this->template = null;
-		//$this->allVariables = new MapChain<String, Object>(variables, functions); // TODO
+		$this->allVariables = new MapChain($variables, self::$functions);
 		$this->closeables = array();
 	}
 
@@ -124,6 +127,22 @@ class EvaluationContext implements \com\livinglogic\utils\Closeable, \com\living
 		return $this->variables;
 	}
 
+	public function &getAllVariables()
+	{
+		return $this->allVariables;
+	}
+
+	public function setVariables($variables)
+	{
+		if (is_null($variables))
+			$variables = array();
+		$result = $this->variables;
+		$this->variables = $variables;
+		$this->allVariables->setFirst($variables);
+
+		return $result;
+	}
+
 	public function getOutput()
 	{
 		return $this->buffer;
@@ -141,35 +160,18 @@ class EvaluationContext implements \com\livinglogic\utils\Closeable, \com\living
 
 	public function get($key)
 	{
-		if (array_key_exists($key, $this->variables))
-			return $this->variables[$key];
-		else
+		$result = $this->allVariables->get($key);
+
+		if (is_null($result) && !$this->allVariables->array_key_exists($key))
 			return new UndefinedVariable($key);
+
+		return $result;
 	}
 
 	public function remove($key)
 	{
 		unset($this->variables[$key]);
 	}
-
-	/*
-	public Object push(Object object)
-	{
-		stack.push(object);
-		return object;
-	}
-
-	public Object pop()
-	{
-		return stack.pop();
-	}
-
-	public Object pop(Object object)
-	{
-		stack.pop();
-		return object;
-	}
-	*/
 }
 
 EvaluationContext::static_init();
