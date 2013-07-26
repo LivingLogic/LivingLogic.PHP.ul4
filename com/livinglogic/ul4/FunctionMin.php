@@ -15,7 +15,7 @@ class FunctionMin extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"args", Signature::$remainingArguments
+			array("args", Signature::$remainingArguments)
 		);
 	}
 

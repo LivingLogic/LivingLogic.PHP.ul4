@@ -88,7 +88,7 @@ class FunctionIsFirstLast extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"iterable", Signature::$required
+			array("iterable", Signature::$required)
 		);
 	}
 

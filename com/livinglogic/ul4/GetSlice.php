@@ -88,14 +88,14 @@ class GetSlice extends AST
 		else if (is_string($obj))
 		{
 			$start = $startIndex != null ? FunctionInt::call($startIndex) : 0;
-			$end = $endIndex != null ? FunctionInt::call($endIndex) : strlen($obj);
+			$end = $endIndex != null ? FunctionInt::call($endIndex) : mb_strlen($obj, \com\livinglogic\ul4on\Utils::$encoding);
 
-			$size = strlen($obj);
+			$size = mb_strlen($obj, \com\livinglogic\ul4on\Utils::$encoding);
 			$start = Utils::getSliceStartPos($size, $start);
 			$end = Utils::getSliceEndPos($size, $end);
 			if ($end < $start || $start >= $size)
 				return "";
-			return substr($obj, $start, $end - $start);
+			return mb_substr($obj, $start, $end - $start, \com\livinglogic\ul4on\Utils::$encoding);
 		}
 		throw new ArgumentTypeMismatchException("{}[{}:{}]", $obj, $startIndex, $endIndex);
 	}

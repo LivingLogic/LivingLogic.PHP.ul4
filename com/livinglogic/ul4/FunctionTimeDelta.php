@@ -15,9 +15,9 @@ class FunctionTimeDelta extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"days", 0,
+			array("days", 0,
 			"seconds", 0,
-			"microseconds", 0
+			"microseconds", 0)
 		);
 	}
 

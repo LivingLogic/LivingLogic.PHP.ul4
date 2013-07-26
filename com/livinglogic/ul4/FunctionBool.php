@@ -15,7 +15,7 @@ class FunctionBool extends _Function
 	{
 		return new Signature(
 				$this->nameUL4(),
-				"obj", false
+				array("obj", false)
 		);
 	}
 
@@ -39,7 +39,7 @@ class FunctionBool extends _Function
 			else if (is_bool($obj))
 				return $obj;
 			else if (is_string($obj))
-				return strlen($obj) > 0;
+				return mb_strlen($obj, \com\livinglogic\ul4on\Utils::$encoding) > 0;
 			else if (is_int($obj) || is_long($obj))
 				return $obj != 0;
 			else if (is_float($obj) || is_double($obj))

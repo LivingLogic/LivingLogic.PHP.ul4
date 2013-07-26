@@ -27,10 +27,10 @@ class FunctionHSV extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"h", Signature::$required,
+			array("h", Signature::$required,
 			"s", Signature::$required,
 			"v", Signature::$required,
-			"a", 1.0
+			"a", 1.0)
 		);
 	}
 

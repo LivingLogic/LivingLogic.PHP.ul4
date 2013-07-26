@@ -36,7 +36,7 @@ class Signature implements \IteratorAggregate // implements Iterable<ArgumentDes
 		for ($i = 0; $i < count($args); ++$i)
 		{
 			if ($i%2 == 0)
-				$argname = $args[i];
+				$argname = $args[$i];
 			else
 			{
 				if ($args[$i] === self::$required)
@@ -56,7 +56,7 @@ class Signature implements \IteratorAggregate // implements Iterable<ArgumentDes
 		return $this->name;
 	}
 
-	public function add($name, $defaultValue=null)
+	public function add($name)
 	{
 		if (func_num_args() == 1)
 			$this->arguments[$name] = new ArgumentDescription($name, count($this->arguments));
@@ -69,7 +69,7 @@ class Signature implements \IteratorAggregate // implements Iterable<ArgumentDes
 
 	public function getIterator()
 	{
-		return new ArrayIterator(array_values($this->arguments));
+		return new \ArrayIterator(array_values($this->arguments));
 	}
 
 	public function size()
@@ -99,7 +99,9 @@ class Signature implements \IteratorAggregate // implements Iterable<ArgumentDes
 		foreach ($this as $argDesc)
 		{
 			$argName = $argDesc->getName();
-			$argValue = $kwargs[$argName];
+			$argValue = null;
+			if (array_key_exists($argName, $kwargs))
+				$argValue = $kwargs[$argName];
 			// argument has been specified via keyword
 			if (!is_null($argValue) || array_key_exists($argName, $kwargs))
 			{
@@ -138,7 +140,7 @@ class Signature implements \IteratorAggregate // implements Iterable<ArgumentDes
 
 		// Handle additional keyword arguments
 		// if there are any, and we suport a "**" argument, put the remaining keyword arguments into this argument as a map, else complain
-		if (!is_null(remainingKeywordArgumentsName))
+		if (!is_null($this->remainingKeywordArgumentsName))
 		{
 			$realRemainingKeywordArguments = array();
 			foreach ($kwargs as $kwargname => $value)

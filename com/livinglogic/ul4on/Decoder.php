@@ -221,10 +221,11 @@ class Decoder
 
 	private function nextChar()
 	{
-		if (\strlen($this->buffer) <= ($this->index - 1))
-			throw new \Exception("buffer is completely read. buffer = '$this->buffer', index = $this->index,  count =   " . \strlen($this->buffer));
+		if (\mb_strlen($this->buffer, Utils::$encoding) <= ($this->index - 1))
+			throw new \Exception("buffer is completely read. buffer = '$this->buffer', index = $this->index,  count =   " . \mb_strlen($this->buffer, Utils::$encoding));
 
-		$c = $this->buffer[++$this->index];
+// 		$c = $this->buffer[++$this->index];
+		$c = mb_substr($this->buffer, ++$this->index, 1, Utils::$encoding);
 
 		return $c;
 	}

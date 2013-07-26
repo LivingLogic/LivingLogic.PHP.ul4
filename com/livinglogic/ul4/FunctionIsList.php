@@ -15,7 +15,7 @@ class FunctionIsList extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"obj", Signature::$required
+			array("obj", Signature::$required)
 		);
 	}
 

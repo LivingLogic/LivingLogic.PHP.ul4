@@ -65,7 +65,7 @@ class MethodRFind implements Method
 		elseif (\com\livinglogic\ul4on\Utils::isList($obj))
 		{
 			$pos = -1;
-			$lensub = strlen($sub);
+			$lensub = mb_strlen($sub, \com\livinglogic\ul4on\Utils::$encoding);
 			for ($i = count($obj) - $lensub; $i >= 0; $i--)
 			{
 				if ($obj[$i] === $sub)
@@ -82,7 +82,7 @@ class MethodRFind implements Method
 	{
 		if (is_string($obj))
 		{
-			$start = Utils::getSliceStartPos(strlen($obj), $start);
+			$start = Utils::getSliceStartPos(mb_strlen($obj, \com\livinglogic\ul4on\Utils::$encoding), $start);
 			$pos = strrpos($obj, $sub);
 			if ($pos < $start)
 				return -1;
@@ -108,17 +108,17 @@ class MethodRFind implements Method
 	{
 		if (is_string($obj))
 		{
-			$start = Utils::getSliceStartPos(strlen($obj), $start);
-			$end = Utils::getSliceStartPos(strlen($obj), $end);
-			$end -= strlen($search);
+			$start = Utils::getSliceStartPos(mb_strlen($obj, \com\livinglogic\ul4on\Utils::$encoding), $start);
+			$end = Utils::getSliceStartPos(mb_strlen($obj, \com\livinglogic\ul4on\Utils::$encoding), $end);
+			$end -= mb_strlen($search, \com\livinglogic\ul4on\Utils::$encoding);
 			if ($end < 0)
 				return -1;
 
 			$result = -1;
-			$lensearch = strlen($search);
+			$lensearch = mb_strlen($search, \com\livinglogic\ul4on\Utils::$encoding);
 			for ($i = count($obj) - count($search); $i >= 0; $i--)
 			{
-				if (substr($obj, $i, $lensearch) === $search)
+				if (mb_substr($obj, $i, $lensearch, \com\livinglogic\ul4on\Utils::$encoding) === $search)
 				{
 					$result = $i;
 					break;

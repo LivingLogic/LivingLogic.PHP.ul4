@@ -68,7 +68,7 @@ class ConditionalBlockBlock extends Block
 		$this->content[count($this->content)-1]->endlocation = $endlocation;
 		$type = trim($endlocation->getCode());
 
-		if (!is_null($type) && strlen($type) != 0 && $type != "if")
+		if (!is_null($type) && mb_strlen($type, \com\livinglogic\ul4on\Utils::$encoding) != 0 && $type != "if")
 			throw new BlockException("if ended by end " . type);
 	}
 

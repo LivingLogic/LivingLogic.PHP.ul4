@@ -14,9 +14,9 @@ class FunctionInt extends _Function
 	protected function makeSignature()
 	{
 		return new Signature(
-				$this->nameUL4(),
-				"obj", 0,
-				"base", null
+			$this->nameUL4(),
+			array("obj", 0,
+			"base", null)
 		);
 	}
 
@@ -39,7 +39,7 @@ class FunctionInt extends _Function
 				$obj = trim($obj);
 				if (ctype_digit($obj))
 					return intval($obj);
-				else if ((strpos($obj, "-") === 0) || (strpos($obj, "+") === 0) && ctype_digit(substr($obj, 1)))
+				else if ((strpos($obj, "-") === 0) || (strpos($obj, "+") === 0) && ctype_digit(mb_substr($obj, 1, \com\livinglogic\ul4on\Utils::$encoding)))
 					return intval($obj);
 				else
 					throw new \Exception("invalid literal for int(): " . Utils::repr($obj) . "!");

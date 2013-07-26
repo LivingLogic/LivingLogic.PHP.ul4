@@ -11,14 +11,24 @@ class Text extends AST
 		parent::__construct($location, $start, $end);
 	}
 
-	public function toString($indent=0)
-	{
-		return self::line($indent, "text " . Utils::repr($this->location->getCode()));
-	}
-
 	public function getType()
 	{
 		return "text";
+	}
+
+	public function getText()
+	{
+		$template = $this->location->getRoot();
+		$text = $this->location->getCode();
+		if (!is_null($template))
+			$text = $template->formatText($text);
+		return $text;
+	}
+
+	public function toString($formatter)
+	{
+		$formatter->write("text ");
+		$formatter->write(FunctionRepr::call($this->getText()));
 	}
 
 	public function evaluate($context)

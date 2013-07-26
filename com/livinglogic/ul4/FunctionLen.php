@@ -24,7 +24,7 @@ class FunctionLen extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"sequence", Signature::$required
+			array("sequence", Signature::$required)
 		);
 	}
 
@@ -36,7 +36,7 @@ class FunctionLen extends _Function
 	public static function call($obj)
 	{
 		if (is_string($obj))
-			return strlen($obj);
+			return mb_strlen($obj, \com\livinglogic\ul4on\Utils::$encoding);
 		else if (obj instanceof UL4Len)
 			return $obj->lenUL4();
 		else if ($obj instanceof UL4Attributes)

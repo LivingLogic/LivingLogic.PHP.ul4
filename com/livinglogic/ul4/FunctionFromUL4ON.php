@@ -15,7 +15,7 @@ class FunctionFromUL4ON extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"string", Signature::$required
+			array("string", Signature::$required)
 		);
 	}
 

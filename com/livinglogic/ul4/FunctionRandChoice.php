@@ -15,7 +15,7 @@ class FunctionRandChoice extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"sequence", Signature::$required
+			array("sequence", Signature::$required)
 		);
 	}
 
@@ -28,8 +28,8 @@ class FunctionRandChoice extends _Function
 	{
 		if (is_string($obj))
 		{
-			$index = intval(strlen($obj) * FunctionRandom::call());
-			return substr($obj, $index, 1);
+			$index = intval(mb_strlen($obj, \com\livinglogic\ul4on\Utils::$encoding) * FunctionRandom::call());
+			return mb_substr($obj, $index, 1, \com\livinglogic\ul4on\Utils::$encoding);
 		}
 		else if (\com\livinglogic\ul4on\Utils::isList($obj))
 		{

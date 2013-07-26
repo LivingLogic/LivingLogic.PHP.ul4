@@ -15,7 +15,7 @@ class FunctionSorted extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"iterable", Signature::$required
+			array("iterable", Signature::$required)
 		);
 	}
 
@@ -29,7 +29,7 @@ class FunctionSorted extends _Function
 		if (is_string($obj))
 		{
 			$retVal = array();
-			$length = strlen($obj);
+			$length = mb_strlen($obj, \com\livinglogic\ul4on\Utils::$encoding);
 			for ($i = 0; $i < $length; $i++)
 			{
 				array_push($retVal, $obj[$i]);

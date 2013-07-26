@@ -9,6 +9,8 @@ use com\livinglogic\ul4on\Decoder as Decoder;
 
 class Utils
 {
+	public static $encoding = "UTF-8";
+
 	public static $registry = array();
 
 	public static function register($name, $factory)

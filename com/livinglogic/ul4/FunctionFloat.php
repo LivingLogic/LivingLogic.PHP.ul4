@@ -15,7 +15,7 @@ class FunctionFloat extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"obj", 0.0
+			array("obj", 0.0)
 		);
 	}
 

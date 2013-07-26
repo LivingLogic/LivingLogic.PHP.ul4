@@ -14,7 +14,7 @@ class StringReversedIterator implements \Iterator
 	public function __construct($string)
 	{
 		$this->string = $string;
-		$this->stringSize = strlen($string);
+		$this->stringSize = mb_strlen($string, \com\livinglogic\ul4on\Utils::$encoding);
 		$this->index = $this->stringSize - 1;
 	}
 
@@ -102,7 +102,7 @@ class FunctionReversed extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"sequence", Signature::$required
+			array("sequence", Signature::$required)
 		);
 	}
 

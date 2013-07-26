@@ -7,7 +7,7 @@ class MapChain
 	private $first = array();
 	private $second = null;
 
-	public function __construct($first, $second)
+	public function __construct(&$first, &$second)
 	{
 		$this->setFirst($first);
 		$this->setSecond($second);
@@ -26,7 +26,9 @@ class MapChain
 		if (is_array($this->second))
 		{
 			if (array_key_exists($key, $this->second))
+			{
 				return $this->second[$key];
+			}
 			else
 				return null;
 		}
@@ -61,7 +63,7 @@ class MapChain
 		return $this->first;
 	}
 
-	public function setFirst($first)
+	public function setFirst(&$first)
 	{
 		if (!is_array($first))
 			throw new \Exception("first has to be an array not a " . gettype($first));
@@ -77,7 +79,7 @@ class MapChain
 		return $this->second;
 	}
 
-	public function setSecond($second)
+	public function setSecond(&$second)
 	{
 		if (!is_null($second) && (!(is_array($second) || $second instanceof MapChain)))
 			throw new \Exception("second has to be an array or a MapChain not a " . gettype($first));

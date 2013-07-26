@@ -35,12 +35,12 @@ class Location implements UL4ONSerializable
 
 	public function getTag()
 	{
-		return substr($this->source, $this->starttag, $this->endtag - $this->starttag);
+		return mb_substr($this->source, $this->starttag, $this->endtag - $this->starttag, \com\livinglogic\ul4on\Utils::$encoding);
 	}
 
 	public function getCode()
 	{
-		return substr($this->source, $this->startcode, $this->endcode - $this->startcode);
+		return mb_substr($this->source, $this->startcode, $this->endcode - $this->startcode, \com\livinglogic\ul4on\Utils::$encoding);
 	}
 
 	public function __toString()
@@ -73,7 +73,7 @@ class Location implements UL4ONSerializable
 		if ($this->type != null)
 		{
 			$tag = Utils::repr($this->getTag());
-			$source = ": " . substr($tag, 1, strlen($tag) - 1);
+			$source = ": " . mb_substr($tag, 1, mb_strlen($tag, \com\livinglogic\ul4on\Utils::$encoding) - 1, \com\livinglogic\ul4on\Utils::$encoding);
 		}
 		else
 			$source = "";

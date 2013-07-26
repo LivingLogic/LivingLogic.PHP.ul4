@@ -15,7 +15,7 @@ class FunctionMonthDelta extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"months", 0
+			array("months", 0)
 		);
 	}
 

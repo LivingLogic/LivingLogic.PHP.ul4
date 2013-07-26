@@ -6,12 +6,6 @@ include_once 'com/livinglogic/ul4/ul4.php';
 
 abstract class _Function implements UL4Call, UL4Name, UL4Type
 {
-	/*
-	public function call($context, $args);
-
-	public function getName();
-	*/
-
 	public abstract function nameUL4();
 
 	public function typeUL4()

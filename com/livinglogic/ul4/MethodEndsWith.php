@@ -27,7 +27,7 @@ class MethodEndsWith implements Method
 		if (!is_string($obj) || !is_string($arg))
 			throw new ArgumentTypeMismatchException("{}.endswith({})", $obj, $arg);
 
-		return strrpos($obj, $arg) === (strlen($obj) - strlen($arg));
+		return mb_strrpos($obj, $arg, \com\livinglogic\ul4on\Utils::$encoding) === (mb_strlen($obj, \com\livinglogic\ul4on\Utils::$encoding) - mb_strlen($arg, \com\livinglogic\ul4on\Utils::$encoding));
 	}
 }
 

@@ -18,7 +18,7 @@ class StringIterator implements \Iterator
 		if (is_null($string))
 			$this->stringSize = -1;
 		else
-			$this->stringSize = strlen($string);
+			$this->stringSize = mb_strlen($string, \com\livinglogic\ul4on\Utils::$encoding);
 		$this->index = 0;
 	}
 
@@ -140,10 +140,10 @@ class Utils
 			{
 				$orgkey = $key;
 				if ($key < 0)
-					$key += strlen($container);
-				if ($key < 0 || $key >= strlen($container))
+					$key += mb_strlen($container, \com\livinglogic\ul4on\Utils::$encoding);
+				if ($key < 0 || $key >= mb_strlen($container, \com\livinglogic\ul4on\Utils::$encoding))
 					return new UndefinedIndex($key);
-				return $container[$key];
+				return mb_substr($container, $key, 1, \com\livinglogic\ul4on\Utils::$encoding);
 			}
 			else
 				throw new\Exception("string[" . self::type($key) . "] not supported!");
@@ -387,7 +387,7 @@ class Utils
 			if (is_string($arg1))
 			{
 				if ($arg2 < 0)
-					$arg2 += strlen($arg1);
+					$arg2 += mb_strlen($arg1, \com\livinglogic\ul4on\Utils::$encoding);
 				return $arg1->{$arg2};
 			}
 			else if (\com\livinglogic\ul4on\Utils::isDict($arg1))
@@ -541,8 +541,8 @@ class Utils
 			$k = mb_convert_encoding($obj, 'UCS-2LE', 'UTF-8');
 			if (1 != mb_strlen($k, 'UCS-2LE'))
 				throw new \Exception("String " . $obj . " contains more than one unicode character!");
-			$k1 = ord(substr($k, 0, 1));
-			$k2 = ord(substr($k, 1, 1));
+			$k1 = ord(mb_substr($k, 0, 1, \com\livinglogic\ul4on\Utils::$encoding));
+			$k2 = ord(mb_substr($k, 1, 1, \com\livinglogic\ul4on\Utils::$encoding));
 			return $k2 * 256 + $k1;
 		}
 		throw new \Exception("ord(" . self::objectType($obj) . ") not supported!");

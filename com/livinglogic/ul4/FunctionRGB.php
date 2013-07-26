@@ -15,10 +15,10 @@ class FunctionRGB extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"r", Signature::$required,
+			array("r", Signature::$required,
 			"g", Signature::$required,
 			"b", Signature::$required,
-			"a", 1.0
+			"a", 1.0)
 		);
 	}
 

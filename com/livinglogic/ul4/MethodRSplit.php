@@ -73,7 +73,7 @@ class MethodRSplit implements Method
 	private function call2($obj, $maxsplit)
 	{
 		$result = array();
-		$start = $end = strlen($obj) - 1;
+		$start = $end = mb_strlen($obj, \com\livinglogic\ul4on\Utils::$encoding) - 1;
 
 		while ($maxsplit-- > 0)
 		{
@@ -85,14 +85,14 @@ class MethodRSplit implements Method
 			while ($start >= 0 && !preg_match("/\s/", $obj[$start]))
 				--$start;
 			if ($start != $end)
-				array_unshift($result, substr($obj, $start + 1, $end - $start));
+				array_unshift($result, mb_substr($obj, $start + 1, $end - $start, \com\livinglogic\ul4on\Utils::$encoding));
 		}
 		if ($start >= 0)
 		{
 			while ($start >= 0 && preg_match("/\s/", $obj[$start]))
 				--$start;
 			if ($start >= 0)
-				array_unshift($result, substr($obj, 0, $start + 1));
+				array_unshift($result, mb_substr($obj, 0, $start + 1, \com\livinglogic\ul4on\Utils::$encoding));
 		}
 
 		return $result;
@@ -100,22 +100,22 @@ class MethodRSplit implements Method
 
 	private function call3($obj, $separator, $maxsplit)
 	{
-		if (strlen($separator) == 0)
+		if (mb_strlen($separator, \com\livinglogic\ul4on\Utils::$encoding) == 0)
 			throw new \Exception("empty separator not supported");
 
 		$result = array();
-		$start = strlen($obj);
+		$start = mb_strlen($obj, \com\livinglogic\ul4on\Utils::$encoding);
 		$end = $start;
-		$seplen = strlen($separator);
+		$seplen = mb_strlen($separator, \com\livinglogic\ul4on\Utils::$encoding);
 		while ($maxsplit-- > 0)
 		{
-			$start = strrpos(substr($obj, 0, $end), $separator, 0);
+			$start = strrpos(mb_substr($obj, 0, $end, \com\livinglogic\ul4on\Utils::$encoding), $separator, 0);
 			if (is_bool($start))
 				break;
-			array_unshift($result, substr($obj, $start + $seplen, $end - $start - $seplen));
+			array_unshift($result, mb_substr($obj, $start + $seplen, $end - $start - $seplen, \com\livinglogic\ul4on\Utils::$encoding));
 			$end = $start;
 		}
-		array_unshift($result, substr($obj, 0, $end));
+		array_unshift($result, mb_substr($obj, 0, $end, \com\livinglogic\ul4on\Utils::$encoding));
 		return $result;
 	}
 }

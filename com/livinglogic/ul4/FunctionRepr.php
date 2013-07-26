@@ -15,7 +15,7 @@ class FunctionRepr extends _Function
 	{
 		return new Signature(
 				$this->nameUL4(),
-				"obj", Signature::$required
+				array("obj", Signature::$required)
 		);
 	}
 
@@ -47,6 +47,8 @@ class Repr
 			return "" . $obj;
 		else if (is_string($obj))
 			return '"' . addslashes($obj)	. '"';
+		else if ($obj instanceof UL4Repr)
+			return $obj->reprUL4();
 		else if ($obj instanceof \DateTime)
 		{
 			$date = date_format($obj, "Y-m-d");
@@ -56,12 +58,6 @@ class Repr
 			else
 				return "@(" . $date . "T" . $time . ")";
 		}
-		else if ($obj instanceof TimeDelta)
-			return $obj->repr();
-		else if ($obj instanceof MonthDelta)
-			return $obj->repr();
-		else if ($obj instanceof Color)
-			return $obj->repr();
 		else if (\com\livinglogic\ul4on\Utils::isList($obj))
 		{
 			if ($this->seen($obj))

@@ -15,26 +15,21 @@ class FunctionStr extends _Function
 	{
 		return new Signature(
 				$this->nameUL4(),
-				"obj", ""
+				array("obj", "")
 		);
 	}
 
 	public function evaluate($args)
 	{
-		return call($args[0]);
+		return self::call(count($args) > 0 ? $args[0] : null);
 	}
 
 // 	public static SimpleDateFormat strDateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 // 	private static SimpleDateFormat strDateTimeFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 // 	private static SimpleDateFormat strTimestampMicroFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS'000'");
 
-	public static function call()
+	public static function call($obj)
 	{
-		if (func_num_args() == 0)
-			return "";
-
-		$obj = func_get_arg(0);
-
 		if (is_null($obj))
 			return "";
 		else if ($obj instanceof Undefined)

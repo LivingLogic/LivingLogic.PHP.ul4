@@ -27,7 +27,7 @@ class MethodCapitalize implements Method
 		if (!is_string($obj))
 			throw new ArgumentTypeMismatchException("{}.capitalize()", $obj);
 
-		return strtoupper(substr($obj, 0, 1)) . strtolower(substr($obj, 1));
+		return mb_strtoupper(mb_substr($obj, 0, 1, \com\livinglogic\ul4on\Utils::$encoding), \com\livinglogic\ul4on\Utils::$encoding) . mb_strtolower(mb_substr($obj, 1, \com\livinglogic\ul4on\Utils::$encoding), \com\livinglogic\ul4on\Utils::$encoding);
 	}
 }
 

@@ -61,7 +61,7 @@ class Encoder
 			else
 			{
 				$this->record($obj);
-				$this->buffer .= "S" . strlen($obj) . "|" . $obj;
+				$this->buffer .= "S" . mb_strlen($obj, \com\livinglogic\ul4on\Utils::$encoding) . "|" . $obj;
 			}
 		}
 		else if ($obj instanceof \DateTime)

@@ -15,7 +15,7 @@ class FunctionURLUnquote extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"string", Signature::$required
+			array("string", Signature::$required)
 		);
 	}
 

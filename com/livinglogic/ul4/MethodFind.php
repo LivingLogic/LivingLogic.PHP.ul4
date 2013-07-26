@@ -73,7 +73,7 @@ class MethodFind implements Method
 	{
 		if (is_string($obj))
 		{
-			$start = Utils::getSliceStartPos(strlen($obj), $start);
+			$start = Utils::getSliceStartPos(mb_strlen($obj, \com\livinglogic\ul4on\Utils::$encoding), $start);
 			$pos = strpos($obj, $sub, $start);
 			return is_bool($pos) ? -1 : $pos;
 		}
@@ -91,10 +91,10 @@ class MethodFind implements Method
 	{
 		if (is_string($obj))
 		{
-			$start = Utils::getSliceStartPos(strlen($obj), $start);
-			$end = Utils::getSliceEndPos(strlen($obj), $end);
+			$start = Utils::getSliceStartPos(mb_strlen($obj, \com\livinglogic\ul4on\Utils::$encoding), $start);
+			$end = Utils::getSliceEndPos(mb_strlen($obj, \com\livinglogic\ul4on\Utils::$encoding), $end);
 			$pos = strpos($obj, $sub, $start);
-			if ($pos === False || $pos + strlen($sub) > $end)
+			if ($pos === False || $pos + mb_strlen($sub, \com\livinglogic\ul4on\Utils::$encoding) > $end)
 				return -1;
 			return $pos;
 		}

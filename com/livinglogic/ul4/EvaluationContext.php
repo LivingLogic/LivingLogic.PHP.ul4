@@ -155,6 +155,9 @@ class EvaluationContext implements \com\livinglogic\utils\Closeable, \com\living
 
 	public function put($key, $value)
 	{
+		if ("self" == $key)
+			throw new \Exception("can't assign to self");
+
 		$this->variables[$key] = $value;
 	}
 
@@ -172,6 +175,19 @@ class EvaluationContext implements \com\livinglogic\utils\Closeable, \com\living
 	{
 		unset($this->variables[$key]);
 	}
+
+	public function setTemplate($template)
+	{
+		$result = $this->template;
+		$this->template = $template;
+		return $result;
+	}
+
+	public function getTemplate()
+	{
+		return $this->template;
+	}
+
 }
 
 EvaluationContext::static_init();

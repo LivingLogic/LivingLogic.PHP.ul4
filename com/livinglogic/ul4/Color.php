@@ -37,8 +37,8 @@ class Color implements UL4Repr, UL4Len, UL4Type, UL4MethodCall
 		$this->signatureHLSA = new Signature("hlsa");
 		$this->signatureHSV = new Signature("hsv");
 		$this->signatureHSVA = new Signature("hsva");
-		$this->signatureWithA = new Signature("witha", "a", Signature::$required);
-		$this->signatureWithLum = new Signature("withlum", "lum", Signature::$required);
+		$this->signatureWithA = new Signature("witha", array("a", Signature::$required));
+		$this->signatureWithLum = new Signature("withlum", array("lum", Signature::$required));
 	}
 
 	public function get($idx)
@@ -70,7 +70,7 @@ class Color implements UL4Repr, UL4Len, UL4Type, UL4MethodCall
 	{
 		$svalue = dechex($value);
 
-		if (strlen($svalue) < 2)
+		if (mb_strlen($svalue, Utils::$encoding) < 2)
 			return "0" . $svalue;
 		return $svalue;
 	}
@@ -258,10 +258,10 @@ class Color implements UL4Repr, UL4Len, UL4Type, UL4MethodCall
 
 	static function fromdump($value)
 	{
-		$r = hexdec(substr($value, 0, 2));
-		$g = hexdec(substr($value, 2, 2));
-		$b = hexdec(substr($value, 4, 2));
-		$a = hexdec(substr($value, 6, 2));
+		$r = hexdec(mb_substr($value, 0, 2, Utils::$encoding));
+		$g = hexdec(mb_substr($value, 2, 2, Utils::$encoding));
+		$b = hexdec(mb_substr($value, 4, 2, Utils::$encoding));
+		$a = hexdec(mb_substr($value, 6, 2, Utils::$encoding));
 
 		return new Color($r, $g, $b, $a);
 	}
@@ -270,24 +270,24 @@ class Color implements UL4Repr, UL4Len, UL4Type, UL4MethodCall
 	{
 		if ($value == null)
 			return null;
-		$len = strlen($value);
+		$len = mb_strlen($value, Utils::$encoding);
 		$r;
 		$g;
 		$b;
 		$a;
 		if ($len === 4 || $len === 5)
 		{
-			$r = hexdec(substr($value, 1, 1)) * 0x11;
-			$g = hexdec(substr($value, 2, 1)) * 0x11;
-			$b = hexdec(substr($value, 3, 1)) * 0x11;
-			$a = ($len === 4) ? 0xff : (hexdec(substr($value, 4, 1)) * 0x11);
+			$r = hexdec(mb_substr($value, 1, 1, Utils::$encoding)) * 0x11;
+			$g = hexdec(mb_substr($value, 2, 1, Utils::$encoding)) * 0x11;
+			$b = hexdec(mb_substr($value, 3, 1, Utils::$encoding)) * 0x11;
+			$a = ($len === 4) ? 0xff : (hexdec(mb_substr($value, 4, 1, Utils::$encoding)) * 0x11);
 		}
 		else if ($len === 7 || $len === 9)
 		{
-			$r = hexdec(substr($value, 1, 2));
-			$g = hexdec(substr($value, 3, 2));
-			$b = hexdec(substr($value, 5, 2));
-			$a = ($len == 7) ? 0xff : hexdec(substr($value, 7, 2));
+			$r = hexdec(mb_substr($value, 1, 2, Utils::$encoding));
+			$g = hexdec(mb_substr($value, 3, 2, Utils::$encoding));
+			$b = hexdec(mb_substr($value, 5, 2, Utils::$encoding));
+			$a = ($len == 7) ? 0xff : hexdec(mb_substr($value, 7, 2, Utils::$encoding));
 		}
 		else
 			throw new \Exception("Invalid color repr '" + $value + "'");

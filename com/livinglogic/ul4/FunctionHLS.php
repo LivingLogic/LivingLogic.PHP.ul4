@@ -27,10 +27,10 @@ class FunctionHLS extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"h", Signature::$required,
+			array("h", Signature::$required,
 			"l", Signature::$required,
 			"s", Signature::$required,
-			"a", 1.0
+			"a", 1.0)
 		);
 	}
 

@@ -94,8 +94,8 @@ class FunctionEnumFL extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"iterable", Signature::$required,
-			"start", 0
+			array("iterable", Signature::$required,
+			"start", 0)
 		);
 	}
 

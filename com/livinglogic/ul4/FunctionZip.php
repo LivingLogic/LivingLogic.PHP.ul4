@@ -16,7 +16,7 @@ class FunctionZip extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"iterables", Signature::$remainingArguments
+			array("iterables", Signature::$remainingArguments)
 		);
 	}
 

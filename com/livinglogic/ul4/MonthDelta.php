@@ -4,13 +4,17 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class MonthDelta
+class MonthDelta implements UL4Bool, UL4Repr, UL4Type, UL4Abs, UL4MethodCall
 {
 	private $months;
+
+	private $signatureMonths;
 
 	public function __construct($months=0)
 	{
 		$this->months = $months;
+
+		$this->signatureMonths = new Signature("months");
 	}
 
 	public function getMonths()
@@ -57,7 +61,12 @@ class MonthDelta
 		return new MonthDelta(Utils::floordiv($this->months, $divisor));
 	}
 
-	public function repr()
+	public function boolUL4()
+	{
+		return $this->months != 0;
+	}
+
+	public function reprUL4()
 	{
 		$buffer = "";
 
@@ -77,6 +86,27 @@ class MonthDelta
 		if (($this->months != 1) && ($this->months != -1))
 			$buffer .= "s";
 		return $buffer;
+	}
+
+	public function typeUL4()
+	{
+		return "monthdelta";
+	}
+
+	public function absUL4()
+	{
+		return $this->months < 0 ? new MonthDelta(-$this->months) : $this;
+	}
+
+	public function callMethodUL4($methodName, $args, $kwargs)
+	{
+		if ("months" == $methodName)
+		{
+			$args = $this->signatureMonths->makeArgumentArray($args, $kwargs);
+			return $this->months;
+		}
+		else
+			throw new UnknownMethodException($methodName);
 	}
 }
 

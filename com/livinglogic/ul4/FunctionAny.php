@@ -15,7 +15,7 @@ class FunctionAny extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"iterable", Signature::$required
+			array("iterable", Signature::$required)
 		);
 	}
 
@@ -28,7 +28,7 @@ class FunctionAny extends _Function
 	{
 		if (is_string($obj))
 		{
-			for ($i = 0; $i < strlen($obj); ++$i)
+			for ($i = 0; $i < mb_strlen($obj, \com\livinglogic\ul4on\Utils::$encoding); ++$i)
 			{
 				if ($obj[$i] != '\0')
 					return true;

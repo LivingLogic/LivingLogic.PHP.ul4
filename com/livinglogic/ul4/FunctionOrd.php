@@ -15,7 +15,7 @@ class FunctionOrd extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"c", Signature::$required
+			array("c", Signature::$required)
 		);
 	}
 
@@ -31,8 +31,8 @@ class FunctionOrd extends _Function
 			$k = mb_convert_encoding($obj, 'UCS-2LE', 'UTF-8');
 			if (1 != mb_strlen($k, 'UCS-2LE'))
 				throw new \Exception("String " . $obj . " contains more than one unicode character!");
-			$k1 = ord(substr($k, 0, 1));
-			$k2 = ord(substr($k, 1, 1));
+			$k1 = ord(mb_substr($k, 0, 1, \com\livinglogic\ul4on\Utils::$encoding));
+			$k2 = ord(mb_substr($k, 1, 1, \com\livinglogic\ul4on\Utils::$encoding));
 			return $k2 * 256 + $k1;
 		}
 		throw new \Exception("ord(" . Utils::objectType($obj) . ") not supported!");

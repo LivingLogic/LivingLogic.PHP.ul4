@@ -14,8 +14,8 @@ class FunctionXMLEscape extends _Function
 	protected function makeSignature()
 	{
 		return new Signature(
-				$this->nameUL4(),
-				"obj", Signature::$required
+			$this->nameUL4(),
+			array("obj", Signature::$required)
 		);
 	}
 
@@ -30,7 +30,7 @@ class FunctionXMLEscape extends _Function
 			return "";
 
 		$str = FunctionStr::call($obj);
-		$length = strlen($str);
+		$length = mb_strlen($str, \com\livinglogic\ul4on\Utils::$encoding);
 
 		$search = array( "&");
 		$replace = array("&amp;");

@@ -15,7 +15,7 @@ class FunctionOct extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"number", Signature::$required
+			array("number", Signature::$required)
 		);
 	}
 

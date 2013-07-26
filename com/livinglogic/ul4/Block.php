@@ -51,20 +51,34 @@ abstract class Block extends AST
 		$this->content = $decoder->load();
 	}
 
-	/*
-	private static Map<String, ValueMaker> valueMakers = null;
+	protected static $attributes = null;
 
-	public Map<String, ValueMaker> getValueMakers()
+	public static function static_init()
 	{
-		if (valueMakers == null)
-		{
-			HashMap<String, ValueMaker> v = new HashMap<String, ValueMaker>(super.getValueMakers());
-			v.put("content", new ValueMaker(){public Object getValue(Object object){return ((InterpretedTemplate)object).content;}});
-			valueMakers = v;
-		}
-		return valueMakers;
+		$a = array_merge(AST::$attributes, array("endlocation", "content"));
+		$a = array_unique($a);
+		$a = array_merge($a);
+
+		self::$attributes = $a;
 	}
-	*/
+
+	public function getAttributeNamesUL4()
+	{
+		return self::$attributes;
+	}
+
+
+	public function getItemStringUL4($key)
+	{
+		if ("endlocation" == $key)
+			return $this->endlocation;
+		else if ("content" == $key)
+			return $this->content;
+		else
+			return parent::getItemStringUL4($key);
+	}
 }
+
+Block::static_init();
 
 ?>

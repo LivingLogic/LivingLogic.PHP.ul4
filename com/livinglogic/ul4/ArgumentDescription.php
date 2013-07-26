@@ -4,7 +4,7 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class ArgumentDescription
+class ArgumentDescription implements UL4Repr
 {
 	protected $name;
 	protected $position;
@@ -43,6 +43,23 @@ class ArgumentDescription
 	public function getDefaultValue()
 	{
 		return $this->defaultValue;
+	}
+
+	public function reprUL4()
+	{
+		$buffer = "";
+
+		$buffer .= "ArgumentDescription(name=";
+		$buffer .= $this->name;
+		$buffer .= ", position=";
+		$buffer .= $this->position;
+		$buffer .= ", hasDefaultValue=";
+		$buffer .= FunctionRepr::call($this->hasDefaultValue);
+		$buffer .= ", defaultValue=";
+		$buffer .= FunctionRepr::call($this->defaultValue);
+		$buffer .= ")";
+
+		return $buffer;
 	}
 }
 

@@ -4,11 +4,15 @@ namespace com\livinglogic\ul4;
 
 include_once 'com/livinglogic/ul4/ul4.php';
 
-class TimeDelta
+class TimeDelta implements UL4Bool, UL4Repr, UL4Type, UL4Abs, UL4MethodCall
 {
 	private $days;
 	private $seconds;
 	private $microseconds;
+
+	private $signatureDays;
+	private $signatureSeconds;
+	private $signatureMicroseconds;
 
 	public function __construct($days=0, $seconds=0, $microseconds=0)
 	{
@@ -42,6 +46,10 @@ class TimeDelta
 		$this->seconds = FunctionInt::call($seconds);
 
 		$this->days = $days;
+
+		$this->signatureDays = new Signature("days");
+		$this->signatureSeconds = new Signature("seconds");
+		$this->signatureMicroseconds = new Signature("microseconds");
 	}
 
 	public function getDays()
@@ -130,29 +138,6 @@ class TimeDelta
 		);
 	}
 
-	public function repr()
-	{
-		$buffer = "";
-
-		$buffer .= "timedelta(";
-		if ($this->days != 0 || $this->seconds != 0 || $this->microseconds != 0)
-		{
-			$buffer .= $this->days;
-			if ($this->seconds != 0 || $this->microseconds != 0)
-			{
-				$buffer .= ", ";
-				$buffer .= $this->seconds;
-				if ($this->microseconds != 0)
-				{
-					$buffer .= ", ";
-					$buffer .= $this->microseconds;
-				}
-			}
-		}
-		$buffer .= ")";
-		return $buffer;
-	}
-
 	private static $twodigits = "%02d";
 	private static $sixdigits = "%06d";
 
@@ -185,6 +170,65 @@ class TimeDelta
 			$buffer .= sprintf(self::$sixdigits, $this->microseconds);
 		}
 		return $buffer;
+	}
+
+	public function boolUL4()
+	{
+		return $this->days != 0 || $this->seconds != 0 || $this->microseconds != 0;
+	}
+
+	public function reprUL4()
+	{
+		$buffer = "";
+
+		$buffer .= "timedelta(";
+		if ($this->days != 0 || $this->seconds != 0 || $this->microseconds != 0)
+		{
+			$buffer .= $this->days;
+			if ($this->seconds != 0 || $this->microseconds != 0)
+			{
+				$buffer .= ", ";
+				$buffer .= $this->seconds;
+				if ($this->microseconds != 0)
+				{
+					$buffer .= ", ";
+					$buffer .= $this->microseconds;
+				}
+			}
+		}
+		$buffer .= ")";
+		return $buffer;
+	}
+
+	public function typeUL4()
+	{
+		return "timedelta";
+	}
+
+	public function absUL4()
+	{
+		return $this->days < 0 ? new TimeDelta(-$this->days, -$this->seconds, -$this->microseconds) : $this;
+	}
+
+	public function callMethodUL4($methodName, $args, $kwargs)
+	{
+		if ("days" == $methodName)
+		{
+			$args = $this->signatureDays->makeArgumentArray($args, $kwargs);
+			return $this->days;
+		}
+		else if ("seconds" == $methodName)
+		{
+			$args = $this->signatureSeconds->makeArgumentArray($args, $kwargs);
+			return $this->seconds;
+		}
+		else if ("microseconds" == $methodName)
+		{
+			$args = $this->signatureSeconds->makeArgumentArray($args, $kwargs);
+			return $this->microseconds;
+		}
+		else
+			throw new UnknownMethodException($methodName);
 	}
 }
 

@@ -32,7 +32,7 @@ abstract class AST implements \com\livinglogic\ul4on\UL4ONSerializable
 
 	public function toStringFromSource($formatter)
 	{
-		$formatter->write(substr($this->location->getSource(), $this->start, $this->end - $this->start));
+		$formatter->write(mb_substr($this->location->getSource(), $this->start, $this->end - $this->start, \com\livinglogic\ul4on\Utils::$encoding));
 	}
 
 	public function toString($indent)
@@ -86,30 +86,19 @@ abstract class AST implements \com\livinglogic\ul4on\UL4ONSerializable
 		return self::attributes;
 	}
 
-
-	/*
-	private static $valueMakers = array();
-
-	public function getValueMakers()
+	public function getItemStringUL4($key)
 	{
-		if (self::$valueMakers == null)
-		{
-			$v = array();
-			$v.put("type", new ValueMaker(){
-				public Object getValue(Object object){
-					return ((AST)object).getType();
-				}
-			});
-			v.put("location", new ValueMaker(){
-				public Object getValue(Object object){
-					return ((AST)object).getLocation();
-				}
-			});
-			valueMakers = v;
-		}
-		return valueMakers;
+		if ("type" == $key)
+			return $this->getType();
+		else if ("location" == $key)
+			return $this->location;
+		else if ("start" == $key)
+			return $this->start;
+		else if ("end" == $key)
+			return $this->end;
+		else
+			return new UndefinedKey($key);
 	}
-	*/
 }
 
 ?>

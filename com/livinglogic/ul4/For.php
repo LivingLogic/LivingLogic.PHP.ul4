@@ -87,7 +87,7 @@ public function toString($indent)
 		parent::finish($endlocation);
 		$type = $endlocation->getCode()->strip();
 
-		if (!is_null($type) && strlen($type) != 0 && $type != "for")
+		if (!is_null($type) && mb_strlen($type, \com\livinglogic\ul4on\Utils::$encoding) != 0 && $type != "for")
 			throw new BlockException("for ended by end " . $type);
 	}
 

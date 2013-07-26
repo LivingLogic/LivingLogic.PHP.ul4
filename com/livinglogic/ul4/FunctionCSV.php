@@ -14,8 +14,8 @@ class FunctionCSV extends _Function
 	protected function makeSignature()
 	{
 		return new Signature(
-				$this->nameUL4(),
-				"obj", Signature::$required
+			$this->nameUL4(),
+			array("obj", Signature::$required)
 		);
 	}
 

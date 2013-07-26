@@ -15,7 +15,7 @@ class FunctionChr extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"i", Signature::$required
+			array("i", Signature::$required)
 		);
 	}
 

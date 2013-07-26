@@ -15,13 +15,13 @@ class FunctionDate extends _Function
 	{
 		return new Signature(
 			$this->nameUL4(),
-			"year", Signature::$required,
+			array("year", Signature::$required,
 			"month", Signature::$required,
 			"day", Signature::$required,
 			"hour", 0,
 			"minute", 0,
 			"second", 0,
-			"microsecond", 0
+			"microsecond", 0)
 		);
 	}
 
