@@ -41,11 +41,140 @@ class InterpretedTemplate extends Block implements UL4Name, UL4CallWithContext, 
 		return \com\livinglogic\ul4on\Utils::loads($str);
 	}
 
-	public function renders($variables)
+	/**
+	 * Renders the template and returns the resulting string.
+	 * @return The render output as a string.
+	 */
+	public function &renders()
 	{
-		$context = new EvaluationContext($variables);
-		parent::evaluate($context);
-		return $context->getOutput();
+		if (func_num_args() == 0)
+		{
+			$context = new EvaluationContext(null, null);
+			try
+			{
+				$result = $this->renders($context);
+				$context->close();
+				return $result;
+			}
+			catch (\Exception $ex)
+			{
+				$context->close();
+			}
+		}
+		else if (func_num_args() == 1)
+		{
+			$obj = func_get_arg(0);
+
+			if ($obj instanceof EvaluationContext)
+			{
+				$context = $obj;
+				$buffer = "";
+				$oldBuffer = &$context->setBuffer($buffer);
+				try
+				{
+					$this->render($context);
+					$buffer = &$context->setBuffer($oldBuffer);
+				}
+				catch (\Exception $ex)
+				{
+					$buffer = &$context->setBuffer($oldBuffer);
+				}
+				return $buffer;
+			}
+			else if (\com\livinglogic\ul4on\Utils::isDict($obj))
+			{
+				$variables = $obj;
+				$buffer = "";
+				$this->render($buffer, $variables);
+				return $buffer;
+			}
+		}
+		else if (func_num_args() == 2)
+		{
+			$context = func_get_arg(0);
+			$variables = func_get_arg(1);
+			$oldVariables = $context->setVariables($variables);
+			try
+			{
+				$result = $this->renders($context);
+				$context->setVariables($oldVariables);
+				return $result;
+			}
+			catch (\Exception $ex)
+			{
+				$context->setVariables($oldVariables);
+			}
+		}
+	}
+
+	/**
+	 * Renders the template.
+	 * @param context   the EvaluationContext.
+	 */
+	public function render(&$obj)
+	{
+		if (func_num_args() == 1)
+		{
+			$context = $obj;
+			$oldTemplate = $context->setTemplate($this);
+			try
+			{
+				parent::evaluate($context);
+				$context->setTemplate($oldTemplate);
+			}
+			catch (BreakException $ex)
+			{
+				$context->setTemplate($oldTemplate);
+				throw $ex;
+			}
+			catch (ContinueException $ex)
+			{
+				$context->setTemplate($oldTemplate);
+				throw $ex;
+			}
+			catch (ReturnException $ex)
+			{
+				// ignore return value and end rendering
+				$context->setTemplate($oldTemplate);
+			}
+			catch (Exception $ex)
+			{
+				$context->setTemplate($oldTemplate);
+				throw new TemplateException($ex, $this);
+			}
+		}
+		else if (func_num_args() == 2)
+		{
+			$variables = func_get_arg(1);
+			if ($obj instanceof EvaluationContext)
+			{
+				$context = $obj;
+				$oldVariables = $context->setVariables($variables);
+				try
+				{
+					$this->render($context);
+					$context->setVariables($oldVariables);
+				}
+				catch (\Exception $ex)
+				{
+					$context->setVariables($oldVariables);
+				}
+			}
+			else
+			{
+				$buffer = &$obj;
+				$context = new EvaluationContext($buffer, $variables);
+				try
+				{
+					$this->render($context);
+					$context->close();
+				}
+				catch (\Exception $ex)
+				{
+					$context->close();
+				}
+			}
+		}
 	}
 
 	public function dumpUL4ON($encoder)

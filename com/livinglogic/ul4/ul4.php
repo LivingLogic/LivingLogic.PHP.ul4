@@ -45,12 +45,15 @@ include_once 'com/livinglogic/ul4/UL4Type.php';
 include_once 'com/livinglogic/ul4/AST.php';
 
 include_once 'com/livinglogic/ul4/Function.php';
+include_once 'com/livinglogic/ul4/FunctionWithContext.php';
 include_once 'com/livinglogic/ul4/FunctionNow.php';
 include_once 'com/livinglogic/ul4/FunctionUTCNow.php';
 include_once 'com/livinglogic/ul4/FunctionRandom.php';
 include_once 'com/livinglogic/ul4/FunctionXMLEscape.php';
 include_once 'com/livinglogic/ul4/FunctionCSV.php';
 include_once 'com/livinglogic/ul4/FunctionStr.php';
+include_once 'com/livinglogic/ul4/FunctionPrint.php';
+include_once 'com/livinglogic/ul4/FunctionPrintX.php';
 include_once 'com/livinglogic/ul4/FunctionRepr.php';
 include_once 'com/livinglogic/ul4/FunctionInt.php';
 include_once 'com/livinglogic/ul4/FunctionFloat.php';

@@ -525,7 +525,7 @@ class Utils
 		throw new \Exception("iter(" . self::objectType($obj) . ") not supported!");
 	}
 
-	private static function _toInt($arg)
+	public static function _toInt($arg)
 	{
 		if (is_bool($arg))
 			return $arg ? 1 : 0;

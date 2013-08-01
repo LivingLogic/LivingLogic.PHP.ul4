@@ -82,7 +82,7 @@ class FunctionRange implements UL4Call
 		if ($step == 0)
 			throw new \Exception("Step argument must be non-zero!");
 
-		return new Range(self::_toInt($start), self::_toInt($stop), self::_toInt($step));
+		return new Range(Utils::_toInt($start), Utils::_toInt($stop), Utils::_toInt($step));
 	}
 }
 

@@ -14,7 +14,7 @@ abstract class Unary extends AST
 		$this->obj = $obj;
 	}
 
-	public function toString($indent=0)
+	public function toString($indent)
 	{
 		return $this->getType() . "(" . $this->obj . ")";
 	}

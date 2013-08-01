@@ -25,28 +25,32 @@ class Signature implements \IteratorAggregate // implements Iterable<ArgumentDes
 		self::$remainingKeywordArguments = new Signature("remainingKeywordArguments", array());
 	}
 
-	public function __construct($name, $args)
+	public function __construct($name)
 	{
 		$this->name = $name;
 		$this->arguments = array(); //new LinkedHashMap<String, ArgumentDescription>();
 		$this->remainingArgumentsName = null;
 		$this->remainingKeywordArgumentsName = null;
 
-		$argname = null;
-		for ($i = 0; $i < count($args); ++$i)
+		if (func_num_args() == 2)
 		{
-			if ($i%2 == 0)
-				$argname = $args[$i];
-			else
+			$args = func_get_arg(1);
+			$argname = null;
+			for ($i = 0; $i < count($args); ++$i)
 			{
-				if ($args[$i] === self::$required)
-					$this->add($argname);
-				else if ($args[$i] === self::$remainingArguments)
-					$this->remainingArgumentsName = $argname;
-				else if ($args[$i] === self::$remainingKeywordArguments)
-					$this->remainingKeywordArgumentsName = $argname;
+				if ($i%2 == 0)
+					$argname = $args[$i];
 				else
-					$this->add($argname, $args[$i]);
+				{
+					if ($args[$i] === self::$required)
+						$this->add($argname);
+					else if ($args[$i] === self::$remainingArguments)
+						$this->remainingArgumentsName = $argname;
+					else if ($args[$i] === self::$remainingKeywordArguments)
+						$this->remainingKeywordArgumentsName = $argname;
+					else
+						$this->add($argname, $args[$i]);
+				}
 			}
 		}
 	}

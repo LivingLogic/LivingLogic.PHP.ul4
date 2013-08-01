@@ -7,7 +7,7 @@ include_once 'com/livinglogic/ul4/ul4.php';
 use \com\livinglogic\utils\MapChain as MapChain;
 
 
-class EvaluationContext implements \com\livinglogic\utils\Closeable, \com\livinglogic\utils\CloseableRegistry
+class EvaluationContext implements \com\livinglogic\utils\Closeable, \com\livinglogic\utils\CloseableRegistry, UL4Repr
 {
 	protected $buffer;
 	protected $variables;
@@ -35,6 +35,8 @@ class EvaluationContext implements \com\livinglogic\utils\Closeable, \com\living
 	public static function static_init()
 	{
 		self::$functions = array(
+				"print" => new FunctionPrint(),
+				"printx" => new FunctionPrintX(),
 				"now" => new FunctionNow(),
 				"utcnow" => new FunctionUTCNow(),
 				"random" => new FunctionRandom(),
@@ -98,15 +100,27 @@ class EvaluationContext implements \com\livinglogic\utils\Closeable, \com\living
 		);
 	}
 
-	public function __construct($variables=null)
+	public function __construct(&$buffer, $variables=null)
 	{
-		$this->buffer = "";
+		$this->buffer = &$buffer;
 		if ($variables == null)
 			$variables = array();
 		$this->variables = $variables;
 		$this->template = null;
 		$this->allVariables = new MapChain($variables, self::$functions);
 		$this->closeables = array();
+	}
+
+	public function &getBuffer()
+	{
+		return $this->buffer;
+	}
+
+	public function &setBuffer(&$buffer)
+	{
+		$oldBuffer = &$this->buffer;
+		$this->buffer = &$buffer;
+		return $oldBuffer;
 	}
 
 	public function close()
@@ -188,6 +202,10 @@ class EvaluationContext implements \com\livinglogic\utils\Closeable, \com\living
 		return $this->template;
 	}
 
+	public function reprUL4()
+	{
+		return "{ buffer: " . FunctionRepr::call($this->buffer) . ", variables: " . FunctionRepr::call($this->variables) . "}";
+	}
 }
 
 EvaluationContext::static_init();
